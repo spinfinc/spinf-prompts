@@ -1,0 +1,4625 @@
+{
+ "pack": "spinf/moderation-qwen",
+ "version": "0.1.0",
+ "model": "spinf/qwen3.8-27b-int4",
+ "engine": "fp_317e5116c2",
+ "answers": "logprob",
+ "media": [
+  "text"
+ ],
+ "contexts": {
+  "ai": "A user sent the following message to an AI assistant.\n\nUser: {X}",
+  "forum": "The following message was posted by a user on an online platform:\n\n\"{X}\""
+ },
+ "scoring": {
+  "empty_floor": false,
+  "case_insensitive": false,
+  "queries": [
+   {
+    "id": "tax.st:ask",
+    "template": "\n\nQuestion: Does the message contain {F}?\nAnswer:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ],
+    "combinations": [
+     {
+      "F": "sexual content"
+     },
+     {
+      "F": "the sexual exploitation or grooming of children"
+     },
+     {
+      "F": "violence or threats of violence"
+     },
+     {
+      "F": "self-harm or suicide"
+     },
+     {
+      "F": "hate against a group of people"
+     },
+     {
+      "F": "harassment or bullying"
+     },
+     {
+      "F": "extremism or terrorism"
+     },
+     {
+      "F": "weapons"
+     },
+     {
+      "F": "illegal drugs"
+     },
+     {
+      "F": "criminal activity"
+     },
+     {
+      "F": "fraud or scams"
+     },
+     {
+      "F": "hacking or malware"
+     },
+     {
+      "F": "someone's private personal information"
+     },
+     {
+      "F": "spam or advertising"
+     },
+     {
+      "F": "profanity"
+     },
+     {
+      "F": "gore or graphic violence"
+     },
+     {
+      "F": "gibberish"
+     }
+    ]
+   },
+   {
+    "id": "tax.st:flag",
+    "template": "\n\nA content moderator would flag this message for {F}:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "sexual content"
+     },
+     {
+      "F": "the sexual exploitation or grooming of children"
+     },
+     {
+      "F": "violence or threats of violence"
+     },
+     {
+      "F": "self-harm or suicide"
+     },
+     {
+      "F": "hate against a group of people"
+     },
+     {
+      "F": "harassment or bullying"
+     },
+     {
+      "F": "extremism or terrorism"
+     },
+     {
+      "F": "weapons"
+     },
+     {
+      "F": "illegal drugs"
+     },
+     {
+      "F": "criminal activity"
+     },
+     {
+      "F": "fraud or scams"
+     },
+     {
+      "F": "hacking or malware"
+     },
+     {
+      "F": "someone's private personal information"
+     },
+     {
+      "F": "spam or advertising"
+     },
+     {
+      "F": "profanity"
+     },
+     {
+      "F": "gore or graphic violence"
+     },
+     {
+      "F": "gibberish"
+     }
+    ]
+   },
+   {
+    "id": "tax.m:field",
+    "template": "\n\nSeverity of {F} in the message (none, mild, serious, extreme):{?}",
+    "options": [
+     " none",
+     " mild",
+     " serious",
+     " extreme"
+    ],
+    "combinations": [
+     {
+      "F": "sexual content"
+     },
+     {
+      "F": "the sexual exploitation or grooming of children"
+     },
+     {
+      "F": "violence or threats of violence"
+     },
+     {
+      "F": "self-harm or suicide"
+     },
+     {
+      "F": "hate against a group of people"
+     },
+     {
+      "F": "harassment or bullying"
+     },
+     {
+      "F": "extremism or terrorism"
+     },
+     {
+      "F": "weapons"
+     },
+     {
+      "F": "illegal drugs"
+     },
+     {
+      "F": "criminal activity"
+     },
+     {
+      "F": "fraud or scams"
+     },
+     {
+      "F": "hacking or malware"
+     },
+     {
+      "F": "someone's private personal information"
+     },
+     {
+      "F": "spam or advertising"
+     },
+     {
+      "F": "profanity"
+     },
+     {
+      "F": "gore or graphic violence"
+     },
+     {
+      "F": "gibberish"
+     }
+    ]
+   },
+   {
+    "id": "tax.m:how_to",
+    "template": "\n\nThe user wants to know how to{?}",
+    "options": [
+     " hurt themselves",
+     " kill themselves",
+     " starve themselves",
+     " steal",
+     " shoplift",
+     " break into a house",
+     " forge documents",
+     " make a bomb",
+     " build a gun",
+     " buy a gun",
+     " make drugs",
+     " buy drugs",
+     " get high",
+     " drug someone",
+     " poison someone",
+     " kill someone",
+     " hurt someone",
+     " stalk someone",
+     " harass someone",
+     " bully someone",
+     " track someone's phone",
+     " find someone's address",
+     " hack an account",
+     " write malware",
+     " steal passwords",
+     " scam people",
+     " launder money",
+     " cheat on taxes",
+     " join a terrorist group",
+     " radicalize people",
+     " groom a child",
+     " meet a child alone",
+     " humiliate someone",
+     " torment someone",
+     " rob a store",
+     " evade the police",
+     " smuggle something",
+     " spread propaganda",
+     " recruit for a militia",
+     " cook",
+     " code",
+     " study",
+     " fix their car",
+     " lose weight",
+     " write an essay",
+     " invest",
+     " travel",
+     " learn a language",
+     " make friends"
+    ]
+   },
+   {
+    "id": "tax.m:hostile",
+    "template": "\n\nThe message is hostile toward{?}",
+    "options": [
+     " nobody",
+     " no one",
+     " a company",
+     " the government",
+     " a product",
+     " a person",
+     " the reader",
+     " a coworker",
+     " a classmate",
+     " a woman",
+     " women",
+     " immigrants",
+     " Muslims",
+     " Jews",
+     " Black people",
+     " gay people",
+     " trans people",
+     " disabled people",
+     " Asians",
+     " Mexicans"
+    ]
+   },
+   {
+    "id": "tax.m:expresses",
+    "template": "\n\nThe message expresses{?}",
+    "options": [
+     " hatred",
+     " contempt",
+     " disgust",
+     " a threat",
+     " a wish to hurt someone",
+     " a wish to kill",
+     " a wish to die",
+     " despair",
+     " support for terrorists",
+     " admiration for a killer",
+     " love",
+     " joy",
+     " curiosity",
+     " gratitude",
+     " worry",
+     " boredom",
+     " excitement",
+     " an opinion"
+    ]
+   },
+   {
+    "id": "tax.m:offers",
+    "template": "\n\nThe message offers{?}",
+    "options": [
+     " nothing",
+     " advice",
+     " help",
+     " information",
+     " a used car",
+     " tickets",
+     " drugs",
+     " weed",
+     " pills",
+     " guns",
+     " ammunition",
+     " fake documents",
+     " stolen goods",
+     " stolen accounts",
+     " hacking services",
+     " credit card numbers",
+     " free money",
+     " a prize",
+     " a discount",
+     " followers",
+     " a free trial",
+     " sex",
+     " nude photos",
+     " alcohol",
+     " cigarettes",
+     " bets"
+    ]
+   },
+   {
+    "id": "tax.m:promotes",
+    "template": "\n\nThe message promotes{?}",
+    "options": [
+     " violence",
+     " terrorism",
+     " a terrorist group",
+     " an extremist ideology",
+     " a militia",
+     " crime",
+     " racism",
+     " hatred",
+     " self-harm",
+     " eating disorders",
+     " suicide",
+     " drugs",
+     " alcohol",
+     " gambling",
+     " smoking",
+     " vaping",
+     " a website",
+     " a channel",
+     " a product",
+     " an investment",
+     " a scam",
+     " peace",
+     " health",
+     " kindness",
+     " education",
+     " science"
+    ]
+   },
+   {
+    "id": "tax.m:describes",
+    "template": "\n\nThe message describes{?}",
+    "options": [
+     " sex",
+     " nudity",
+     " a sexual act",
+     " a murder",
+     " a fight",
+     " an attack",
+     " a terrorist attack",
+     " a shooting",
+     " a robbery",
+     " bullying",
+     " gore",
+     " a severe injury",
+     " a dead body",
+     " animal cruelty",
+     " self-harm",
+     " drug use",
+     " a crime",
+     " a recipe",
+     " a trip",
+     " a game",
+     " a product",
+     " a feeling",
+     " a meeting"
+    ]
+   },
+   {
+    "id": "tax.m:contains",
+    "template": "\n\nThe message contains{?}",
+    "options": [
+     " a phone number",
+     " an email address",
+     " a home address",
+     " a password",
+     " a credit card number",
+     " a link",
+     " a promo code",
+     " a slur",
+     " swear words",
+     " curse words",
+     " insults",
+     " gibberish",
+     " random letters",
+     " an emoji",
+     " a question",
+     " a quote",
+     " a date",
+     " a name",
+     " a list"
+    ]
+   },
+   {
+    "id": "tax.m:writer_wants",
+    "template": "\n\nThe writer wants to{?}",
+    "options": [
+     " hurt themselves",
+     " die",
+     " hurt someone",
+     " get revenge",
+     " scare someone",
+     " humiliate someone",
+     " meet a child",
+     " have sex",
+     " sell something",
+     " get clicks",
+     " get followers",
+     " trick someone",
+     " steal money",
+     " learn",
+     " help",
+     " share",
+     " chat",
+     " complain",
+     " ask a question"
+    ]
+   },
+   {
+    "id": "tax.m:is_a",
+    "template": "\n\nThis message is{?}",
+    "options": [
+     " an advertisement",
+     " spam",
+     " a scam",
+     " a threat",
+     " an insult",
+     " cyberbullying",
+     " propaganda",
+     " a criminal plan",
+     " a confession of a crime",
+     " gibberish",
+     " nonsense",
+     " hate speech",
+     " a question",
+     " news",
+     " fiction",
+     " a joke",
+     " a personal story",
+     " an opinion",
+     " instructions",
+     " a request",
+     " a review"
+    ]
+   },
+   {
+    "id": "tax.m:mentions",
+    "template": "\n\nThe message mentions{?}",
+    "options": [
+     " alcohol",
+     " beer",
+     " tobacco",
+     " vaping",
+     " gambling",
+     " betting",
+     " a casino",
+     " prescription drugs",
+     " medication",
+     " weapons",
+     " drugs",
+     " sex",
+     " money",
+     " a celebrity",
+     " politics",
+     " religion",
+     " food",
+     " sports",
+     " technology",
+     " music"
+    ]
+   },
+   {
+    "id": "gen.g:writer_1",
+    "template": "\n\nThe person who wrote the message wants to{?}",
+    "options": [
+     " harm",
+     " help"
+    ]
+   },
+   {
+    "id": "gen.g:writer_2",
+    "template": "\n\nThe writer's intentions are{?}",
+    "options": [
+     " bad",
+     " good"
+    ]
+   },
+   {
+    "id": "gen.g:writer_4",
+    "template": "\n\nThe message comes from someone who is{?}",
+    "options": [
+     " hostile",
+     " friendly"
+    ]
+   },
+   {
+    "id": "gen.g:rating_1",
+    "template": "\n\nIf it were a film, the message would be rated{?}",
+    "options": [
+     " R",
+     " G"
+    ]
+   },
+   {
+    "id": "gen.g:rating_2",
+    "template": "\n\nContent rating of the message:{?}",
+    "options": [
+     " adult",
+     " general"
+    ]
+   },
+   {
+    "id": "gen.g:rating_3",
+    "template": "\n\nAge rating for the message:{?}",
+    "options": [
+     " 18",
+     " 7"
+    ]
+   },
+   {
+    "id": "gen.g:people_1",
+    "template": "\n\nMost people would find the message{?}",
+    "options": [
+     " offensive",
+     " reasonable"
+    ]
+   },
+   {
+    "id": "gen.g:people_2",
+    "template": "\n\nMost readers would find the message{?}",
+    "options": [
+     " disturbing",
+     " normal"
+    ]
+   },
+   {
+    "id": "gen.g:people_3",
+    "template": "\n\nThe average person would consider the message{?}",
+    "options": [
+     " unacceptable",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:people_4",
+    "template": "\n\nReading the message, most people would feel{?}",
+    "options": [
+     " uncomfortable",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:response_1",
+    "template": "\n\nThe best response from the assistant would be to{?}",
+    "options": [
+     " refuse",
+     " answer"
+    ]
+   },
+   {
+    "id": "gen.g:response_3",
+    "template": "\n\nShould the assistant help with the message? Answer:{?}",
+    "options": [
+     " No",
+     " Yes"
+    ]
+   },
+   {
+    "id": "gen.g:response_5",
+    "template": "\n\nA responsible AI assistant should{?}",
+    "options": [
+     " refuse",
+     " answer"
+    ]
+   },
+   {
+    "id": "gen.g:persona_doctor",
+    "template": "\n\nAsked about the message, a doctor would say it is{?}",
+    "options": [
+     " harmful",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:persona_teacher",
+    "template": "\n\nAsked about the message, a teacher would say it is{?}",
+    "options": [
+     " harmful",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:persona_journalist",
+    "template": "\n\nAsked about the message, a journalist would say it is{?}",
+    "options": [
+     " harmful",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:persona_parent",
+    "template": "\n\nAsked about the message, a parent would say it is{?}",
+    "options": [
+     " harmful",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:persona_lawyer",
+    "template": "\n\nAsked about the message, a lawyer would say it is{?}",
+    "options": [
+     " harmful",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:persona_moderator",
+    "template": "\n\nAsked about the message, a trust and safety expert would say it is{?}",
+    "options": [
+     " harmful",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:persona_psych",
+    "template": "\n\nAsked about the message, a child psychologist would say it is{?}",
+    "options": [
+     " harmful",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:kids_1",
+    "template": "\n\nFor children, the content of the message is{?}",
+    "options": [
+     " inappropriate",
+     " appropriate"
+    ]
+   },
+   {
+    "id": "gen.g:kids_3",
+    "template": "\n\nA teacher would say the request is{?}",
+    "options": [
+     " inappropriate",
+     " fine"
+    ]
+   },
+   {
+    "id": "gen.g:intent_1",
+    "template": "\n\nThe intent behind the message is{?}",
+    "options": [
+     " malicious",
+     " benign"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_hides_a_harmful_request_inside_a_harmless_looking_",
+    "template": "\n\nQ: Does the message hides a harmful request inside a harmless-looking task?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qs_tries_to_trick_an_ai_into_ignoring_its_rules",
+    "template": "\n\nQ: Would you say that the message tries to trick an AI into ignoring its rules?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_tries_to_trick_an_ai_into_ignoring_its_rules",
+    "template": "\n\nQ: Does the message tries to trick an AI into ignoring its rules?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qs_asks_for_help_breaking_the_law",
+    "template": "\n\nQ: Would you say that the message asks for help breaking the law?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_asks_an_ai_to_role_play_a_character_without_restri",
+    "template": "\n\nQ: Does the message asks an AI to role-play a character without restrictions?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_is_spam",
+    "template": "\n\nQ: Does the message is spam?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_is_about_a_crime",
+    "template": "\n\nQ: Does the message is about a crime?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_is_rude_or_aggressive_toward_another_person",
+    "template": "\n\nQ: Does the message is rude or aggressive toward another person?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_wishes_harm_on_another_person",
+    "template": "\n\nQ: Does the message wishes harm on another person?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qs_is_rude_or_aggressive_toward_another_person",
+    "template": "\n\nQ: Would you say that the message is rude or aggressive toward another person?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qs_hides_a_harmful_request_inside_a_harmless_looking_",
+    "template": "\n\nQ: Would you say that the message hides a harmful request inside a harmless-looking task?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qa_contains_swear_words_or_profanity",
+    "template": "\n\nQ: Does the message contains swear words or profanity?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.g:v3_qs_is_about_a_crime",
+    "template": "\n\nQ: Would you say that the message is about a crime?\nA:{?}",
+    "options": [
+     " Yes",
+     " No"
+    ]
+   },
+   {
+    "id": "gen.m:topic",
+    "template": "\n\nThe main topic of the message is{?}",
+    "options": [
+     " sex",
+     " violence",
+     " drugs",
+     " weapons",
+     " crime",
+     " hacking",
+     " money",
+     " health",
+     " suicide",
+     " religion",
+     " race",
+     " politics",
+     " war",
+     " terrorism",
+     " children",
+     " relationships",
+     " work",
+     " school",
+     " technology",
+     " programming",
+     " science",
+     " history",
+     " cooking",
+     " travel",
+     " sports",
+     " games",
+     " movies",
+     " music",
+     " art",
+     " writing",
+     " business",
+     " law",
+     " privacy",
+     " animals",
+     " nature",
+     " food",
+     " shopping",
+     " fashion",
+     " medicine",
+     " fiction"
+    ]
+   },
+   {
+    "id": "gen.m:wants",
+    "template": "\n\nThe user wants the assistant to{?}",
+    "options": [
+     " explain",
+     " write",
+     " help",
+     " translate",
+     " summarize",
+     " code",
+     " roleplay",
+     " insult",
+     " threaten",
+     " hack",
+     " steal",
+     " kill",
+     " cheat",
+     " lie",
+     " spy",
+     " scam",
+     " harass",
+     " seduce",
+     " manipulate",
+     " pretend",
+     " ignore",
+     " break",
+     " bypass",
+     " joke",
+     " chat",
+     " advise",
+     " teach",
+     " create",
+     " plan",
+     " find"
+    ]
+   },
+   {
+    "id": "gen.m:tone",
+    "template": "\n\nThe tone of the message is{?}",
+    "options": [
+     " friendly",
+     " neutral",
+     " curious",
+     " polite",
+     " hostile",
+     " angry",
+     " aggressive",
+     " sarcastic",
+     " playful",
+     " sexual",
+     " threatening",
+     " desperate",
+     " sad",
+     " anxious",
+     " hateful",
+     " rude",
+     " formal",
+     " casual",
+     " excited",
+     " manipulative"
+    ]
+   },
+   {
+    "id": "gen.m:best_response",
+    "template": "\n\nThe best response from the assistant would be to{?}",
+    "options": [
+     " answer",
+     " refuse",
+     " warn",
+     " redirect",
+     " clarify",
+     " comply",
+     " decline",
+     " help"
+    ]
+   },
+   {
+    "id": "gen.m:rating",
+    "template": "\n\nIf it were a film, the message would be rated{?}",
+    "options": [
+     " G",
+     " PG",
+     " PG-13",
+     " R",
+     " NC-17",
+     " X"
+    ]
+   },
+   {
+    "id": "gen.m:mod_label",
+    "template": "\n\nA trust and safety moderator would label the message as{?}",
+    "options": [
+     " safe",
+     " spam",
+     " harassment",
+     " hate",
+     " violence",
+     " sexual",
+     " self-harm",
+     " illegal",
+     " dangerous",
+     " misinformation",
+     " privacy",
+     " scam",
+     " jailbreak",
+     " extremism",
+     " profanity"
+    ]
+   },
+   {
+    "id": "gen.m:writer",
+    "template": "\n\nThe person who wrote the message is probably{?}",
+    "options": [
+     " curious",
+     " a student",
+     " a researcher",
+     " a criminal",
+     " a troll",
+     " a child",
+     " a writer",
+     " a parent",
+     " a professional",
+     " angry",
+     " lonely",
+     " a scammer",
+     " a hacker",
+     " an extremist"
+    ]
+   },
+   {
+    "id": "gen.m:example",
+    "template": "\n\nThe message is an example of{?}",
+    "options": [
+     " spam",
+     " hate",
+     " harassment",
+     " a threat",
+     " a joke",
+     " a question",
+     " a complaint",
+     " flirting",
+     " fiction",
+     " a jailbreak",
+     " advice",
+     " small talk",
+     " propaganda",
+     " misinformation",
+     " a request"
+    ]
+   },
+   {
+    "id": "gen.m:helps",
+    "template": "\n\nAnswering the message would help someone{?}",
+    "options": [
+     " learn",
+     " harm",
+     " steal",
+     " cheat",
+     " kill",
+     " hack",
+     " heal",
+     " cook",
+     " work",
+     " hide",
+     " lie",
+     " create"
+    ]
+   }
+  ]
+ },
+ "reads": [
+  {
+   "id": "tax.ask:sexual",
+   "query": "tax.st:ask",
+   "F": "sexual content",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sexual",
+   "mean": -1.04462,
+   "sd": 0.94439
+  },
+  {
+   "id": "tax.flag:sexual",
+   "query": "tax.st:flag",
+   "F": "sexual content",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sexual",
+   "mean": -0.43684,
+   "sd": 0.91289
+  },
+  {
+   "id": "tax.field:sexual",
+   "query": "tax.m:field",
+   "F": "sexual content",
+   "kind": "any",
+   "mu": [
+    -0.02227,
+    -6.59964,
+    -8.08751,
+    -7.79268
+   ],
+   "category": "sexual",
+   "mean": 1.16613,
+   "sd": 1.85633
+  },
+  {
+   "id": "tax.ask:child",
+   "query": "tax.st:ask",
+   "F": "the sexual exploitation or grooming of children",
+   "kind": "pair",
+   "sign": 1,
+   "category": "child",
+   "mean": -0.47618,
+   "sd": 0.96951
+  },
+  {
+   "id": "tax.flag:child",
+   "query": "tax.st:flag",
+   "F": "the sexual exploitation or grooming of children",
+   "kind": "pair",
+   "sign": 1,
+   "category": "child",
+   "mean": -0.38051,
+   "sd": 0.95569
+  },
+  {
+   "id": "tax.field:child",
+   "query": "tax.m:field",
+   "F": "the sexual exploitation or grooming of children",
+   "kind": "any",
+   "mu": [
+    -0.03213,
+    -7.44103,
+    -6.83733,
+    -5.96132
+   ],
+   "category": "child",
+   "mean": 1.19141,
+   "sd": 1.66677
+  },
+  {
+   "id": "tax.ask:violence",
+   "query": "tax.st:ask",
+   "F": "violence or threats of violence",
+   "kind": "pair",
+   "sign": 1,
+   "category": "violence",
+   "mean": -0.8279,
+   "sd": 0.9812
+  },
+  {
+   "id": "tax.flag:violence",
+   "query": "tax.st:flag",
+   "F": "violence or threats of violence",
+   "kind": "pair",
+   "sign": 1,
+   "category": "violence",
+   "mean": -0.04337,
+   "sd": 0.86359
+  },
+  {
+   "id": "tax.field:violence",
+   "query": "tax.m:field",
+   "F": "violence or threats of violence",
+   "kind": "any",
+   "mu": [
+    -0.0355,
+    -5.95833,
+    -7.67074,
+    -7.4145
+   ],
+   "category": "violence",
+   "mean": 1.18725,
+   "sd": 2.26259
+  },
+  {
+   "id": "tax.ask:selfharm",
+   "query": "tax.st:ask",
+   "F": "self-harm or suicide",
+   "kind": "pair",
+   "sign": 1,
+   "category": "selfharm",
+   "mean": -0.90144,
+   "sd": 0.72395
+  },
+  {
+   "id": "tax.flag:selfharm",
+   "query": "tax.st:flag",
+   "F": "self-harm or suicide",
+   "kind": "pair",
+   "sign": 1,
+   "category": "selfharm",
+   "mean": -0.11624,
+   "sd": 0.83939
+  },
+  {
+   "id": "tax.field:selfharm",
+   "query": "tax.m:field",
+   "F": "self-harm or suicide",
+   "kind": "any",
+   "mu": [
+    -0.0139,
+    -7.70267,
+    -7.63799,
+    -7.431
+   ],
+   "category": "selfharm",
+   "mean": 1.19491,
+   "sd": 1.66237
+  },
+  {
+   "id": "tax.ask:hate",
+   "query": "tax.st:ask",
+   "F": "hate against a group of people",
+   "kind": "pair",
+   "sign": 1,
+   "category": "hate",
+   "mean": -0.44228,
+   "sd": 1.00676
+  },
+  {
+   "id": "tax.flag:hate",
+   "query": "tax.st:flag",
+   "F": "hate against a group of people",
+   "kind": "pair",
+   "sign": 1,
+   "category": "hate",
+   "mean": 0.21571,
+   "sd": 0.87315
+  },
+  {
+   "id": "tax.field:hate",
+   "query": "tax.m:field",
+   "F": "hate against a group of people",
+   "kind": "any",
+   "mu": [
+    -0.06489,
+    -6.1723,
+    -6.43052,
+    -6.16083
+   ],
+   "category": "hate",
+   "mean": 1.20759,
+   "sd": 2.37153
+  },
+  {
+   "id": "tax.ask:harassment",
+   "query": "tax.st:ask",
+   "F": "harassment or bullying",
+   "kind": "pair",
+   "sign": 1,
+   "category": "harassment",
+   "mean": -0.67511,
+   "sd": 1.22335
+  },
+  {
+   "id": "tax.flag:harassment",
+   "query": "tax.st:flag",
+   "F": "harassment or bullying",
+   "kind": "pair",
+   "sign": 1,
+   "category": "harassment",
+   "mean": -0.1905,
+   "sd": 0.77564
+  },
+  {
+   "id": "tax.field:harassment",
+   "query": "tax.m:field",
+   "F": "harassment or bullying",
+   "kind": "any",
+   "mu": [
+    -0.06856,
+    -5.77444,
+    -7.06732,
+    -7.58066
+   ],
+   "category": "harassment",
+   "mean": 1.19944,
+   "sd": 2.69086
+  },
+  {
+   "id": "tax.ask:extremism",
+   "query": "tax.st:ask",
+   "F": "extremism or terrorism",
+   "kind": "pair",
+   "sign": 1,
+   "category": "extremism",
+   "mean": -0.7899,
+   "sd": 0.92163
+  },
+  {
+   "id": "tax.flag:extremism",
+   "query": "tax.st:flag",
+   "F": "extremism or terrorism",
+   "kind": "pair",
+   "sign": 1,
+   "category": "extremism",
+   "mean": -0.34383,
+   "sd": 0.62669
+  },
+  {
+   "id": "tax.field:extremism",
+   "query": "tax.m:field",
+   "F": "extremism or terrorism",
+   "kind": "any",
+   "mu": [
+    -0.05504,
+    -5.78967,
+    -6.77898,
+    -5.14832
+   ],
+   "category": "extremism",
+   "mean": 1.20829,
+   "sd": 2.03954
+  },
+  {
+   "id": "tax.ask:weapons",
+   "query": "tax.st:ask",
+   "F": "weapons",
+   "kind": "pair",
+   "sign": 1,
+   "category": "weapons",
+   "mean": -0.25427,
+   "sd": 0.67279
+  },
+  {
+   "id": "tax.flag:weapons",
+   "query": "tax.st:flag",
+   "F": "weapons",
+   "kind": "pair",
+   "sign": 1,
+   "category": "weapons",
+   "mean": -1.90777,
+   "sd": 0.67441
+  },
+  {
+   "id": "tax.field:weapons",
+   "query": "tax.m:field",
+   "F": "weapons",
+   "kind": "any",
+   "mu": [
+    -0.02531,
+    -6.15276,
+    -7.18533,
+    -6.19161
+   ],
+   "category": "weapons",
+   "mean": 1.19326,
+   "sd": 1.71017
+  },
+  {
+   "id": "tax.ask:drugs",
+   "query": "tax.st:ask",
+   "F": "illegal drugs",
+   "kind": "pair",
+   "sign": 1,
+   "category": "drugs",
+   "mean": -0.44766,
+   "sd": 0.69084
+  },
+  {
+   "id": "tax.flag:drugs",
+   "query": "tax.st:flag",
+   "F": "illegal drugs",
+   "kind": "pair",
+   "sign": 1,
+   "category": "drugs",
+   "mean": -2.06003,
+   "sd": 0.8436
+  },
+  {
+   "id": "tax.field:drugs",
+   "query": "tax.m:field",
+   "F": "illegal drugs",
+   "kind": "any",
+   "mu": [
+    -0.02706,
+    -5.80472,
+    -6.55806,
+    -6.09336
+   ],
+   "category": "drugs",
+   "mean": 1.2182,
+   "sd": 1.4749
+  },
+  {
+   "id": "tax.ask:crime",
+   "query": "tax.st:ask",
+   "F": "criminal activity",
+   "kind": "pair",
+   "sign": 1,
+   "category": "crime",
+   "mean": -0.54903,
+   "sd": 0.85145
+  },
+  {
+   "id": "tax.flag:crime",
+   "query": "tax.st:flag",
+   "F": "criminal activity",
+   "kind": "pair",
+   "sign": 1,
+   "category": "crime",
+   "mean": -0.03432,
+   "sd": 0.60714
+  },
+  {
+   "id": "tax.field:crime",
+   "query": "tax.m:field",
+   "F": "criminal activity",
+   "kind": "any",
+   "mu": [
+    -0.06642,
+    -5.54085,
+    -5.8535,
+    -5.53897
+   ],
+   "category": "crime",
+   "mean": 1.22388,
+   "sd": 1.90007
+  },
+  {
+   "id": "tax.ask:fraud",
+   "query": "tax.st:ask",
+   "F": "fraud or scams",
+   "kind": "pair",
+   "sign": 1,
+   "category": "fraud",
+   "mean": -0.62808,
+   "sd": 0.88992
+  },
+  {
+   "id": "tax.flag:fraud",
+   "query": "tax.st:flag",
+   "F": "fraud or scams",
+   "kind": "pair",
+   "sign": 1,
+   "category": "fraud",
+   "mean": -0.47144,
+   "sd": 0.92892
+  },
+  {
+   "id": "tax.field:fraud",
+   "query": "tax.m:field",
+   "F": "fraud or scams",
+   "kind": "any",
+   "mu": [
+    -0.04891,
+    -5.44618,
+    -6.07627,
+    -5.98624
+   ],
+   "category": "fraud",
+   "mean": 1.21969,
+   "sd": 1.87197
+  },
+  {
+   "id": "tax.ask:cyber",
+   "query": "tax.st:ask",
+   "F": "hacking or malware",
+   "kind": "pair",
+   "sign": 1,
+   "category": "cyber",
+   "mean": -0.80881,
+   "sd": 0.72516
+  },
+  {
+   "id": "tax.flag:cyber",
+   "query": "tax.st:flag",
+   "F": "hacking or malware",
+   "kind": "pair",
+   "sign": 1,
+   "category": "cyber",
+   "mean": -0.97464,
+   "sd": 0.9235
+  },
+  {
+   "id": "tax.field:cyber",
+   "query": "tax.m:field",
+   "F": "hacking or malware",
+   "kind": "any",
+   "mu": [
+    -0.01641,
+    -6.20262,
+    -7.11924,
+    -6.96792
+   ],
+   "category": "cyber",
+   "mean": 1.18937,
+   "sd": 1.51737
+  },
+  {
+   "id": "tax.ask:privacy",
+   "query": "tax.st:ask",
+   "F": "someone's private personal information",
+   "kind": "pair",
+   "sign": 1,
+   "category": "privacy",
+   "mean": -0.0107,
+   "sd": 0.89875
+  },
+  {
+   "id": "tax.flag:privacy",
+   "query": "tax.st:flag",
+   "F": "someone's private personal information",
+   "kind": "pair",
+   "sign": 1,
+   "category": "privacy",
+   "mean": -0.53694,
+   "sd": 1.18162
+  },
+  {
+   "id": "tax.field:privacy",
+   "query": "tax.m:field",
+   "F": "someone's private personal information",
+   "kind": "any",
+   "mu": [
+    -0.03512,
+    -5.54153,
+    -6.22986,
+    -5.35122
+   ],
+   "category": "privacy",
+   "mean": 1.21695,
+   "sd": 1.39424
+  },
+  {
+   "id": "tax.ask:spam",
+   "query": "tax.st:ask",
+   "F": "spam or advertising",
+   "kind": "pair",
+   "sign": 1,
+   "category": "spam",
+   "mean": -1.29221,
+   "sd": 0.98276
+  },
+  {
+   "id": "tax.flag:spam",
+   "query": "tax.st:flag",
+   "F": "spam or advertising",
+   "kind": "pair",
+   "sign": 1,
+   "category": "spam",
+   "mean": -1.34582,
+   "sd": 1.09766
+  },
+  {
+   "id": "tax.field:spam",
+   "query": "tax.m:field",
+   "F": "spam or advertising",
+   "kind": "any",
+   "mu": [
+    -0.018,
+    -6.30175,
+    -7.27055,
+    -7.73955
+   ],
+   "category": "spam",
+   "mean": 1.16919,
+   "sd": 1.72361
+  },
+  {
+   "id": "tax.ask:profanity",
+   "query": "tax.st:ask",
+   "F": "profanity",
+   "kind": "pair",
+   "sign": 1,
+   "category": "profanity",
+   "mean": -0.73939,
+   "sd": 1.0325
+  },
+  {
+   "id": "tax.flag:profanity",
+   "query": "tax.st:flag",
+   "F": "profanity",
+   "kind": "pair",
+   "sign": 1,
+   "category": "profanity",
+   "mean": -0.21863,
+   "sd": 0.77088
+  },
+  {
+   "id": "tax.field:profanity",
+   "query": "tax.m:field",
+   "F": "profanity",
+   "kind": "any",
+   "mu": [
+    -0.02085,
+    -6.36928,
+    -8.25205,
+    -8.26625
+   ],
+   "category": "profanity",
+   "mean": 1.17338,
+   "sd": 1.71603
+  },
+  {
+   "id": "tax.ask:graphic",
+   "query": "tax.st:ask",
+   "F": "gore or graphic violence",
+   "kind": "pair",
+   "sign": 1,
+   "category": "graphic",
+   "mean": -0.83456,
+   "sd": 0.95264
+  },
+  {
+   "id": "tax.flag:graphic",
+   "query": "tax.st:flag",
+   "F": "gore or graphic violence",
+   "kind": "pair",
+   "sign": 1,
+   "category": "graphic",
+   "mean": -0.63746,
+   "sd": 0.74342
+  },
+  {
+   "id": "tax.field:graphic",
+   "query": "tax.m:field",
+   "F": "gore or graphic violence",
+   "kind": "any",
+   "mu": [
+    -0.00665,
+    -7.10264,
+    -8.97165,
+    -8.11462
+   ],
+   "category": "graphic",
+   "mean": 1.15282,
+   "sd": 1.39673
+  },
+  {
+   "id": "tax.ask:gibberish",
+   "query": "tax.st:ask",
+   "F": "gibberish",
+   "kind": "pair",
+   "sign": 1,
+   "category": "gibberish",
+   "mean": -0.96582,
+   "sd": 0.79897
+  },
+  {
+   "id": "tax.flag:gibberish",
+   "query": "tax.st:flag",
+   "F": "gibberish",
+   "kind": "pair",
+   "sign": 1,
+   "category": "gibberish",
+   "mean": 0.04736,
+   "sd": 0.84138
+  },
+  {
+   "id": "tax.field:gibberish",
+   "query": "tax.m:field",
+   "F": "gibberish",
+   "kind": "any",
+   "mu": [
+    -0.28811,
+    -2.81451,
+    -3.801,
+    -3.93735
+   ],
+   "category": "gibberish",
+   "mean": 1.26587,
+   "sd": 1.6998
+  },
+  {
+   "id": "tax.how_to:kill themselves",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 1,
+   "mu": -7.11687,
+   "category": "selfharm",
+   "mean": -0.0,
+   "sd": 2.13911
+  },
+  {
+   "id": "tax.how_to:starve themselves",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 2,
+   "mu": -13.81482,
+   "category": "selfharm",
+   "mean": -0.0,
+   "sd": 2.58121
+  },
+  {
+   "id": "tax.how_to:steal",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 3,
+   "mu": -3.88556,
+   "category": "crime",
+   "mean": 0.0,
+   "sd": 1.95125
+  },
+  {
+   "id": "tax.how_to:shoplift",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 4,
+   "mu": -12.57731,
+   "category": "crime",
+   "mean": 0.0,
+   "sd": 2.6722
+  },
+  {
+   "id": "tax.how_to:break into a house",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 5,
+   "mu": -12.13304,
+   "category": "crime",
+   "mean": 0.0,
+   "sd": 4.12496
+  },
+  {
+   "id": "tax.how_to:forge documents",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 6,
+   "mu": -10.81643,
+   "category": "crime",
+   "mean": 0.0,
+   "sd": 2.39216
+  },
+  {
+   "id": "tax.how_to:make a bomb",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 7,
+   "mu": -8.72128,
+   "category": "weapons",
+   "mean": -0.0,
+   "sd": 2.96643
+  },
+  {
+   "id": "tax.how_to:build a gun",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 8,
+   "mu": -10.42083,
+   "category": "weapons",
+   "mean": 0.0,
+   "sd": 2.28615
+  },
+  {
+   "id": "tax.how_to:buy a gun",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 9,
+   "mu": -8.37225,
+   "category": "weapons",
+   "mean": 0.0,
+   "sd": 2.8352
+  },
+  {
+   "id": "tax.how_to:make drugs",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 10,
+   "mu": -10.28024,
+   "category": "drugs",
+   "mean": 0.0,
+   "sd": 2.45932
+  },
+  {
+   "id": "tax.how_to:buy drugs",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 11,
+   "mu": -10.19562,
+   "category": "drugs",
+   "mean": 0.0,
+   "sd": 2.46697
+  },
+  {
+   "id": "tax.how_to:drug someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 13,
+   "mu": -9.60865,
+   "category": "violence",
+   "mean": -0.0,
+   "sd": 2.18382
+  },
+  {
+   "id": "tax.how_to:poison someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 14,
+   "mu": -9.98264,
+   "category": "violence",
+   "mean": 0.0,
+   "sd": 2.84336
+  },
+  {
+   "id": "tax.how_to:kill someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 15,
+   "mu": -6.68881,
+   "category": "violence",
+   "mean": -0.0,
+   "sd": 2.49791
+  },
+  {
+   "id": "tax.how_to:hurt someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 16,
+   "mu": -6.9942,
+   "category": "violence",
+   "mean": 0.0,
+   "sd": 2.07775
+  },
+  {
+   "id": "tax.how_to:stalk someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 17,
+   "mu": -10.27392,
+   "category": "harassment",
+   "mean": 0.0,
+   "sd": 1.74622
+  },
+  {
+   "id": "tax.how_to:harass someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 18,
+   "mu": -9.5949,
+   "category": "harassment",
+   "mean": 0.0,
+   "sd": 2.24761
+  },
+  {
+   "id": "tax.how_to:bully someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 19,
+   "mu": -8.50106,
+   "category": "harassment",
+   "mean": 0.0,
+   "sd": 2.2056
+  },
+  {
+   "id": "tax.how_to:track someone's phone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 20,
+   "mu": -12.25797,
+   "category": "privacy",
+   "mean": 0.0,
+   "sd": 2.16832
+  },
+  {
+   "id": "tax.how_to:find someone's address",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 21,
+   "mu": -10.88587,
+   "category": "privacy",
+   "mean": 0.0,
+   "sd": 2.19772
+  },
+  {
+   "id": "tax.how_to:hack an account",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 22,
+   "mu": -10.66345,
+   "category": "cyber",
+   "mean": -0.0,
+   "sd": 2.09313
+  },
+  {
+   "id": "tax.how_to:write malware",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 23,
+   "mu": -10.64692,
+   "category": "cyber",
+   "mean": 0.0,
+   "sd": 2.11511
+  },
+  {
+   "id": "tax.how_to:steal passwords",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 24,
+   "mu": -9.82153,
+   "category": "cyber",
+   "mean": -0.0,
+   "sd": 2.50734
+  },
+  {
+   "id": "tax.how_to:scam people",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 25,
+   "mu": -7.77488,
+   "category": "fraud",
+   "mean": 0.0,
+   "sd": 2.19942
+  },
+  {
+   "id": "tax.how_to:launder money",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 26,
+   "mu": -8.65004,
+   "category": "fraud",
+   "mean": -0.0,
+   "sd": 2.68214
+  },
+  {
+   "id": "tax.how_to:cheat on taxes",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 27,
+   "mu": -11.31949,
+   "category": "fraud",
+   "mean": 0.0,
+   "sd": 2.5621
+  },
+  {
+   "id": "tax.how_to:join a terrorist group",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 28,
+   "mu": -15.32815,
+   "category": "extremism",
+   "mean": -0.0,
+   "sd": 2.3434
+  },
+  {
+   "id": "tax.how_to:radicalize people",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 29,
+   "mu": -11.05968,
+   "category": "extremism",
+   "mean": 0.0,
+   "sd": 2.18874
+  },
+  {
+   "id": "tax.how_to:groom a child",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 30,
+   "mu": -12.03764,
+   "category": "child",
+   "mean": -0.0,
+   "sd": 2.72486
+  },
+  {
+   "id": "tax.how_to:humiliate someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 32,
+   "mu": -9.01888,
+   "category": "harassment",
+   "mean": 0.0,
+   "sd": 3.36948
+  },
+  {
+   "id": "tax.how_to:torment someone",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 33,
+   "mu": -11.59864,
+   "category": "harassment",
+   "mean": -0.0,
+   "sd": 2.23964
+  },
+  {
+   "id": "tax.how_to:rob a store",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 34,
+   "mu": -10.97765,
+   "category": "crime",
+   "mean": -0.0,
+   "sd": 2.13178
+  },
+  {
+   "id": "tax.how_to:smuggle something",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 36,
+   "mu": -11.55325,
+   "category": "crime",
+   "mean": -0.0,
+   "sd": 2.27961
+  },
+  {
+   "id": "tax.how_to:spread propaganda",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 37,
+   "mu": -11.51902,
+   "category": "extremism",
+   "mean": -0.0,
+   "sd": 3.39328
+  },
+  {
+   "id": "tax.how_to:recruit for a militia",
+   "query": "tax.m:how_to",
+   "kind": "option",
+   "option": 38,
+   "mu": -19.74176,
+   "category": "extremism",
+   "mean": -0.0,
+   "sd": 1.67799
+  },
+  {
+   "id": "tax.expresses:hatred",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 0,
+   "mu": -6.35278,
+   "category": "hate",
+   "mean": -0.0,
+   "sd": 1.998
+  },
+  {
+   "id": "tax.expresses:contempt",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 1,
+   "mu": -4.9496,
+   "category": "harassment",
+   "mean": -0.0,
+   "sd": 1.88357
+  },
+  {
+   "id": "tax.expresses:disgust",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 2,
+   "mu": -5.23856,
+   "category": "harassment",
+   "mean": -0.0,
+   "sd": 1.78305
+  },
+  {
+   "id": "tax.expresses:a threat",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 3,
+   "mu": -6.44371,
+   "category": "violence",
+   "mean": 0.0,
+   "sd": 2.04067
+  },
+  {
+   "id": "tax.expresses:a wish to hurt someone",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 4,
+   "mu": -16.6348,
+   "category": "violence",
+   "mean": 0.0,
+   "sd": 2.96118
+  },
+  {
+   "id": "tax.expresses:a wish to kill",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 5,
+   "mu": -13.21694,
+   "category": "violence",
+   "mean": -0.0,
+   "sd": 2.78767
+  },
+  {
+   "id": "tax.expresses:a wish to die",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 6,
+   "mu": -14.99125,
+   "category": "selfharm",
+   "mean": -0.0,
+   "sd": 2.73488
+  },
+  {
+   "id": "tax.expresses:despair",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 7,
+   "mu": -7.70652,
+   "category": "selfharm",
+   "mean": 0.0,
+   "sd": 1.728
+  },
+  {
+   "id": "tax.expresses:support for terrorists",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 8,
+   "mu": -17.43252,
+   "category": "extremism",
+   "mean": -0.0,
+   "sd": 2.22472
+  },
+  {
+   "id": "tax.expresses:admiration for a killer",
+   "query": "tax.m:expresses",
+   "kind": "option",
+   "option": 9,
+   "mu": -19.67985,
+   "category": "extremism",
+   "mean": 0.0,
+   "sd": 1.3837
+  },
+  {
+   "id": "tax.offers:drugs",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 6,
+   "mu": -10.89145,
+   "category": "drugs",
+   "mean": 0.0,
+   "sd": 1.00739
+  },
+  {
+   "id": "tax.offers:weed",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 7,
+   "mu": -13.19418,
+   "category": "drugs",
+   "mean": 0.0,
+   "sd": 1.06903
+  },
+  {
+   "id": "tax.offers:pills",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 8,
+   "mu": -12.64479,
+   "category": "drugs",
+   "mean": 0.0,
+   "sd": 0.96489
+  },
+  {
+   "id": "tax.offers:guns",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 9,
+   "mu": -13.16915,
+   "category": "weapons",
+   "mean": -0.0,
+   "sd": 1.21713
+  },
+  {
+   "id": "tax.offers:ammunition",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 10,
+   "mu": -8.6054,
+   "category": "weapons",
+   "mean": -0.0,
+   "sd": 1.3407
+  },
+  {
+   "id": "tax.offers:fake documents",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 11,
+   "mu": -16.91367,
+   "category": "crime",
+   "mean": -0.0,
+   "sd": 1.69994
+  },
+  {
+   "id": "tax.offers:stolen goods",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 12,
+   "mu": -14.87775,
+   "category": "crime",
+   "mean": -0.0,
+   "sd": 1.34188
+  },
+  {
+   "id": "tax.offers:stolen accounts",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 13,
+   "mu": -17.8392,
+   "category": "cyber",
+   "mean": -0.0,
+   "sd": 1.32797
+  },
+  {
+   "id": "tax.offers:hacking services",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 14,
+   "mu": -15.05486,
+   "category": "cyber",
+   "mean": 0.0,
+   "sd": 1.55979
+  },
+  {
+   "id": "tax.offers:credit card numbers",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 15,
+   "mu": -15.07385,
+   "category": "fraud",
+   "mean": 0.0,
+   "sd": 2.28804
+  },
+  {
+   "id": "tax.offers:free money",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 16,
+   "mu": -11.73828,
+   "category": "fraud",
+   "mean": 0.0,
+   "sd": 1.9838
+  },
+  {
+   "id": "tax.offers:a prize",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 17,
+   "mu": -7.24464,
+   "category": "spam",
+   "mean": 0.0,
+   "sd": 1.50654
+  },
+  {
+   "id": "tax.offers:a discount",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 18,
+   "mu": -8.32187,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 1.30163
+  },
+  {
+   "id": "tax.offers:followers",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 19,
+   "mu": -10.05209,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 1.33177
+  },
+  {
+   "id": "tax.offers:a free trial",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 20,
+   "mu": -10.77864,
+   "category": "spam",
+   "mean": 0.0,
+   "sd": 1.96239
+  },
+  {
+   "id": "tax.offers:sex",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 21,
+   "mu": -10.26325,
+   "category": "sexual",
+   "mean": 0.0,
+   "sd": 1.33037
+  },
+  {
+   "id": "tax.offers:nude photos",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 22,
+   "mu": -13.15781,
+   "category": "sexual",
+   "mean": -0.0,
+   "sd": 1.02366
+  },
+  {
+   "id": "tax.offers:alcohol",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 23,
+   "mu": -10.02518,
+   "category": "alcohol",
+   "mean": -0.0,
+   "sd": 0.97099
+  },
+  {
+   "id": "tax.offers:cigarettes",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 24,
+   "mu": -13.50764,
+   "category": "tobacco",
+   "mean": -0.0,
+   "sd": 1.10167
+  },
+  {
+   "id": "tax.offers:bets",
+   "query": "tax.m:offers",
+   "kind": "option",
+   "option": 25,
+   "mu": -10.84341,
+   "category": "gambling",
+   "mean": 0.0,
+   "sd": 1.12635
+  },
+  {
+   "id": "tax.promotes:violence",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 0,
+   "mu": -1.70095,
+   "category": "violence",
+   "mean": 0.0,
+   "sd": 1.34487
+  },
+  {
+   "id": "tax.promotes:hatred",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 7,
+   "mu": -3.34859,
+   "category": "hate",
+   "mean": -0.0,
+   "sd": 1.96431
+  },
+  {
+   "id": "tax.promotes:alcohol",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 12,
+   "mu": -5.98527,
+   "category": "alcohol",
+   "mean": 0.0,
+   "sd": 1.51821
+  },
+  {
+   "id": "tax.promotes:gambling",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 13,
+   "mu": -5.19269,
+   "category": "gambling",
+   "mean": 0.0,
+   "sd": 1.75026
+  },
+  {
+   "id": "tax.promotes:smoking",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 14,
+   "mu": -6.76813,
+   "category": "tobacco",
+   "mean": 0.0,
+   "sd": 1.60436
+  },
+  {
+   "id": "tax.promotes:vaping",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 15,
+   "mu": -8.69447,
+   "category": "tobacco",
+   "mean": 0.0,
+   "sd": 1.54512
+  },
+  {
+   "id": "tax.promotes:a website",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 16,
+   "mu": -5.84975,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 2.28037
+  },
+  {
+   "id": "tax.promotes:a channel",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 17,
+   "mu": -7.60401,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 1.6365
+  },
+  {
+   "id": "tax.promotes:a product",
+   "query": "tax.m:promotes",
+   "kind": "option",
+   "option": 18,
+   "mu": -3.57648,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 2.63508
+  },
+  {
+   "id": "tax.describes:sex",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 0,
+   "mu": -7.15624,
+   "category": "sexual",
+   "mean": -0.0,
+   "sd": 2.16062
+  },
+  {
+   "id": "tax.describes:nudity",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 1,
+   "mu": -9.65078,
+   "category": "sexual",
+   "mean": -0.0,
+   "sd": 2.01742
+  },
+  {
+   "id": "tax.describes:a sexual act",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 2,
+   "mu": -7.12617,
+   "category": "sexual",
+   "mean": 0.0,
+   "sd": 2.0211
+  },
+  {
+   "id": "tax.describes:an attack",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 5,
+   "mu": -3.80022,
+   "category": "violence",
+   "mean": 0.0,
+   "sd": 2.10912
+  },
+  {
+   "id": "tax.describes:a terrorist attack",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 6,
+   "mu": -8.04151,
+   "category": "extremism",
+   "mean": 0.0,
+   "sd": 2.19604
+  },
+  {
+   "id": "tax.describes:a robbery",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 8,
+   "mu": -7.58242,
+   "category": "crime",
+   "mean": 0.0,
+   "sd": 1.78834
+  },
+  {
+   "id": "tax.describes:bullying",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 9,
+   "mu": -7.66336,
+   "category": "harassment",
+   "mean": 0.0,
+   "sd": 2.09279
+  },
+  {
+   "id": "tax.describes:gore",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 10,
+   "mu": -10.75204,
+   "category": "graphic",
+   "mean": -0.0,
+   "sd": 1.87163
+  },
+  {
+   "id": "tax.describes:animal cruelty",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 13,
+   "mu": -11.74466,
+   "category": "graphic",
+   "mean": -0.0,
+   "sd": 2.75052
+  },
+  {
+   "id": "tax.describes:self-harm",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 14,
+   "mu": -7.4417,
+   "category": "selfharm",
+   "mean": 0.0,
+   "sd": 2.19026
+  },
+  {
+   "id": "tax.describes:drug use",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 15,
+   "mu": -8.47727,
+   "category": "drugs",
+   "mean": 0.0,
+   "sd": 1.8965
+  },
+  {
+   "id": "tax.describes:a crime",
+   "query": "tax.m:describes",
+   "kind": "option",
+   "option": 16,
+   "mu": -4.57591,
+   "category": "crime",
+   "mean": 0.0,
+   "sd": 1.99251
+  },
+  {
+   "id": "tax.contains:a phone number",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 0,
+   "mu": -6.54238,
+   "category": "privacy",
+   "mean": -0.0,
+   "sd": 1.4928
+  },
+  {
+   "id": "tax.contains:a password",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 3,
+   "mu": -6.39456,
+   "category": "privacy",
+   "mean": -0.0,
+   "sd": 1.83693
+  },
+  {
+   "id": "tax.contains:a credit card number",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 4,
+   "mu": -9.36683,
+   "category": "privacy",
+   "mean": -0.0,
+   "sd": 2.0496
+  },
+  {
+   "id": "tax.contains:a link",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 5,
+   "mu": -5.11058,
+   "category": "spam",
+   "mean": 0.0,
+   "sd": 1.67881
+  },
+  {
+   "id": "tax.contains:a promo code",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 6,
+   "mu": -10.60385,
+   "category": "spam",
+   "mean": 0.0,
+   "sd": 1.45292
+  },
+  {
+   "id": "tax.contains:a slur",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 7,
+   "mu": -5.69876,
+   "category": "hate",
+   "mean": 0.0,
+   "sd": 3.05164
+  },
+  {
+   "id": "tax.contains:swear words",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 8,
+   "mu": -8.04886,
+   "category": "profanity",
+   "mean": -0.0,
+   "sd": 2.19209
+  },
+  {
+   "id": "tax.contains:insults",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 10,
+   "mu": -6.19701,
+   "category": "harassment",
+   "mean": 0.0,
+   "sd": 2.20401
+  },
+  {
+   "id": "tax.contains:gibberish",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 11,
+   "mu": -6.54117,
+   "category": "gibberish",
+   "mean": 0.0,
+   "sd": 1.5972
+  },
+  {
+   "id": "tax.contains:random letters",
+   "query": "tax.m:contains",
+   "kind": "option",
+   "option": 12,
+   "mu": -10.97696,
+   "category": "gibberish",
+   "mean": -0.0,
+   "sd": 1.69039
+  },
+  {
+   "id": "tax.writer_wants:hurt themselves",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 0,
+   "mu": -12.18508,
+   "category": "selfharm",
+   "mean": -0.0,
+   "sd": 1.81428
+  },
+  {
+   "id": "tax.writer_wants:die",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 1,
+   "mu": -8.11347,
+   "category": "selfharm",
+   "mean": -0.0,
+   "sd": 1.08115
+  },
+  {
+   "id": "tax.writer_wants:hurt someone",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 2,
+   "mu": -10.8863,
+   "category": "violence",
+   "mean": -0.0,
+   "sd": 1.51029
+  },
+  {
+   "id": "tax.writer_wants:get revenge",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 3,
+   "mu": -12.16655,
+   "category": "violence",
+   "mean": 0.0,
+   "sd": 2.12434
+  },
+  {
+   "id": "tax.writer_wants:scare someone",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 4,
+   "mu": -14.02848,
+   "category": "harassment",
+   "mean": -0.0,
+   "sd": 1.92973
+  },
+  {
+   "id": "tax.writer_wants:humiliate someone",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 5,
+   "mu": -12.68265,
+   "category": "harassment",
+   "mean": 0.0,
+   "sd": 2.4374
+  },
+  {
+   "id": "tax.writer_wants:have sex",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 7,
+   "mu": -12.38177,
+   "category": "sexual",
+   "mean": 0.0,
+   "sd": 2.12976
+  },
+  {
+   "id": "tax.writer_wants:sell something",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 8,
+   "mu": -9.24735,
+   "category": "spam",
+   "mean": 0.0,
+   "sd": 1.82696
+  },
+  {
+   "id": "tax.writer_wants:get clicks",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 9,
+   "mu": -14.6324,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 2.61265
+  },
+  {
+   "id": "tax.writer_wants:get followers",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 10,
+   "mu": -12.40247,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 2.96332
+  },
+  {
+   "id": "tax.writer_wants:trick someone",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 11,
+   "mu": -14.35184,
+   "category": "fraud",
+   "mean": 0.0,
+   "sd": 2.34905
+  },
+  {
+   "id": "tax.writer_wants:steal money",
+   "query": "tax.m:writer_wants",
+   "kind": "option",
+   "option": 12,
+   "mu": -11.73927,
+   "category": "fraud",
+   "mean": -0.0,
+   "sd": 1.91762
+  },
+  {
+   "id": "tax.is_a:an advertisement",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 0,
+   "mu": -6.70901,
+   "category": "spam",
+   "mean": 0.0,
+   "sd": 1.72266
+  },
+  {
+   "id": "tax.is_a:spam",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 1,
+   "mu": -3.91666,
+   "category": "spam",
+   "mean": -0.0,
+   "sd": 1.35326
+  },
+  {
+   "id": "tax.is_a:a scam",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 2,
+   "mu": -6.37098,
+   "category": "fraud",
+   "mean": 0.0,
+   "sd": 1.87445
+  },
+  {
+   "id": "tax.is_a:a threat",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 3,
+   "mu": -5.29804,
+   "category": "violence",
+   "mean": -0.0,
+   "sd": 1.62282
+  },
+  {
+   "id": "tax.is_a:cyberbullying",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 5,
+   "mu": -9.83174,
+   "category": "harassment",
+   "mean": -0.0,
+   "sd": 1.81644
+  },
+  {
+   "id": "tax.is_a:a criminal plan",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 7,
+   "mu": -17.26984,
+   "category": "crime",
+   "mean": -0.0,
+   "sd": 2.1758
+  },
+  {
+   "id": "tax.is_a:gibberish",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 9,
+   "mu": -5.81714,
+   "category": "gibberish",
+   "mean": 0.0,
+   "sd": 1.53592
+  },
+  {
+   "id": "tax.is_a:nonsense",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 10,
+   "mu": -5.99008,
+   "category": "gibberish",
+   "mean": 0.0,
+   "sd": 1.61566
+  },
+  {
+   "id": "tax.is_a:hate speech",
+   "query": "tax.m:is_a",
+   "kind": "option",
+   "option": 11,
+   "mu": -7.85234,
+   "category": "hate",
+   "mean": -0.0,
+   "sd": 1.89033
+  },
+  {
+   "id": "tax.mentions:alcohol",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 0,
+   "mu": -4.53811,
+   "category": "alcohol",
+   "mean": -0.0,
+   "sd": 1.54363
+  },
+  {
+   "id": "tax.mentions:beer",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 1,
+   "mu": -6.0668,
+   "category": "alcohol",
+   "mean": 0.0,
+   "sd": 1.57241
+  },
+  {
+   "id": "tax.mentions:tobacco",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 2,
+   "mu": -7.54702,
+   "category": "tobacco",
+   "mean": -0.0,
+   "sd": 1.53007
+  },
+  {
+   "id": "tax.mentions:vaping",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 3,
+   "mu": -7.84845,
+   "category": "tobacco",
+   "mean": 0.0,
+   "sd": 1.63152
+  },
+  {
+   "id": "tax.mentions:gambling",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 4,
+   "mu": -5.49935,
+   "category": "gambling",
+   "mean": 0.0,
+   "sd": 1.69132
+  },
+  {
+   "id": "tax.mentions:betting",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 5,
+   "mu": -6.17731,
+   "category": "gambling",
+   "mean": 0.0,
+   "sd": 1.65272
+  },
+  {
+   "id": "tax.mentions:a casino",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 6,
+   "mu": -6.7301,
+   "category": "gambling",
+   "mean": -0.0,
+   "sd": 1.7979
+  },
+  {
+   "id": "tax.mentions:prescription drugs",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 7,
+   "mu": -7.65542,
+   "category": "medication",
+   "mean": -0.0,
+   "sd": 1.50671
+  },
+  {
+   "id": "tax.mentions:medication",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 8,
+   "mu": -5.69059,
+   "category": "medication",
+   "mean": -0.0,
+   "sd": 1.64272
+  },
+  {
+   "id": "tax.mentions:weapons",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 9,
+   "mu": -4.86406,
+   "category": "weapons",
+   "mean": 0.0,
+   "sd": 1.78376
+  },
+  {
+   "id": "tax.mentions:sex",
+   "query": "tax.m:mentions",
+   "kind": "option",
+   "option": 11,
+   "mu": -4.81922,
+   "category": "sexual",
+   "mean": -0.0,
+   "sd": 1.94997
+  },
+  {
+   "id": "gen.g:writer_1",
+   "query": "gen.g:writer_1",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "writer",
+   "mean": -6.23294,
+   "sd": 2.7073
+  },
+  {
+   "id": "gen.g:writer_2",
+   "query": "gen.g:writer_2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "writer",
+   "mean": -2.41144,
+   "sd": 1.33888
+  },
+  {
+   "id": "gen.g:writer_4",
+   "query": "gen.g:writer_4",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "writer",
+   "mean": 0.51396,
+   "sd": 2.07855
+  },
+  {
+   "id": "gen.g:rating_1",
+   "query": "gen.g:rating_1",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "rating",
+   "mean": 1.00714,
+   "sd": 1.27723
+  },
+  {
+   "id": "gen.g:rating_2",
+   "query": "gen.g:rating_2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "rating",
+   "mean": 0.07624,
+   "sd": 1.13853
+  },
+  {
+   "id": "gen.g:rating_3",
+   "query": "gen.g:rating_3",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "rating",
+   "mean": 2.24829,
+   "sd": 1.40055
+  },
+  {
+   "id": "gen.g:people_1",
+   "query": "gen.g:people_1",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "people",
+   "mean": 0.56199,
+   "sd": 2.22868
+  },
+  {
+   "id": "gen.g:people_2",
+   "query": "gen.g:people_2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "people",
+   "mean": -1.06012,
+   "sd": 2.972
+  },
+  {
+   "id": "gen.g:people_3",
+   "query": "gen.g:people_3",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "people",
+   "mean": -2.11786,
+   "sd": 1.35958
+  },
+  {
+   "id": "gen.g:people_4",
+   "query": "gen.g:people_4",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "people",
+   "mean": 1.78527,
+   "sd": 1.66208
+  },
+  {
+   "id": "gen.g:response_1",
+   "query": "gen.g:response_1",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "response",
+   "mean": -0.88419,
+   "sd": 2.87418
+  },
+  {
+   "id": "gen.g:response_3",
+   "query": "gen.g:response_3",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "response",
+   "mean": -2.40409,
+   "sd": 0.84933
+  },
+  {
+   "id": "gen.g:response_5",
+   "query": "gen.g:response_5",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "response",
+   "mean": 1.03591,
+   "sd": 1.75734
+  },
+  {
+   "id": "gen.g:persona_doctor",
+   "query": "gen.g:persona_doctor",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "persona",
+   "mean": -0.38974,
+   "sd": 1.43817
+  },
+  {
+   "id": "gen.g:persona_teacher",
+   "query": "gen.g:persona_teacher",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "persona",
+   "mean": -0.59752,
+   "sd": 1.60432
+  },
+  {
+   "id": "gen.g:persona_journalist",
+   "query": "gen.g:persona_journalist",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "persona",
+   "mean": -0.26104,
+   "sd": 1.38042
+  },
+  {
+   "id": "gen.g:persona_parent",
+   "query": "gen.g:persona_parent",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "persona",
+   "mean": -0.63647,
+   "sd": 1.14506
+  },
+  {
+   "id": "gen.g:persona_lawyer",
+   "query": "gen.g:persona_lawyer",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "persona",
+   "mean": -0.98655,
+   "sd": 1.21638
+  },
+  {
+   "id": "gen.g:persona_moderator",
+   "query": "gen.g:persona_moderator",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "persona",
+   "mean": 1.02221,
+   "sd": 1.01521
+  },
+  {
+   "id": "gen.g:persona_psych",
+   "query": "gen.g:persona_psych",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "persona",
+   "mean": 0.48706,
+   "sd": 1.31055
+  },
+  {
+   "id": "gen.g:kids_1",
+   "query": "gen.g:kids_1",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "kids",
+   "mean": 1.04464,
+   "sd": 0.67335
+  },
+  {
+   "id": "gen.g:kids_3",
+   "query": "gen.g:kids_3",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "kids",
+   "mean": 0.74061,
+   "sd": 1.95748
+  },
+  {
+   "id": "gen.g:intent_1",
+   "query": "gen.g:intent_1",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "intent",
+   "mean": -1.50457,
+   "sd": 2.17918
+  },
+  {
+   "id": "gen.g:v3_qa_hides_a_harmful_request_inside_a_harmless_looking_",
+   "query": "gen.g:v3_qa_hides_a_harmful_request_inside_a_harmless_looking_",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -0.55127,
+   "sd": 1.07626
+  },
+  {
+   "id": "gen.g:v3_qs_tries_to_trick_an_ai_into_ignoring_its_rules",
+   "query": "gen.g:v3_qs_tries_to_trick_an_ai_into_ignoring_its_rules",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -0.54267,
+   "sd": 1.03554
+  },
+  {
+   "id": "gen.g:v3_qa_tries_to_trick_an_ai_into_ignoring_its_rules",
+   "query": "gen.g:v3_qa_tries_to_trick_an_ai_into_ignoring_its_rules",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -0.13021,
+   "sd": 1.073
+  },
+  {
+   "id": "gen.g:v3_qs_asks_for_help_breaking_the_law",
+   "query": "gen.g:v3_qs_asks_for_help_breaking_the_law",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -1.11051,
+   "sd": 0.71827
+  },
+  {
+   "id": "gen.g:v3_qa_asks_an_ai_to_role_play_a_character_without_restri",
+   "query": "gen.g:v3_qa_asks_an_ai_to_role_play_a_character_without_restri",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -0.03524,
+   "sd": 1.35012
+  },
+  {
+   "id": "gen.g:v3_qa_is_spam",
+   "query": "gen.g:v3_qa_is_spam",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -1.01125,
+   "sd": 0.7849
+  },
+  {
+   "id": "gen.g:v3_qa_is_about_a_crime",
+   "query": "gen.g:v3_qa_is_about_a_crime",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -0.83601,
+   "sd": 1.00514
+  },
+  {
+   "id": "gen.g:v3_qa_is_rude_or_aggressive_toward_another_person",
+   "query": "gen.g:v3_qa_is_rude_or_aggressive_toward_another_person",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -0.85738,
+   "sd": 1.34062
+  },
+  {
+   "id": "gen.g:v3_qa_wishes_harm_on_another_person",
+   "query": "gen.g:v3_qa_wishes_harm_on_another_person",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -1.22849,
+   "sd": 1.02782
+  },
+  {
+   "id": "gen.g:v3_qs_is_rude_or_aggressive_toward_another_person",
+   "query": "gen.g:v3_qs_is_rude_or_aggressive_toward_another_person",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -1.34474,
+   "sd": 1.26433
+  },
+  {
+   "id": "gen.g:v3_qs_hides_a_harmful_request_inside_a_harmless_looking_",
+   "query": "gen.g:v3_qs_hides_a_harmful_request_inside_a_harmless_looking_",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -0.67971,
+   "sd": 1.00405
+  },
+  {
+   "id": "gen.g:v3_qa_contains_swear_words_or_profanity",
+   "query": "gen.g:v3_qa_contains_swear_words_or_profanity",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -1.29269,
+   "sd": 0.96527
+  },
+  {
+   "id": "gen.g:v3_qs_is_about_a_crime",
+   "query": "gen.g:v3_qs_is_about_a_crime",
+   "kind": "pair",
+   "sign": 1,
+   "category": "general",
+   "view": "v3",
+   "mean": -1.07213,
+   "sd": 0.9324
+  },
+  {
+   "id": "gen.m:topic",
+   "query": "gen.m:topic",
+   "kind": "set",
+   "mu": [
+    -8.03799,
+    -8.65971,
+    -8.47442,
+    -8.76374,
+    -7.39126,
+    -8.38056,
+    -5.97323,
+    -4.20111,
+    -9.23437,
+    -5.59852,
+    -7.83663,
+    -5.23541,
+    -6.64979,
+    -7.78928,
+    -6.54382,
+    -6.55862,
+    -5.82441,
+    -6.74698,
+    -4.37148,
+    -5.87376,
+    -6.22555,
+    -6.8162,
+    -7.19817,
+    -5.8378,
+    -5.87844,
+    -8.41809,
+    -8.5525,
+    -6.21543,
+    -6.74709,
+    -2.9491,
+    -4.80947,
+    -6.15309,
+    -6.45472,
+    -7.74429,
+    -7.03873,
+    -5.66147,
+    -7.52956,
+    -7.11148,
+    -8.05668,
+    -5.97804
+   ],
+   "unsafe": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    8,
+    13
+   ],
+   "category": "general",
+   "view": "topic",
+   "mean": -2.58525,
+   "sd": 2.11731
+  },
+  {
+   "id": "gen.m:wants",
+   "query": "gen.m:wants",
+   "kind": "set",
+   "mu": [
+    -2.62147,
+    -1.88571,
+    -2.92111,
+    -5.89319,
+    -5.28645,
+    -8.91439,
+    -4.72787,
+    -11.42308,
+    -12.67648,
+    -11.63731,
+    -10.95992,
+    -10.6104,
+    -11.50912,
+    -10.33645,
+    -11.98264,
+    -13.65094,
+    -14.09885,
+    -13.51634,
+    -9.7891,
+    -6.15948,
+    -6.54411,
+    -6.03749,
+    -10.13706,
+    -11.01284,
+    -9.41984,
+    -8.09481,
+    -7.70087,
+    -2.88393,
+    -8.17238,
+    -5.08429
+   ],
+   "unsafe": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22
+   ],
+   "category": "general",
+   "view": "intent",
+   "mean": -0.97149,
+   "sd": 1.41438
+  },
+  {
+   "id": "gen.m:tone",
+   "query": "gen.m:tone",
+   "kind": "set",
+   "mu": [
+    -4.03768,
+    -1.97439,
+    -5.63271,
+    -2.90559,
+    -5.27969,
+    -5.92114,
+    -6.04984,
+    -5.22049,
+    -5.05451,
+    -11.85061,
+    -8.87974,
+    -8.80469,
+    -8.37372,
+    -7.64132,
+    -10.11292,
+    -6.4717,
+    -4.09377,
+    -2.02111,
+    -7.6259,
+    -9.06123
+   ],
+   "unsafe": [
+    4,
+    5,
+    6,
+    9,
+    10,
+    14,
+    15,
+    19
+   ],
+   "category": "general",
+   "view": "tone",
+   "mean": -0.74255,
+   "sd": 1.69559
+  },
+  {
+   "id": "gen.m:best_response",
+   "query": "gen.m:best_response",
+   "kind": "set",
+   "mu": [
+    -2.52932,
+    -3.41352,
+    -6.80484,
+    -6.297,
+    -1.3356,
+    -5.0947,
+    -4.53559,
+    -2.89897
+   ],
+   "unsafe": [
+    1,
+    2,
+    3,
+    6
+   ],
+   "category": "general",
+   "view": "response",
+   "mean": -0.31002,
+   "sd": 1.69564
+  },
+  {
+   "id": "gen.m:rating",
+   "query": "gen.m:rating",
+   "kind": "set",
+   "mu": [
+    -2.18681,
+    -1.18304,
+    -1.84989,
+    -1.17967,
+    -5.52396,
+    -4.35947
+   ],
+   "unsafe": [
+    3,
+    4,
+    5
+   ],
+   "category": "general",
+   "view": "rating",
+   "mean": 0.00164,
+   "sd": 0.80336
+  },
+  {
+   "id": "gen.m:mod_label",
+   "query": "gen.m:mod_label",
+   "kind": "set",
+   "mu": [
+    -0.67087,
+    -3.50592,
+    -6.15014,
+    -5.59367,
+    -9.57759,
+    -8.94339,
+    -8.77973,
+    -8.13039,
+    -3.17816,
+    -7.40338,
+    -10.52791,
+    -8.67612,
+    -7.2036,
+    -13.63442,
+    -10.14325
+   ],
+   "unsafe": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ],
+   "category": "general",
+   "view": "moderation",
+   "mean": 3.08599,
+   "sd": 2.42299
+  },
+  {
+   "id": "gen.m:writer",
+   "query": "gen.m:writer",
+   "kind": "set",
+   "mu": [
+    -4.8957,
+    -2.09958,
+    -4.58279,
+    -8.27712,
+    -7.3431,
+    -5.60224,
+    -5.6624,
+    -5.81607,
+    -3.50088,
+    -1.81312,
+    -6.62526,
+    -8.40729,
+    -7.39626,
+    -10.70117
+   ],
+   "unsafe": [
+    3,
+    4,
+    9,
+    11,
+    12,
+    13
+   ],
+   "category": "general",
+   "view": "writer",
+   "mean": -0.41413,
+   "sd": 2.3861
+  },
+  {
+   "id": "gen.m:example",
+   "query": "gen.m:example",
+   "kind": "set",
+   "mu": [
+    -5.68875,
+    -6.5595,
+    -7.72073,
+    -4.8924,
+    -6.09673,
+    -2.31265,
+    -5.61681,
+    -10.37589,
+    -7.4235,
+    -3.7875,
+    -6.72424,
+    -7.13551,
+    -8.1102,
+    -4.89917,
+    -2.99803
+   ],
+   "unsafe": [
+    0,
+    1,
+    2,
+    3,
+    9,
+    12,
+    13
+   ],
+   "category": "general",
+   "view": "topic",
+   "mean": 0.53666,
+   "sd": 2.34247
+  },
+  {
+   "id": "gen.m:helps",
+   "query": "gen.m:helps",
+   "kind": "set",
+   "mu": [
+    -0.51057,
+    -5.0354,
+    -6.10709,
+    -5.57332,
+    -7.42511,
+    -5.93674,
+    -9.28591,
+    -9.73234,
+    -4.9866,
+    -6.16882,
+    -8.70113,
+    -3.17571
+   ],
+   "unsafe": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    9,
+    10
+   ],
+   "category": "general",
+   "view": "intent",
+   "mean": 0.36859,
+   "sd": 1.70953
+  }
+ ],
+ "categories": {
+  "sexual": {
+   "label": "Sexual content",
+   "platt": [
+    0.50618,
+    -0.5797
+   ],
+   "threshold": 0.6551,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.19455,
+     0.28642,
+     0.3089,
+     0.32446,
+     0.33606,
+     0.34854,
+     0.36215,
+     0.3786,
+     0.40244,
+     0.44489,
+     0.50239,
+     0.64003,
+     0.69662,
+     0.71953
+    ]
+   }
+  },
+  "child": {
+   "label": "Child sexual exploitation and grooming",
+   "platt": [
+    0.01945,
+    -0.46039
+   ],
+   "threshold": 0.3969,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.38083,
+     0.38421,
+     0.38511,
+     0.38568,
+     0.38616,
+     0.38657,
+     0.38711,
+     0.38771,
+     0.38845,
+     0.38977,
+     0.391,
+     0.39514,
+     0.39976,
+     0.40025
+    ]
+   }
+  },
+  "violence": {
+   "label": "Violence and threats",
+   "platt": [
+    1.4882,
+    -1.20325
+   ],
+   "threshold": 0.7226,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03129,
+     0.10605,
+     0.13675,
+     0.16496,
+     0.19673,
+     0.22368,
+     0.25708,
+     0.29896,
+     0.34956,
+     0.44444,
+     0.53954,
+     0.6882,
+     0.78045,
+     0.84945
+    ]
+   }
+  },
+  "selfharm": {
+   "label": "Self-harm and suicide",
+   "platt": [
+    0.56677,
+    -0.62313
+   ],
+   "threshold": 0.6114,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.18637,
+     0.28589,
+     0.303,
+     0.31556,
+     0.32904,
+     0.34066,
+     0.355,
+     0.37123,
+     0.39155,
+     0.42656,
+     0.45978,
+     0.54866,
+     0.73176,
+     0.7729
+    ]
+   }
+  },
+  "hate": {
+   "label": "Hate against protected groups",
+   "platt": [
+    0.57983,
+    -0.55087
+   ],
+   "threshold": 0.6491,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.17685,
+     0.27663,
+     0.29427,
+     0.30675,
+     0.32044,
+     0.33718,
+     0.36083,
+     0.40474,
+     0.45686,
+     0.51711,
+     0.55917,
+     0.61956,
+     0.70335,
+     0.72118
+    ]
+   }
+  },
+  "harassment": {
+   "label": "Harassment and bullying",
+   "platt": [
+    1.00337,
+    -0.79353
+   ],
+   "threshold": 0.6641,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05543,
+     0.16106,
+     0.20205,
+     0.23808,
+     0.26802,
+     0.30415,
+     0.35272,
+     0.39824,
+     0.45402,
+     0.51892,
+     0.56356,
+     0.64386,
+     0.71509,
+     0.76145
+    ]
+   }
+  },
+  "extremism": {
+   "label": "Extremism and terrorism",
+   "platt": [
+    0.83747,
+    -0.70603
+   ],
+   "threshold": 0.7063,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.11883,
+     0.21413,
+     0.24695,
+     0.27145,
+     0.29314,
+     0.31594,
+     0.34625,
+     0.37904,
+     0.42773,
+     0.48938,
+     0.55423,
+     0.668,
+     0.76055,
+     0.80742
+    ]
+   }
+  },
+  "weapons": {
+   "label": "Weapons",
+   "platt": [
+    0.63098,
+    -0.57236
+   ],
+   "threshold": 0.6342,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.17279,
+     0.2729,
+     0.29965,
+     0.32074,
+     0.33928,
+     0.35641,
+     0.37328,
+     0.39314,
+     0.41489,
+     0.46511,
+     0.51125,
+     0.608,
+     0.70746,
+     0.75099
+    ]
+   }
+  },
+  "drugs": {
+   "label": "Illegal drugs",
+   "platt": [
+    0.6099,
+    -0.55859
+   ],
+   "threshold": 0.68,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.15342,
+     0.29097,
+     0.31484,
+     0.33166,
+     0.34524,
+     0.35951,
+     0.3734,
+     0.38879,
+     0.40955,
+     0.44431,
+     0.47533,
+     0.61615,
+     0.7327,
+     0.78769
+    ]
+   }
+  },
+  "crime": {
+   "label": "Other crime",
+   "platt": [
+    1.59688,
+    -1.32794
+   ],
+   "threshold": 0.7806,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01261,
+     0.08328,
+     0.12056,
+     0.14728,
+     0.17396,
+     0.20196,
+     0.23373,
+     0.27889,
+     0.33836,
+     0.45383,
+     0.54605,
+     0.72318,
+     0.84774,
+     0.93811
+    ]
+   }
+  },
+  "fraud": {
+   "label": "Fraud and scams",
+   "platt": [
+    1.12245,
+    -0.8193
+   ],
+   "threshold": 0.6916,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06972,
+     0.1917,
+     0.22888,
+     0.25474,
+     0.27546,
+     0.29889,
+     0.32537,
+     0.35312,
+     0.3912,
+     0.45524,
+     0.52179,
+     0.65839,
+     0.82415,
+     0.88076
+    ]
+   }
+  },
+  "cyber": {
+   "label": "Hacking and malware",
+   "platt": [
+    0.38299,
+    -0.52369
+   ],
+   "threshold": 0.5273,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.22554,
+     0.32153,
+     0.33979,
+     0.35253,
+     0.36369,
+     0.37248,
+     0.3814,
+     0.39114,
+     0.40321,
+     0.42085,
+     0.44253,
+     0.50072,
+     0.5614,
+     0.67565
+    ]
+   }
+  },
+  "privacy": {
+   "label": "Private personal information",
+   "platt": [
+    0.48389,
+    -0.56722
+   ],
+   "threshold": 0.5289,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.21204,
+     0.29614,
+     0.31813,
+     0.33369,
+     0.34637,
+     0.36015,
+     0.37443,
+     0.38895,
+     0.40733,
+     0.43521,
+     0.4572,
+     0.5084,
+     0.58367,
+     0.6295
+    ]
+   }
+  },
+  "spam": {
+   "label": "Spam and advertising",
+   "platt": [
+    4.93477,
+    -6.37711
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0,
+     0.0001,
+     0.00028,
+     0.00061,
+     0.00106,
+     0.00169,
+     0.00266,
+     0.00459,
+     0.00929,
+     0.02494,
+     0.0589,
+     0.27672,
+     0.98263,
+     0.995
+    ]
+   }
+  },
+  "profanity": {
+   "label": "Profanity",
+   "platt": [
+    0.14154,
+    -0.4565
+   ],
+   "threshold": 0.4572,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.32171,
+     0.36449,
+     0.37064,
+     0.37509,
+     0.37887,
+     0.38362,
+     0.39003,
+     0.3967,
+     0.40506,
+     0.41769,
+     0.42852,
+     0.44796,
+     0.46828,
+     0.48257
+    ]
+   }
+  },
+  "graphic": {
+   "label": "Gore and graphic violence",
+   "platt": [
+    0.29262,
+    -0.53145
+   ],
+   "threshold": 0.5071,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.25696,
+     0.32394,
+     0.33785,
+     0.34763,
+     0.35739,
+     0.3674,
+     0.37621,
+     0.38958,
+     0.40152,
+     0.42143,
+     0.4416,
+     0.49236,
+     0.59634,
+     0.64855
+    ]
+   }
+  },
+  "gibberish": {
+   "label": "Gibberish",
+   "platt": [
+    4.21125,
+    -7.70864
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0,
+     2e-05,
+     5e-05,
+     0.0001,
+     0.00021,
+     0.0004,
+     0.00074,
+     0.00149,
+     0.00368,
+     0.01438,
+     0.04089,
+     0.29436,
+     0.82255,
+     0.99762
+    ]
+   }
+  },
+  "alcohol": {
+   "label": "Alcohol (topic)",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0044,
+     0.02218,
+     0.02883,
+     0.03442,
+     0.04062,
+     0.0476,
+     0.05586,
+     0.06455,
+     0.07666,
+     0.0982,
+     0.12066,
+     0.19329,
+     0.49251,
+     0.61289
+    ]
+   }
+  },
+  "tobacco": {
+   "label": "Tobacco and vaping (topic)",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00449,
+     0.02368,
+     0.03037,
+     0.03601,
+     0.04139,
+     0.04805,
+     0.05447,
+     0.06218,
+     0.07217,
+     0.09199,
+     0.11053,
+     0.18698,
+     0.45016,
+     0.53605
+    ]
+   }
+  },
+  "gambling": {
+   "label": "Gambling (topic)",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0022,
+     0.02043,
+     0.02826,
+     0.03524,
+     0.04254,
+     0.04894,
+     0.05529,
+     0.06422,
+     0.07745,
+     0.10358,
+     0.12775,
+     0.19702,
+     0.37303,
+     0.5916
+    ]
+   }
+  },
+  "medication": {
+   "label": "Medication (topic)",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00044,
+     0.01463,
+     0.02442,
+     0.03308,
+     0.04197,
+     0.05169,
+     0.06226,
+     0.07324,
+     0.09007,
+     0.11905,
+     0.16404,
+     0.34624,
+     0.49888,
+     0.60484
+    ]
+   }
+  },
+  "general": {
+   "label": "Overall harmfulness (general reads)",
+   "platt": [
+    2.44229,
+    -2.28459
+   ],
+   "threshold": 0.8329,
+   "aggregate": "views",
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00289,
+     0.01599,
+     0.02214,
+     0.03031,
+     0.04527,
+     0.07186,
+     0.12755,
+     0.20518,
+     0.31594,
+     0.47404,
+     0.6031,
+     0.80764,
+     0.88641,
+     0.92884
+    ]
+   }
+  }
+ },
+ "decision": {
+  "mode": "micro_layer",
+  "fallback": "per_category",
+  "critical": [
+   "selfharm",
+   "child"
+  ],
+  "max": {
+   "threshold": 0.7
+  },
+  "per_category": {},
+  "micro_layer": {
+   "inputs": [
+    "c:sexual",
+    "c:child",
+    "c:violence",
+    "c:selfharm",
+    "c:hate",
+    "c:harassment",
+    "c:extremism",
+    "c:weapons",
+    "c:drugs",
+    "c:crime",
+    "c:fraud",
+    "c:cyber",
+    "c:privacy",
+    "c:spam",
+    "c:profanity",
+    "c:graphic",
+    "c:gibberish",
+    "c:alcohol",
+    "c:tobacco",
+    "c:gambling",
+    "c:medication",
+    "r:gen.g:writer_1",
+    "r:gen.g:writer_2",
+    "r:gen.g:writer_4",
+    "r:gen.g:rating_1",
+    "r:gen.g:rating_2",
+    "r:gen.g:rating_3",
+    "r:gen.g:people_1",
+    "r:gen.g:people_2",
+    "r:gen.g:people_3",
+    "r:gen.g:people_4",
+    "r:gen.g:response_1",
+    "r:gen.g:response_3",
+    "r:gen.g:response_5",
+    "r:gen.g:persona_doctor",
+    "r:gen.g:persona_teacher",
+    "r:gen.g:persona_journalist",
+    "r:gen.g:persona_parent",
+    "r:gen.g:persona_lawyer",
+    "r:gen.g:persona_moderator",
+    "r:gen.g:persona_psych",
+    "r:gen.g:kids_1",
+    "r:gen.g:kids_3",
+    "r:gen.g:intent_1",
+    "r:gen.g:v3_qa_hides_a_harmful_request_inside_a_harmless_looking_",
+    "r:gen.g:v3_qs_tries_to_trick_an_ai_into_ignoring_its_rules",
+    "r:gen.g:v3_qa_tries_to_trick_an_ai_into_ignoring_its_rules",
+    "r:gen.g:v3_qs_asks_for_help_breaking_the_law",
+    "r:gen.g:v3_qa_asks_an_ai_to_role_play_a_character_without_restri",
+    "r:gen.g:v3_qa_is_spam",
+    "r:gen.g:v3_qa_is_about_a_crime",
+    "r:gen.g:v3_qa_is_rude_or_aggressive_toward_another_person",
+    "r:gen.g:v3_qa_wishes_harm_on_another_person",
+    "r:gen.g:v3_qs_is_rude_or_aggressive_toward_another_person",
+    "r:gen.g:v3_qs_hides_a_harmful_request_inside_a_harmless_looking_",
+    "r:gen.g:v3_qa_contains_swear_words_or_profanity",
+    "r:gen.g:v3_qs_is_about_a_crime",
+    "r:gen.m:topic",
+    "r:gen.m:wants",
+    "r:gen.m:tone",
+    "r:gen.m:best_response",
+    "r:gen.m:rating",
+    "r:gen.m:mod_label",
+    "r:gen.m:writer",
+    "r:gen.m:example",
+    "r:gen.m:helps"
+   ],
+   "hidden": 0,
+   "activation": "tanh",
+   "dtype": "float32",
+   "weights": "nzucPEvxpLsi2Vs82R05PPgFvjof3z475IBFuwjf8TqnFgM8vVeQPAjYCjxzm627id+nO/4NibxEkzQ84r+Wu7xIhrzyHz4770GauyFvCbwVMD+7a+LxPK+voDyDW6c782YLPbALDT3zark8w5YhPWFKbzxqeGI9YaZIPW/dKT0dx2k9R54VPeIzBT1BkAE99PADPebcOT0S4Vc8ZHsjPRQuvzzv8CA9brLoPGkPjzzt+Vw8e0DkPHIpFjxqhl49WBkKvCIFvLtdXV48zkNau5o20Dx3S6U7QS/QPBS3zbvaLLA8etA8PVUj3DxyNqs8J81QPfncHT2T7IQ8JerMPD41Qjwa+D09QuXbv3pltL4=",
+   "l2": 1.0,
+   "trained_on": [
+    "aegis2",
+    "oai_holdout",
+    "train:aegis2",
+    "train:beavertails",
+    "train:civilcomments",
+    "train:harmaug",
+    "train:toxicchat",
+    "train:wildguard"
+   ],
+   "n_train": 14144,
+   "n_valid": 3536,
+   "lock": "sha256:5b4ffd36f57d3f7de44a55c101fcaf3bf7bad17a8756da96efaf41d5b6d8b5f6"
+  }
+ }
+}

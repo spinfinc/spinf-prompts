@@ -1,0 +1,130 @@
+{
+ "pack": "spinf/moderation-qwen-lite",
+ "version": "0.1.0",
+ "model": "spinf/qwen3.8-27b-int4",
+ "engine": "fp_317e5116c2",
+ "answers": "logprob",
+ "media": [
+  "text"
+ ],
+ "contexts": {
+  "ai": "<|im_start|>system\nYou are a careful content moderator. You read a message and answer questions about it with one word.<|im_end|>\n<|im_start|>user\nA user sent the following message to an AI assistant.\n\nUser: {X}",
+  "forum": "<|im_start|>system\nYou are a careful content moderator. You read a message and answer questions about it with one word.<|im_end|>\n<|im_start|>user\nThe following message was posted by a user on an online platform:\n\n\"{X}\""
+ },
+ "scoring": {
+  "empty_floor": false,
+  "case_insensitive": false,
+  "queries": [
+   {
+    "id": "g:kids_pick",
+    "template": "\n\nFor children, is this message inappropriate or appropriate? Reply with only one of: inappropriate, appropriate.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n{?}",
+    "options": [
+     "inappropriate",
+     "appropriate"
+    ]
+   },
+   {
+    "id": "g:ctl_people3",
+    "template": "\n\nThe average person would consider the message<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n{?}",
+    "options": [
+     "unacceptable",
+     "fine"
+    ]
+   },
+   {
+    "id": "g:mod_violate",
+    "template": "\n\nDoes this message violate the content policy of a typical online platform? Answer with Yes or No.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n{?}",
+    "options": [
+     "Yes",
+     "No"
+    ]
+   }
+  ]
+ },
+ "reads": [
+  {
+   "id": "g:kids_pick",
+   "query": "g:kids_pick",
+   "kind": "pair",
+   "sign": 1,
+   "category": "unsafe",
+   "view": "kids",
+   "mean": -5.63083,
+   "sd": 4.16862
+  },
+  {
+   "id": "g:ctl_people3",
+   "query": "g:ctl_people3",
+   "kind": "pair",
+   "sign": 1,
+   "category": "unsafe",
+   "view": "ctl",
+   "mean": -6.3783,
+   "sd": 3.59349
+  },
+  {
+   "id": "g:mod_violate",
+   "query": "g:mod_violate",
+   "kind": "pair",
+   "sign": 1,
+   "category": "unsafe",
+   "view": "mod",
+   "mean": -9.02105,
+   "sd": 3.82672
+  }
+ ],
+ "categories": {
+  "unsafe": {
+   "label": "Unsafe content (overall)",
+   "platt": [
+    1.24965,
+    -2.39242
+   ],
+   "threshold": 0.3966,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.995,
+     0.999,
+     1.0
+    ],
+    "values": [
+     0.01559,
+     0.02658,
+     0.03121,
+     0.03672,
+     0.04488,
+     0.05944,
+     0.08944,
+     0.13397,
+     0.21385,
+     0.33637,
+     0.47035,
+     0.69437,
+     0.76242,
+     0.78885,
+     0.84419
+    ]
+   }
+  }
+ },
+ "decision": {
+  "mode": "max",
+  "fallback": "per_category",
+  "max": {
+   "threshold": 0.3966
+  },
+  "per_category": {}
+ }
+}

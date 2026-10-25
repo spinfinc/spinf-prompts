@@ -1,0 +1,46 @@
+[
+ {
+  "text": "Subject: Charged twice for September\n\nHi,\n\nI was charged twice for my September subscription (two payments of $49 on the 3rd and the 4th). Could you refund one of them? My account email is the one I'm writing from.\n\nThanks,\nPriya",
+  "context": "email"
+ },
+ {
+  "text": "Subject: Dashboard down for the third time this week\n\nThe dashboard has been returning a 502 error since 8:15 this morning. This is the third outage this week and our whole team is blocked. We have a client demo at 2 pm today. If this keeps happening we will have to look at other vendors. Please fix it NOW.",
+  "context": "ticket"
+ },
+ {
+  "text": "Hi there! I'd like to cancel my subscription before the renewal on the 20th. I've enjoyed the product but I don't use it enough any more. Can you confirm it won't renew?",
+  "context": "chat"
+ },
+ {
+  "text": "Subject: Formal notice regarding order 88213\n\nTo whom it may concern,\n\nI returned the damaged printer on 2 September and have still not received my refund of €312 despite four emails. I have now contacted the consumer protection office and my lawyer. If the refund is not processed within 7 days I will file a claim.\n\nRegards,\nMartin Keller",
+  "context": "email"
+ },
+ {
+  "text": "Subject: URGENT: Updated bank details for invoice payment\n\nDear Accounts Team,\n\nPlease note that our banking details have changed with immediate effect. Kindly update your records and remit the outstanding invoice INV-20419 to the new account below before end of day today to avoid late penalties.\n\nIBAN: DE44 5001 0517 5407 3249 31\n\nThis matter is confidential. Please do not call to confirm, the finance director is travelling.\n\nBest regards,\nFinance Department",
+  "context": "email"
+ },
+ {
+  "text": "I can't log in, it says my password is wrong. I already tried resetting it twice. Also my card 4532 0151 2231 9870 was charged $19.99 yesterday and I don't know what for.",
+  "context": "chat"
+ },
+ {
+  "text": "Subject: Quote for 40 seats\n\nHello,\n\nWe're evaluating your platform for a team of about 40 people. Could you send a quote for the Business plan with annual billing, and let me know whether SSO is included? A short demo next week would also be welcome.\n\nBest,\nAna Costa\nHead of Operations, Rialto Logistics",
+  "context": "email"
+ },
+ {
+  "text": "Just wanted to say thanks, Jordan from your support team sorted out my delivery problem in five minutes yesterday. Great service!",
+  "context": "chat"
+ },
+ {
+  "text": "Subject: Application for the Customer Success Manager role\n\nDear hiring team,\n\nPlease find attached my CV and cover letter for the Customer Success Manager position advertised on your careers page. I have six years of experience in SaaS support and would be glad to discuss the role.\n\nKind regards,\nTomás Ribeiro",
+  "context": "email"
+ },
+ {
+  "text": "Subject: Your weekly digest: 5 productivity tips for remote teams\n\nThis week on the blog: how to run shorter meetings, the best time to send status updates, and a template for weekly planning. Read more on our website. You are receiving this email because you subscribed to our newsletter. Unsubscribe.",
+  "context": "email"
+ },
+ {
+  "text": "Subject: Lieferung seit 10 Tagen überfällig\n\nMeine Bestellung 554120 sollte am 1. Oktober ankommen und ist immer noch nicht da. Die Sendungsverfolgung zeigt seit einer Woche keine Änderung. Bitte teilen Sie mir mit, wann die Lieferung ankommt oder erstatten Sie den Betrag.",
+  "context": "ticket"
+ }
+]

@@ -1,0 +1,5632 @@
+{
+ "pack": "spinf/triage",
+ "version": "0.1.1",
+ "model": "spinf/gemma-4-12b-fp8",
+ "media": [
+  "text"
+ ],
+ "contexts": {
+  "email": "The following email was received in a company's support inbox.\n\n{X}",
+  "chat": "The following messages were sent by a customer in a company's support chat.\n\n{X}",
+  "ticket": "The following support ticket was submitted through a company's help desk.\n\n{X}"
+ },
+ "scoring": {
+  "empty_floor": false,
+  "case_insensitive": false,
+  "queries": [
+   {
+    "id": "tri.team",
+    "template": "\n\nWhich team should handle this message (billing, account, orders, returns, technical, sales, cancellations, legal, HR, partnerships, feedback, press, other)?\nTeam:{?}",
+    "options": [
+     " billing",
+     " account",
+     " orders",
+     " returns",
+     " technical",
+     " sales",
+     " cancellations",
+     " legal",
+     " HR",
+     " partnerships",
+     " feedback",
+     " press",
+     " other"
+    ]
+   },
+   {
+    "id": "tri.team2",
+    "template": "\n\nRoute this message to a department (other, press, feedback, partnerships, HR, legal, cancellations, sales, technical, returns, orders, account, billing).\nDepartment:{?}",
+    "options": [
+     " other",
+     " press",
+     " feedback",
+     " partnerships",
+     " HR",
+     " legal",
+     " cancellations",
+     " sales",
+     " technical",
+     " returns",
+     " orders",
+     " account",
+     " billing"
+    ]
+   },
+   {
+    "id": "tri.sub",
+    "template": "\n\nIs the sender asking about {F}?\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "a double or wrong charge"
+     },
+     {
+      "F": "a refund of a payment"
+     },
+     {
+      "F": "a copy of an invoice or receipt"
+     },
+     {
+      "F": "a failed or declined payment"
+     },
+     {
+      "F": "a price or plan change"
+     },
+     {
+      "F": "a locked account or a login problem"
+     },
+     {
+      "F": "a password reset"
+     },
+     {
+      "F": "changing their account details"
+     },
+     {
+      "F": "closing their account"
+     },
+     {
+      "F": "suspicious activity on their account"
+     },
+     {
+      "F": "the status of an order or delivery"
+     },
+     {
+      "F": "a late or missing delivery"
+     },
+     {
+      "F": "a wrong or damaged item"
+     },
+     {
+      "F": "changing or cancelling an order"
+     },
+     {
+      "F": "returning an item"
+     },
+     {
+      "F": "exchanging an item"
+     },
+     {
+      "F": "a refund for a returned item"
+     },
+     {
+      "F": "an error or a bug"
+     },
+     {
+      "F": "a setup or installation problem"
+     },
+     {
+      "F": "a feature that is not working"
+     },
+     {
+      "F": "an outage or a service that is down"
+     },
+     {
+      "F": "an integration or API question"
+     },
+     {
+      "F": "a quote or pricing"
+     },
+     {
+      "F": "product availability or compatibility"
+     },
+     {
+      "F": "a demo or a trial"
+     },
+     {
+      "F": "a discount or a promotion"
+     },
+     {
+      "F": "cancelling a subscription"
+     },
+     {
+      "F": "a renewal or an auto-renewal"
+     },
+     {
+      "F": "downgrading or pausing a plan"
+     },
+     {
+      "F": "deleting their data or a privacy request"
+     },
+     {
+      "F": "terms, a contract or compliance"
+     },
+     {
+      "F": "a legal claim or a dispute"
+     },
+     {
+      "F": "a job application"
+     },
+     {
+      "F": "an employee matter"
+     },
+     {
+      "F": "a partnership or reseller proposal"
+     },
+     {
+      "F": "a supplier invoice or a vendor matter"
+     },
+     {
+      "F": "a complaint about the service"
+     },
+     {
+      "F": "thanking or praising the company"
+     },
+     {
+      "F": "suggesting a feature or an improvement"
+     },
+     {
+      "F": "a media or press request"
+     }
+    ]
+   },
+   {
+    "id": "tri.sub2",
+    "template": "\n\nDoes this message concern {F}?\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "a double or wrong charge"
+     },
+     {
+      "F": "a refund of a payment"
+     },
+     {
+      "F": "a copy of an invoice or receipt"
+     },
+     {
+      "F": "a failed or declined payment"
+     },
+     {
+      "F": "a price or plan change"
+     },
+     {
+      "F": "a locked account or a login problem"
+     },
+     {
+      "F": "a password reset"
+     },
+     {
+      "F": "changing their account details"
+     },
+     {
+      "F": "closing their account"
+     },
+     {
+      "F": "suspicious activity on their account"
+     },
+     {
+      "F": "the status of an order or delivery"
+     },
+     {
+      "F": "a late or missing delivery"
+     },
+     {
+      "F": "a wrong or damaged item"
+     },
+     {
+      "F": "changing or cancelling an order"
+     },
+     {
+      "F": "returning an item"
+     },
+     {
+      "F": "exchanging an item"
+     },
+     {
+      "F": "a refund for a returned item"
+     },
+     {
+      "F": "an error or a bug"
+     },
+     {
+      "F": "a setup or installation problem"
+     },
+     {
+      "F": "a feature that is not working"
+     },
+     {
+      "F": "an outage or a service that is down"
+     },
+     {
+      "F": "an integration or API question"
+     },
+     {
+      "F": "a quote or pricing"
+     },
+     {
+      "F": "product availability or compatibility"
+     },
+     {
+      "F": "a demo or a trial"
+     },
+     {
+      "F": "a discount or a promotion"
+     },
+     {
+      "F": "cancelling a subscription"
+     },
+     {
+      "F": "a renewal or an auto-renewal"
+     },
+     {
+      "F": "downgrading or pausing a plan"
+     },
+     {
+      "F": "deleting their data or a privacy request"
+     },
+     {
+      "F": "terms, a contract or compliance"
+     },
+     {
+      "F": "a legal claim or a dispute"
+     },
+     {
+      "F": "a job application"
+     },
+     {
+      "F": "an employee matter"
+     },
+     {
+      "F": "a partnership or reseller proposal"
+     },
+     {
+      "F": "a supplier invoice or a vendor matter"
+     },
+     {
+      "F": "a complaint about the service"
+     },
+     {
+      "F": "thanking or praising the company"
+     },
+     {
+      "F": "suggesting a feature or an improvement"
+     },
+     {
+      "F": "a media or press request"
+     }
+    ]
+   },
+   {
+    "id": "tri.action",
+    "template": "\n\n{F}\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Does the sender expect a reply?"
+     },
+     {
+      "F": "Is the sender asking for a refund or their money back?"
+     },
+     {
+      "F": "Is the sender asking to cancel something?"
+     },
+     {
+      "F": "Should this message be escalated to a manager or a specialist?"
+     },
+     {
+      "F": "Does the sender mention a deadline or a date by which they need an answer?"
+     },
+     {
+      "F": "Has the sender already contacted the company about this before?"
+     },
+     {
+      "F": "Is this message urgent?"
+     },
+     {
+      "F": "Does the sender need help today?"
+     }
+    ]
+   },
+   {
+    "id": "tri.urgency",
+    "template": "\n\nHow urgent is this message (low, medium, high, critical)?\nUrgency:{?}",
+    "options": [
+     " low",
+     " medium",
+     " high",
+     " critical"
+    ]
+   },
+   {
+    "id": "tri.sentiment",
+    "template": "\n\nThe sender's tone is (positive, neutral, negative):{?}",
+    "options": [
+     " positive",
+     " neutral",
+     " negative"
+    ]
+   },
+   {
+    "id": "tri.tone",
+    "template": "\n\n{F}\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Is the sender frustrated or angry?"
+     },
+     {
+      "F": "Does the sender threaten to leave, cancel or switch to a competitor?"
+     },
+     {
+      "F": "Is the sender thanking or praising the company?"
+     }
+    ]
+   },
+   {
+    "id": "tri.risk",
+    "template": "\n\n{F}\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Is this message a complaint?"
+     },
+     {
+      "F": "Does the sender threaten legal action or mention a lawyer?"
+     },
+     {
+      "F": "Does the sender mention a regulator, a consumer protection agency or an official complaint?"
+     },
+     {
+      "F": "Does the sender threaten to go to the press, to social media or to make the matter public?"
+     }
+    ]
+   },
+   {
+    "id": "tri.pii",
+    "template": "\n\nDoes the message contain {F}?\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "a credit or debit card number"
+     },
+     {
+      "F": "bank account details"
+     },
+     {
+      "F": "a passport, national ID or social security number"
+     },
+     {
+      "F": "health or medical information"
+     },
+     {
+      "F": "a password or other login credentials"
+     },
+     {
+      "F": "a home address or a phone number"
+     }
+    ]
+   },
+   {
+    "id": "tri.phish",
+    "template": "\n\n{F}\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Is this message a phishing, scam or fraud attempt?"
+     },
+     {
+      "F": "Is this a genuine message from a real customer or contact?"
+     }
+    ]
+   },
+   {
+    "id": "tri.signal",
+    "template": "\n\nDoes the message {F}?\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "claim to come from a bank, a well-known company, a government body or an executive"
+     },
+     {
+      "F": "ask to change bank or payment details"
+     },
+     {
+      "F": "ask the reader to log in, verify or confirm an account through a link"
+     },
+     {
+      "F": "pressure the reader to act immediately or threaten consequences"
+     },
+     {
+      "F": "ask for gift cards, cryptocurrency or a wire transfer"
+     },
+     {
+      "F": "ask the reader to open an attachment or click a link"
+     },
+     {
+      "F": "promise a prize, a refund or a payment the reader did not expect"
+     },
+     {
+      "F": "contain spelling, grammar or formatting unusual for a business message"
+     }
+    ]
+   },
+   {
+    "id": "tri.scope",
+    "template": "\n\n{F}\nAnswer:{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Is this message unrelated to the company's products or services (spam, a newsletter, personal or automated mail)?"
+     },
+     {
+      "F": "Is this an automated notification rather than a message written by a person?"
+     }
+    ]
+   },
+   {
+    "id": "tri.language",
+    "template": "\n\nThe message is written in:{?}",
+    "options": [
+     " English",
+     " German",
+     " Spanish",
+     " French",
+     " Portuguese",
+     " Italian",
+     " other"
+    ]
+   }
+  ]
+ },
+ "reads": [
+  {
+   "id": "intent.billing:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 0,
+   "category": "intent.billing",
+   "mu": -0.91506,
+   "mean": -0.0,
+   "sd": 0.52068
+  },
+  {
+   "id": "intent.billing:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 12,
+   "category": "intent.billing",
+   "mu": -3.24232,
+   "mean": -0.0,
+   "sd": 0.98744
+  },
+  {
+   "id": "intent.account:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 1,
+   "category": "intent.account",
+   "mu": -3.46968,
+   "mean": 0.0,
+   "sd": 0.70056
+  },
+  {
+   "id": "intent.account:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 11,
+   "category": "intent.account",
+   "mu": -3.83572,
+   "mean": 0.0,
+   "sd": 0.88054
+  },
+  {
+   "id": "intent.orders:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 2,
+   "category": "intent.orders",
+   "mu": -2.71315,
+   "mean": -0.0,
+   "sd": 0.61676
+  },
+  {
+   "id": "intent.orders:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 10,
+   "category": "intent.orders",
+   "mu": -3.17615,
+   "mean": -0.0,
+   "sd": 0.76606
+  },
+  {
+   "id": "intent.returns:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 3,
+   "category": "intent.returns",
+   "mu": -4.09972,
+   "mean": -0.0,
+   "sd": 0.74468
+  },
+  {
+   "id": "intent.returns:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 9,
+   "category": "intent.returns",
+   "mu": -4.06673,
+   "mean": 0.0,
+   "sd": 1.05921
+  },
+  {
+   "id": "intent.technical:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 4,
+   "category": "intent.technical",
+   "mu": -2.51716,
+   "mean": -0.0,
+   "sd": 1.26993
+  },
+  {
+   "id": "intent.technical:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 8,
+   "category": "intent.technical",
+   "mu": -1.78343,
+   "mean": -0.0,
+   "sd": 0.89644
+  },
+  {
+   "id": "intent.sales:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 5,
+   "category": "intent.sales",
+   "mu": -2.35149,
+   "mean": -0.0,
+   "sd": 0.58901
+  },
+  {
+   "id": "intent.sales:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 7,
+   "category": "intent.sales",
+   "mu": -2.36294,
+   "mean": -0.0,
+   "sd": 0.54118
+  },
+  {
+   "id": "intent.cancellation:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 6,
+   "category": "intent.cancellation",
+   "mu": -6.63132,
+   "mean": 0.0,
+   "sd": 1.01632
+  },
+  {
+   "id": "intent.cancellation:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 6,
+   "category": "intent.cancellation",
+   "mu": -5.39621,
+   "mean": 0.0,
+   "sd": 1.23292
+  },
+  {
+   "id": "intent.legal:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 7,
+   "category": "intent.legal",
+   "mu": -4.14006,
+   "mean": 0.0,
+   "sd": 0.97806
+  },
+  {
+   "id": "intent.legal:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 5,
+   "category": "intent.legal",
+   "mu": -4.07001,
+   "mean": -0.0,
+   "sd": 0.96254
+  },
+  {
+   "id": "intent.hr:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 8,
+   "category": "intent.hr",
+   "mu": -3.80246,
+   "mean": 0.0,
+   "sd": 0.83963
+  },
+  {
+   "id": "intent.hr:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 4,
+   "category": "intent.hr",
+   "mu": -3.44062,
+   "mean": 0.0,
+   "sd": 0.79413
+  },
+  {
+   "id": "intent.partnerships:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 9,
+   "category": "intent.partnerships",
+   "mu": -7.69157,
+   "mean": -0.0,
+   "sd": 1.27641
+  },
+  {
+   "id": "intent.partnerships:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 3,
+   "category": "intent.partnerships",
+   "mu": -5.20545,
+   "mean": 0.0,
+   "sd": 1.132
+  },
+  {
+   "id": "intent.feedback:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 10,
+   "category": "intent.feedback",
+   "mu": -4.83819,
+   "mean": 0.0,
+   "sd": 0.9046
+  },
+  {
+   "id": "intent.feedback:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 2,
+   "category": "intent.feedback",
+   "mu": -4.1477,
+   "mean": 0.0,
+   "sd": 0.81911
+  },
+  {
+   "id": "intent.press:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 11,
+   "category": "intent.press",
+   "mu": -5.41053,
+   "mean": -0.0,
+   "sd": 1.06111
+  },
+  {
+   "id": "intent.press:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 1,
+   "category": "intent.press",
+   "mu": -3.44752,
+   "mean": 0.0,
+   "sd": 1.23266
+  },
+  {
+   "id": "intent.other:team",
+   "query": "tri.team",
+   "kind": "option",
+   "option": 12,
+   "category": "intent.other",
+   "mu": -3.71524,
+   "mean": 0.0,
+   "sd": 0.77705
+  },
+  {
+   "id": "intent.other:team2",
+   "query": "tri.team2",
+   "kind": "option",
+   "option": 0,
+   "category": "intent.other",
+   "mu": -1.48944,
+   "mean": 0.0,
+   "sd": 0.71534
+  },
+  {
+   "id": "sub.billing.a_double_or_wrong_charge:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_double_or_wrong_charge",
+   "F": "a double or wrong charge",
+   "mean": 0.05536,
+   "sd": 0.53424
+  },
+  {
+   "id": "sub.billing.a_double_or_wrong_charge:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_double_or_wrong_charge",
+   "F": "a double or wrong charge",
+   "mean": -0.29544,
+   "sd": 0.48948
+  },
+  {
+   "id": "sub.billing.a_refund_of_a_payment:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_refund_of_a_payment",
+   "F": "a refund of a payment",
+   "mean": -0.20091,
+   "sd": 0.69293
+  },
+  {
+   "id": "sub.billing.a_refund_of_a_payment:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_refund_of_a_payment",
+   "F": "a refund of a payment",
+   "mean": -0.31036,
+   "sd": 0.68382
+  },
+  {
+   "id": "sub.billing.a_copy_of_an_invoice_or_receipt:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_copy_of_an_invoice_or_receipt",
+   "F": "a copy of an invoice or receipt",
+   "mean": -0.10032,
+   "sd": 0.70299
+  },
+  {
+   "id": "sub.billing.a_copy_of_an_invoice_or_receipt:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_copy_of_an_invoice_or_receipt",
+   "F": "a copy of an invoice or receipt",
+   "mean": -0.04277,
+   "sd": 0.47058
+  },
+  {
+   "id": "sub.billing.a_failed_or_declined_payment:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_failed_or_declined_payment",
+   "F": "a failed or declined payment",
+   "mean": -0.32572,
+   "sd": 0.66237
+  },
+  {
+   "id": "sub.billing.a_failed_or_declined_payment:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_failed_or_declined_payment",
+   "F": "a failed or declined payment",
+   "mean": -0.37396,
+   "sd": 0.61557
+  },
+  {
+   "id": "sub.billing.a_price_or_plan_change:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_price_or_plan_change",
+   "F": "a price or plan change",
+   "mean": -0.91797,
+   "sd": 0.78888
+  },
+  {
+   "id": "sub.billing.a_price_or_plan_change:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.billing.a_price_or_plan_change",
+   "F": "a price or plan change",
+   "mean": -0.50462,
+   "sd": 0.6809
+  },
+  {
+   "id": "sub.account.a_locked_account_or_a_login_problem:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.a_locked_account_or_a_login_problem",
+   "F": "a locked account or a login problem",
+   "mean": -0.96777,
+   "sd": 0.58728
+  },
+  {
+   "id": "sub.account.a_locked_account_or_a_login_problem:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.a_locked_account_or_a_login_problem",
+   "F": "a locked account or a login problem",
+   "mean": -0.92787,
+   "sd": 0.62168
+  },
+  {
+   "id": "sub.account.a_password_reset:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.a_password_reset",
+   "F": "a password reset",
+   "mean": -0.46086,
+   "sd": 0.61132
+  },
+  {
+   "id": "sub.account.a_password_reset:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.a_password_reset",
+   "F": "a password reset",
+   "mean": -0.4799,
+   "sd": 0.58218
+  },
+  {
+   "id": "sub.account.changing_their_account_details:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.changing_their_account_details",
+   "F": "changing their account details",
+   "mean": -0.34687,
+   "sd": 0.65776
+  },
+  {
+   "id": "sub.account.changing_their_account_details:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.changing_their_account_details",
+   "F": "changing their account details",
+   "mean": 0.23652,
+   "sd": 0.57006
+  },
+  {
+   "id": "sub.account.closing_their_account:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.closing_their_account",
+   "F": "closing their account",
+   "mean": -0.44769,
+   "sd": 0.5568
+  },
+  {
+   "id": "sub.account.closing_their_account:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.closing_their_account",
+   "F": "closing their account",
+   "mean": 0.00723,
+   "sd": 0.43467
+  },
+  {
+   "id": "sub.account.suspicious_activity_on_their_account:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.suspicious_activity_on_their_account",
+   "F": "suspicious activity on their account",
+   "mean": 0.26165,
+   "sd": 0.69815
+  },
+  {
+   "id": "sub.account.suspicious_activity_on_their_account:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.account.suspicious_activity_on_their_account",
+   "F": "suspicious activity on their account",
+   "mean": 0.63449,
+   "sd": 0.59403
+  },
+  {
+   "id": "sub.orders.the_status_of_an_order_or_delivery:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.the_status_of_an_order_or_delivery",
+   "F": "the status of an order or delivery",
+   "mean": -1.29866,
+   "sd": 0.75882
+  },
+  {
+   "id": "sub.orders.the_status_of_an_order_or_delivery:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.the_status_of_an_order_or_delivery",
+   "F": "the status of an order or delivery",
+   "mean": -0.69475,
+   "sd": 0.59298
+  },
+  {
+   "id": "sub.orders.a_late_or_missing_delivery:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.a_late_or_missing_delivery",
+   "F": "a late or missing delivery",
+   "mean": -0.36068,
+   "sd": 0.62252
+  },
+  {
+   "id": "sub.orders.a_late_or_missing_delivery:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.a_late_or_missing_delivery",
+   "F": "a late or missing delivery",
+   "mean": -0.16711,
+   "sd": 0.5559
+  },
+  {
+   "id": "sub.orders.a_wrong_or_damaged_item:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.a_wrong_or_damaged_item",
+   "F": "a wrong or damaged item",
+   "mean": -0.57733,
+   "sd": 0.64757
+  },
+  {
+   "id": "sub.orders.a_wrong_or_damaged_item:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.a_wrong_or_damaged_item",
+   "F": "a wrong or damaged item",
+   "mean": -0.03865,
+   "sd": 0.48732
+  },
+  {
+   "id": "sub.orders.changing_or_cancelling_an_order:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.changing_or_cancelling_an_order",
+   "F": "changing or cancelling an order",
+   "mean": -0.81583,
+   "sd": 0.75586
+  },
+  {
+   "id": "sub.orders.changing_or_cancelling_an_order:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.orders.changing_or_cancelling_an_order",
+   "F": "changing or cancelling an order",
+   "mean": -0.6863,
+   "sd": 0.68119
+  },
+  {
+   "id": "sub.returns.returning_an_item:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.returns.returning_an_item",
+   "F": "returning an item",
+   "mean": -0.52161,
+   "sd": 0.71533
+  },
+  {
+   "id": "sub.returns.returning_an_item:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.returns.returning_an_item",
+   "F": "returning an item",
+   "mean": -0.37979,
+   "sd": 0.66593
+  },
+  {
+   "id": "sub.returns.exchanging_an_item:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.returns.exchanging_an_item",
+   "F": "exchanging an item",
+   "mean": -0.57151,
+   "sd": 0.70747
+  },
+  {
+   "id": "sub.returns.exchanging_an_item:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.returns.exchanging_an_item",
+   "F": "exchanging an item",
+   "mean": -0.39316,
+   "sd": 0.66316
+  },
+  {
+   "id": "sub.returns.a_refund_for_a_returned_item:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.returns.a_refund_for_a_returned_item",
+   "F": "a refund for a returned item",
+   "mean": -0.39991,
+   "sd": 0.72379
+  },
+  {
+   "id": "sub.returns.a_refund_for_a_returned_item:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.returns.a_refund_for_a_returned_item",
+   "F": "a refund for a returned item",
+   "mean": -0.33672,
+   "sd": 0.67948
+  },
+  {
+   "id": "sub.technical.an_error_or_a_bug:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.an_error_or_a_bug",
+   "F": "an error or a bug",
+   "mean": -1.00057,
+   "sd": 0.75222
+  },
+  {
+   "id": "sub.technical.an_error_or_a_bug:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.an_error_or_a_bug",
+   "F": "an error or a bug",
+   "mean": 0.0658,
+   "sd": 0.5366
+  },
+  {
+   "id": "sub.technical.a_setup_or_installation_problem:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.a_setup_or_installation_problem",
+   "F": "a setup or installation problem",
+   "mean": -0.7723,
+   "sd": 0.70696
+  },
+  {
+   "id": "sub.technical.a_setup_or_installation_problem:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.a_setup_or_installation_problem",
+   "F": "a setup or installation problem",
+   "mean": -0.29517,
+   "sd": 0.55226
+  },
+  {
+   "id": "sub.technical.a_feature_that_is_not_working:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.a_feature_that_is_not_working",
+   "F": "a feature that is not working",
+   "mean": 0.08853,
+   "sd": 0.63434
+  },
+  {
+   "id": "sub.technical.a_feature_that_is_not_working:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.a_feature_that_is_not_working",
+   "F": "a feature that is not working",
+   "mean": 0.23233,
+   "sd": 0.66188
+  },
+  {
+   "id": "sub.technical.an_outage_or_a_service_that_is_down:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.an_outage_or_a_service_that_is_down",
+   "F": "an outage or a service that is down",
+   "mean": -0.97084,
+   "sd": 0.76917
+  },
+  {
+   "id": "sub.technical.an_outage_or_a_service_that_is_down:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.an_outage_or_a_service_that_is_down",
+   "F": "an outage or a service that is down",
+   "mean": -0.56297,
+   "sd": 0.65613
+  },
+  {
+   "id": "sub.technical.an_integration_or_api_question:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.an_integration_or_api_question",
+   "F": "an integration or API question",
+   "mean": -1.10788,
+   "sd": 0.76906
+  },
+  {
+   "id": "sub.technical.an_integration_or_api_question:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.technical.an_integration_or_api_question",
+   "F": "an integration or API question",
+   "mean": -0.38675,
+   "sd": 0.63771
+  },
+  {
+   "id": "sub.sales.a_quote_or_pricing:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.a_quote_or_pricing",
+   "F": "a quote or pricing",
+   "mean": -1.05703,
+   "sd": 0.70652
+  },
+  {
+   "id": "sub.sales.a_quote_or_pricing:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.a_quote_or_pricing",
+   "F": "a quote or pricing",
+   "mean": -0.84843,
+   "sd": 0.68349
+  },
+  {
+   "id": "sub.sales.product_availability_or_compatibility:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.product_availability_or_compatibility",
+   "F": "product availability or compatibility",
+   "mean": -1.65822,
+   "sd": 0.84418
+  },
+  {
+   "id": "sub.sales.product_availability_or_compatibility:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.product_availability_or_compatibility",
+   "F": "product availability or compatibility",
+   "mean": -0.63873,
+   "sd": 0.71905
+  },
+  {
+   "id": "sub.sales.a_demo_or_a_trial:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.a_demo_or_a_trial",
+   "F": "a demo or a trial",
+   "mean": -1.34301,
+   "sd": 0.68442
+  },
+  {
+   "id": "sub.sales.a_demo_or_a_trial:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.a_demo_or_a_trial",
+   "F": "a demo or a trial",
+   "mean": -0.81174,
+   "sd": 0.40354
+  },
+  {
+   "id": "sub.sales.a_discount_or_a_promotion:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.a_discount_or_a_promotion",
+   "F": "a discount or a promotion",
+   "mean": -1.6205,
+   "sd": 0.70279
+  },
+  {
+   "id": "sub.sales.a_discount_or_a_promotion:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.sales.a_discount_or_a_promotion",
+   "F": "a discount or a promotion",
+   "mean": -1.05258,
+   "sd": 0.69886
+  },
+  {
+   "id": "sub.cancellation.cancelling_a_subscription:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.cancellation.cancelling_a_subscription",
+   "F": "cancelling a subscription",
+   "mean": -0.42972,
+   "sd": 0.69818
+  },
+  {
+   "id": "sub.cancellation.cancelling_a_subscription:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.cancellation.cancelling_a_subscription",
+   "F": "cancelling a subscription",
+   "mean": -0.29274,
+   "sd": 0.58951
+  },
+  {
+   "id": "sub.cancellation.a_renewal_or_an_auto_renewal:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.cancellation.a_renewal_or_an_auto_renewal",
+   "F": "a renewal or an auto-renewal",
+   "mean": -1.3345,
+   "sd": 0.55863
+  },
+  {
+   "id": "sub.cancellation.a_renewal_or_an_auto_renewal:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.cancellation.a_renewal_or_an_auto_renewal",
+   "F": "a renewal or an auto-renewal",
+   "mean": -1.04572,
+   "sd": 0.46708
+  },
+  {
+   "id": "sub.cancellation.downgrading_or_pausing_a_plan:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.cancellation.downgrading_or_pausing_a_plan",
+   "F": "downgrading or pausing a plan",
+   "mean": -0.97354,
+   "sd": 0.6798
+  },
+  {
+   "id": "sub.cancellation.downgrading_or_pausing_a_plan:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.cancellation.downgrading_or_pausing_a_plan",
+   "F": "downgrading or pausing a plan",
+   "mean": -0.70523,
+   "sd": 0.52721
+  },
+  {
+   "id": "sub.legal.deleting_their_data_or_a_privacy_request:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.legal.deleting_their_data_or_a_privacy_request",
+   "F": "deleting their data or a privacy request",
+   "mean": -1.28345,
+   "sd": 0.68521
+  },
+  {
+   "id": "sub.legal.deleting_their_data_or_a_privacy_request:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.legal.deleting_their_data_or_a_privacy_request",
+   "F": "deleting their data or a privacy request",
+   "mean": -0.93819,
+   "sd": 0.58798
+  },
+  {
+   "id": "sub.legal.terms_a_contract_or_compliance:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.legal.terms_a_contract_or_compliance",
+   "F": "terms, a contract or compliance",
+   "mean": -1.87496,
+   "sd": 0.81656
+  },
+  {
+   "id": "sub.legal.terms_a_contract_or_compliance:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.legal.terms_a_contract_or_compliance",
+   "F": "terms, a contract or compliance",
+   "mean": -0.56659,
+   "sd": 0.57813
+  },
+  {
+   "id": "sub.legal.a_legal_claim_or_a_dispute:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.legal.a_legal_claim_or_a_dispute",
+   "F": "a legal claim or a dispute",
+   "mean": -0.87616,
+   "sd": 0.74462
+  },
+  {
+   "id": "sub.legal.a_legal_claim_or_a_dispute:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.legal.a_legal_claim_or_a_dispute",
+   "F": "a legal claim or a dispute",
+   "mean": -0.05426,
+   "sd": 0.47414
+  },
+  {
+   "id": "sub.hr.a_job_application:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.hr.a_job_application",
+   "F": "a job application",
+   "mean": -1.13284,
+   "sd": 0.57935
+  },
+  {
+   "id": "sub.hr.a_job_application:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.hr.a_job_application",
+   "F": "a job application",
+   "mean": -0.72672,
+   "sd": 0.56581
+  },
+  {
+   "id": "sub.hr.an_employee_matter:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.hr.an_employee_matter",
+   "F": "an employee matter",
+   "mean": 0.17379,
+   "sd": 0.65108
+  },
+  {
+   "id": "sub.hr.an_employee_matter:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.hr.an_employee_matter",
+   "F": "an employee matter",
+   "mean": 0.46358,
+   "sd": 0.45327
+  },
+  {
+   "id": "sub.partnerships.a_partnership_or_reseller_proposal:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.partnerships.a_partnership_or_reseller_proposal",
+   "F": "a partnership or reseller proposal",
+   "mean": -1.57666,
+   "sd": 0.66046
+  },
+  {
+   "id": "sub.partnerships.a_partnership_or_reseller_proposal:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.partnerships.a_partnership_or_reseller_proposal",
+   "F": "a partnership or reseller proposal",
+   "mean": -1.19785,
+   "sd": 0.59174
+  },
+  {
+   "id": "sub.partnerships.a_supplier_invoice_or_a_vendor_matter:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.partnerships.a_supplier_invoice_or_a_vendor_matter",
+   "F": "a supplier invoice or a vendor matter",
+   "mean": -1.20232,
+   "sd": 0.65785
+  },
+  {
+   "id": "sub.partnerships.a_supplier_invoice_or_a_vendor_matter:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.partnerships.a_supplier_invoice_or_a_vendor_matter",
+   "F": "a supplier invoice or a vendor matter",
+   "mean": -0.43735,
+   "sd": 0.57622
+  },
+  {
+   "id": "sub.feedback.a_complaint_about_the_service:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.feedback.a_complaint_about_the_service",
+   "F": "a complaint about the service",
+   "mean": 0.0312,
+   "sd": 0.64504
+  },
+  {
+   "id": "sub.feedback.a_complaint_about_the_service:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.feedback.a_complaint_about_the_service",
+   "F": "a complaint about the service",
+   "mean": 0.44868,
+   "sd": 0.65316
+  },
+  {
+   "id": "sub.feedback.thanking_or_praising_the_company:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.feedback.thanking_or_praising_the_company",
+   "F": "thanking or praising the company",
+   "mean": -1.20647,
+   "sd": 0.64749
+  },
+  {
+   "id": "sub.feedback.thanking_or_praising_the_company:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.feedback.thanking_or_praising_the_company",
+   "F": "thanking or praising the company",
+   "mean": -1.48268,
+   "sd": 0.658
+  },
+  {
+   "id": "sub.feedback.suggesting_a_feature_or_an_improvement:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.feedback.suggesting_a_feature_or_an_improvement",
+   "F": "suggesting a feature or an improvement",
+   "mean": -0.22427,
+   "sd": 0.58148
+  },
+  {
+   "id": "sub.feedback.suggesting_a_feature_or_an_improvement:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.feedback.suggesting_a_feature_or_an_improvement",
+   "F": "suggesting a feature or an improvement",
+   "mean": 0.15793,
+   "sd": 0.55154
+  },
+  {
+   "id": "sub.press.a_media_or_press_request:ask",
+   "query": "tri.sub",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.press.a_media_or_press_request",
+   "F": "a media or press request",
+   "mean": -1.11575,
+   "sd": 0.54832
+  },
+  {
+   "id": "sub.press.a_media_or_press_request:concern",
+   "query": "tri.sub2",
+   "kind": "pair",
+   "sign": 1,
+   "category": "sub.press.a_media_or_press_request",
+   "F": "a media or press request",
+   "mean": -0.94507,
+   "sd": 0.51265
+  },
+  {
+   "id": "action.reply",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "action.reply",
+   "F": "Does the sender expect a reply?",
+   "mean": 1.44685,
+   "sd": 0.50059
+  },
+  {
+   "id": "action.refund",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "action.refund",
+   "F": "Is the sender asking for a refund or their money back?",
+   "mean": -1.04535,
+   "sd": 0.72621
+  },
+  {
+   "id": "action.cancel",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "action.cancel",
+   "F": "Is the sender asking to cancel something?",
+   "mean": -0.36987,
+   "sd": 0.66118
+  },
+  {
+   "id": "action.escalate",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "action.escalate",
+   "F": "Should this message be escalated to a manager or a specialist?",
+   "mean": 0.52435,
+   "sd": 0.5227
+  },
+  {
+   "id": "action.deadline",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "action.deadline",
+   "F": "Does the sender mention a deadline or a date by which they need an answer?",
+   "mean": -0.74255,
+   "sd": 0.51084
+  },
+  {
+   "id": "action.repeat",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "action.repeat",
+   "F": "Has the sender already contacted the company about this before?",
+   "mean": 0.80947,
+   "sd": 0.34674
+  },
+  {
+   "id": "urgency:pair0",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "urgency",
+   "F": "Is this message urgent?",
+   "mean": 0.85015,
+   "sd": 0.55216
+  },
+  {
+   "id": "urgency:pair1",
+   "query": "tri.action",
+   "kind": "pair",
+   "sign": 1,
+   "category": "urgency",
+   "F": "Does the sender need help today?",
+   "mean": 1.03069,
+   "sd": 0.53099
+  },
+  {
+   "id": "urgency:level",
+   "query": "tri.urgency",
+   "kind": "set",
+   "unsafe": [
+    2,
+    3
+   ],
+   "category": "urgency",
+   "mu": [
+    -1.89851,
+    -0.9472,
+    -1.29125,
+    -2.01721
+   ],
+   "mean": -0.01868,
+   "sd": 0.63827
+  },
+  {
+   "id": "tone.negative:sentiment",
+   "query": "tri.sentiment",
+   "kind": "option",
+   "option": 2,
+   "category": "tone.negative",
+   "mu": -0.92999,
+   "mean": 0.0,
+   "sd": 0.39586
+  },
+  {
+   "id": "tone.negative:frustrated",
+   "query": "tri.tone",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.negative",
+   "F": "Is the sender frustrated or angry?",
+   "mean": 0.82202,
+   "sd": 0.59832
+  },
+  {
+   "id": "tone.churn",
+   "query": "tri.tone",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.churn",
+   "F": "Does the sender threaten to leave, cancel or switch to a competitor?",
+   "mean": -0.38404,
+   "sd": 0.61153
+  },
+  {
+   "id": "tone.praise",
+   "query": "tri.tone",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.praise",
+   "F": "Is the sender thanking or praising the company?",
+   "mean": -1.68454,
+   "sd": 0.70369
+  },
+  {
+   "id": "risk.complaint",
+   "query": "tri.risk",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.complaint",
+   "F": "Is this message a complaint?",
+   "mean": 0.49402,
+   "sd": 0.59333
+  },
+  {
+   "id": "risk.legal",
+   "query": "tri.risk",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.legal",
+   "F": "Does the sender threaten legal action or mention a lawyer?",
+   "mean": -0.80414,
+   "sd": 0.5546
+  },
+  {
+   "id": "risk.regulator",
+   "query": "tri.risk",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.regulator",
+   "F": "Does the sender mention a regulator, a consumer protection agency or an official complaint?",
+   "mean": -1.62655,
+   "sd": 0.62814
+  },
+  {
+   "id": "risk.public",
+   "query": "tri.risk",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.public",
+   "F": "Does the sender threaten to go to the press, to social media or to make the matter public?",
+   "mean": -0.51731,
+   "sd": 0.59522
+  },
+  {
+   "id": "pii.card",
+   "query": "tri.pii",
+   "kind": "pair",
+   "sign": 1,
+   "category": "pii.card",
+   "F": "a credit or debit card number",
+   "mean": -0.25514,
+   "sd": 0.56067
+  },
+  {
+   "id": "pii.bank",
+   "query": "tri.pii",
+   "kind": "pair",
+   "sign": 1,
+   "category": "pii.bank",
+   "F": "bank account details",
+   "mean": -0.44016,
+   "sd": 0.58791
+  },
+  {
+   "id": "pii.id",
+   "query": "tri.pii",
+   "kind": "pair",
+   "sign": 1,
+   "category": "pii.id",
+   "F": "a passport, national ID or social security number",
+   "mean": -0.57968,
+   "sd": 0.52618
+  },
+  {
+   "id": "pii.health",
+   "query": "tri.pii",
+   "kind": "pair",
+   "sign": 1,
+   "category": "pii.health",
+   "F": "health or medical information",
+   "mean": -0.77529,
+   "sd": 0.86423
+  },
+  {
+   "id": "pii.credentials",
+   "query": "tri.pii",
+   "kind": "pair",
+   "sign": 1,
+   "category": "pii.credentials",
+   "F": "a password or other login credentials",
+   "mean": -0.10219,
+   "sd": 0.44148
+  },
+  {
+   "id": "pii.contact",
+   "query": "tri.pii",
+   "kind": "pair",
+   "sign": 1,
+   "category": "pii.contact",
+   "F": "a home address or a phone number",
+   "mean": -0.7141,
+   "sd": 0.55593
+  },
+  {
+   "id": "phishing:direct",
+   "query": "tri.phish",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "Is this message a phishing, scam or fraud attempt?",
+   "view": "direct",
+   "mean": 0.52291,
+   "sd": 0.62321
+  },
+  {
+   "id": "phishing:genuine",
+   "query": "tri.phish",
+   "kind": "pair",
+   "sign": -1,
+   "category": "phishing",
+   "F": "Is this a genuine message from a real customer or contact?",
+   "view": "direct",
+   "mean": 0.17661,
+   "sd": 0.69884
+  },
+  {
+   "id": "phishing:impersonation",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "claim to come from a bank, a well-known company, a government body or an executive",
+   "view": "signals",
+   "mean": -0.25908,
+   "sd": 0.72803
+  },
+  {
+   "id": "phishing:payment_change",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "ask to change bank or payment details",
+   "view": "signals",
+   "mean": -0.1531,
+   "sd": 0.58029
+  },
+  {
+   "id": "phishing:credential_lure",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "ask the reader to log in, verify or confirm an account through a link",
+   "view": "signals",
+   "mean": 0.09561,
+   "sd": 0.56207
+  },
+  {
+   "id": "phishing:urgency",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "pressure the reader to act immediately or threaten consequences",
+   "view": "signals",
+   "mean": -0.50174,
+   "sd": 0.85554
+  },
+  {
+   "id": "phishing:gift_crypto",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "ask for gift cards, cryptocurrency or a wire transfer",
+   "view": "signals",
+   "mean": -1.95848,
+   "sd": 0.96216
+  },
+  {
+   "id": "phishing:attachment",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "ask the reader to open an attachment or click a link",
+   "view": "signals",
+   "mean": -0.24519,
+   "sd": 0.67151
+  },
+  {
+   "id": "phishing:windfall",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "promise a prize, a refund or a payment the reader did not expect",
+   "view": "signals",
+   "mean": -1.14493,
+   "sd": 0.89674
+  },
+  {
+   "id": "phishing:sloppy",
+   "query": "tri.signal",
+   "kind": "pair",
+   "sign": 1,
+   "category": "phishing",
+   "F": "contain spelling, grammar or formatting unusual for a business message",
+   "view": "signals",
+   "mean": 1.08407,
+   "sd": 0.39617
+  },
+  {
+   "id": "scope.unrelated",
+   "query": "tri.scope",
+   "kind": "pair",
+   "sign": 1,
+   "category": "scope.unrelated",
+   "F": "Is this message unrelated to the company's products or services (spam, a newsletter, personal or automated mail)?",
+   "mean": 0.17345,
+   "sd": 0.41624
+  },
+  {
+   "id": "intent.other:unrelated",
+   "query": "tri.scope",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.other",
+   "F": "Is this message unrelated to the company's products or services (spam, a newsletter, personal or automated mail)?",
+   "mean": 0.17345,
+   "sd": 0.41624
+  },
+  {
+   "id": "scope.automated",
+   "query": "tri.scope",
+   "kind": "pair",
+   "sign": 1,
+   "category": "scope.automated",
+   "F": "Is this an automated notification rather than a message written by a person?",
+   "mean": 0.32978,
+   "sd": 0.4671
+  },
+  {
+   "id": "intent.other:automated",
+   "query": "tri.scope",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.other",
+   "F": "Is this an automated notification rather than a message written by a person?",
+   "mean": 0.32978,
+   "sd": 0.4671
+  },
+  {
+   "id": "lang.english",
+   "query": "tri.language",
+   "kind": "option",
+   "option": 0,
+   "category": "lang.english",
+   "mu": -0.15676,
+   "mean": -0.0,
+   "sd": 0.13091
+  },
+  {
+   "id": "lang.german",
+   "query": "tri.language",
+   "kind": "option",
+   "option": 1,
+   "category": "lang.german",
+   "mu": -4.0964,
+   "mean": -0.0,
+   "sd": 0.99566
+  },
+  {
+   "id": "lang.spanish",
+   "query": "tri.language",
+   "kind": "option",
+   "option": 2,
+   "category": "lang.spanish",
+   "mu": -3.22285,
+   "mean": -0.0,
+   "sd": 1.06588
+  },
+  {
+   "id": "lang.french",
+   "query": "tri.language",
+   "kind": "option",
+   "option": 3,
+   "category": "lang.french",
+   "mu": -4.05823,
+   "mean": -0.0,
+   "sd": 0.79409
+  },
+  {
+   "id": "lang.portuguese",
+   "query": "tri.language",
+   "kind": "option",
+   "option": 4,
+   "category": "lang.portuguese",
+   "mu": -4.68643,
+   "mean": 0.0,
+   "sd": 1.01301
+  },
+  {
+   "id": "lang.italian",
+   "query": "tri.language",
+   "kind": "option",
+   "option": 5,
+   "category": "lang.italian",
+   "mu": -4.90804,
+   "mean": -0.0,
+   "sd": 1.12746
+  },
+  {
+   "id": "lang.other",
+   "query": "tri.language",
+   "kind": "option",
+   "option": 6,
+   "category": "lang.other",
+   "mu": -8.87806,
+   "mean": 0.0,
+   "sd": 0.84885
+  }
+ ],
+ "categories": {
+  "intent.billing": {
+   "label": "Intent: billing or payments",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00127,
+     0.01483,
+     0.02499,
+     0.03382,
+     0.04234,
+     0.05144,
+     0.06081,
+     0.07282,
+     0.08933,
+     0.11692,
+     0.17341,
+     0.28974,
+     0.33125,
+     0.33857
+    ]
+   }
+  },
+  "intent.account": {
+   "label": "Intent: their account or logging in",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00243,
+     0.01681,
+     0.02488,
+     0.03128,
+     0.03797,
+     0.04552,
+     0.05521,
+     0.06729,
+     0.08517,
+     0.13107,
+     0.20675,
+     0.39076,
+     0.50027,
+     0.50737
+    ]
+   }
+  },
+  "intent.orders": {
+   "label": "Intent: an order or a delivery",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00214,
+     0.01635,
+     0.02345,
+     0.03055,
+     0.03711,
+     0.04453,
+     0.05387,
+     0.06521,
+     0.08669,
+     0.14543,
+     0.21349,
+     0.38976,
+     0.49043,
+     0.59409
+    ]
+   }
+  },
+  "intent.returns": {
+   "label": "Intent: a return or a refund",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00291,
+     0.01846,
+     0.02512,
+     0.03037,
+     0.03674,
+     0.04338,
+     0.05125,
+     0.06366,
+     0.08342,
+     0.11763,
+     0.17408,
+     0.59456,
+     0.73655,
+     0.75696
+    ]
+   }
+  },
+  "intent.technical": {
+   "label": "Intent: a technical problem with the product",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00329,
+     0.01688,
+     0.02157,
+     0.02609,
+     0.03088,
+     0.03691,
+     0.04809,
+     0.07882,
+     0.13425,
+     0.18254,
+     0.20507,
+     0.22839,
+     0.24054,
+     0.24402
+    ]
+   }
+  },
+  "intent.sales": {
+   "label": "Intent: buying a product or a plan, pricing or availability",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0022,
+     0.01546,
+     0.02403,
+     0.03166,
+     0.03934,
+     0.04785,
+     0.05825,
+     0.07033,
+     0.09098,
+     0.1351,
+     0.18438,
+     0.28616,
+     0.4052,
+     0.67205
+    ]
+   }
+  },
+  "intent.cancellation": {
+   "label": "Intent: cancelling or changing a subscription",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00258,
+     0.01472,
+     0.0221,
+     0.03021,
+     0.03949,
+     0.05056,
+     0.06339,
+     0.07813,
+     0.09831,
+     0.1288,
+     0.15943,
+     0.26155,
+     0.57488,
+     0.68289
+    ]
+   }
+  },
+  "intent.legal": {
+   "label": "Intent: a legal, privacy or compliance matter",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00284,
+     0.01612,
+     0.02439,
+     0.03137,
+     0.03887,
+     0.04505,
+     0.0527,
+     0.06293,
+     0.07866,
+     0.13333,
+     0.25299,
+     0.46304,
+     0.5779,
+     0.66171
+    ]
+   }
+  },
+  "intent.hr": {
+   "label": "Intent: a job application or an employee matter",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00241,
+     0.01627,
+     0.0224,
+     0.02924,
+     0.03629,
+     0.0462,
+     0.05752,
+     0.07255,
+     0.09217,
+     0.13137,
+     0.17609,
+     0.41594,
+     0.67067,
+     0.74737
+    ]
+   }
+  },
+  "intent.partnerships": {
+   "label": "Intent: a partnership, reseller or supplier matter",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00125,
+     0.01646,
+     0.02437,
+     0.03091,
+     0.03809,
+     0.0466,
+     0.05783,
+     0.07234,
+     0.09579,
+     0.13804,
+     0.17585,
+     0.25313,
+     0.44889,
+     0.63655
+    ]
+   }
+  },
+  "intent.feedback": {
+   "label": "Intent: feedback, a complaint or praise about the service",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0015,
+     0.01363,
+     0.02337,
+     0.03345,
+     0.04226,
+     0.05169,
+     0.06408,
+     0.07833,
+     0.09742,
+     0.12661,
+     0.15622,
+     0.21764,
+     0.36808,
+     0.59947
+    ]
+   }
+  },
+  "intent.press": {
+   "label": "Intent: a press or media enquiry",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.002,
+     0.01458,
+     0.02325,
+     0.03225,
+     0.04145,
+     0.05308,
+     0.06584,
+     0.07997,
+     0.09788,
+     0.12285,
+     0.14354,
+     0.19834,
+     0.31458,
+     0.58775
+    ]
+   }
+  },
+  "intent.other": {
+   "label": "Intent: something unrelated to the company's products and services",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00474,
+     0.02372,
+     0.02995,
+     0.03514,
+     0.04091,
+     0.04651,
+     0.05289,
+     0.06062,
+     0.07215,
+     0.09417,
+     0.12252,
+     0.189,
+     0.31552,
+     0.34678
+    ]
+   }
+  },
+  "sub.billing.a_double_or_wrong_charge": {
+   "label": "billing: a double or wrong charge",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00229,
+     0.01713,
+     0.02443,
+     0.03132,
+     0.03835,
+     0.0455,
+     0.05386,
+     0.06576,
+     0.08192,
+     0.12289,
+     0.1859,
+     0.44326,
+     0.6468,
+     0.71303
+    ]
+   }
+  },
+  "sub.billing.a_refund_of_a_payment": {
+   "label": "billing: a refund of a payment",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0038,
+     0.01708,
+     0.02364,
+     0.02929,
+     0.03583,
+     0.04332,
+     0.05297,
+     0.06571,
+     0.08673,
+     0.13739,
+     0.21509,
+     0.44346,
+     0.6269,
+     0.6855
+    ]
+   }
+  },
+  "sub.billing.a_copy_of_an_invoice_or_receipt": {
+   "label": "billing: a copy of an invoice or receipt",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00162,
+     0.01717,
+     0.02498,
+     0.03238,
+     0.03969,
+     0.04808,
+     0.05856,
+     0.07198,
+     0.09247,
+     0.12588,
+     0.15559,
+     0.22923,
+     0.33651,
+     0.44563
+    ]
+   }
+  },
+  "sub.billing.a_failed_or_declined_payment": {
+   "label": "billing: a failed or declined payment",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00314,
+     0.01651,
+     0.02358,
+     0.02997,
+     0.03637,
+     0.04479,
+     0.05359,
+     0.06756,
+     0.09233,
+     0.14226,
+     0.20125,
+     0.36096,
+     0.52852,
+     0.64508
+    ]
+   }
+  },
+  "sub.billing.a_price_or_plan_change": {
+   "label": "billing: a price or plan change",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00358,
+     0.01668,
+     0.02158,
+     0.0273,
+     0.03432,
+     0.04341,
+     0.0557,
+     0.07247,
+     0.10257,
+     0.14988,
+     0.19424,
+     0.31459,
+     0.48155,
+     0.52811
+    ]
+   }
+  },
+  "sub.account.a_locked_account_or_a_login_problem": {
+   "label": "account: a locked account or a login problem",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00134,
+     0.01662,
+     0.02436,
+     0.03134,
+     0.03968,
+     0.04867,
+     0.05855,
+     0.07201,
+     0.09116,
+     0.12286,
+     0.15865,
+     0.25045,
+     0.42715,
+     0.65233
+    ]
+   }
+  },
+  "sub.account.a_password_reset": {
+   "label": "account: a password reset",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00329,
+     0.01627,
+     0.02321,
+     0.02988,
+     0.03732,
+     0.04556,
+     0.05564,
+     0.06869,
+     0.08732,
+     0.12591,
+     0.18919,
+     0.47796,
+     0.6271,
+     0.77379
+    ]
+   }
+  },
+  "sub.account.changing_their_account_details": {
+   "label": "account: changing their account details",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0022,
+     0.0161,
+     0.02316,
+     0.02984,
+     0.03705,
+     0.04662,
+     0.05656,
+     0.07145,
+     0.09331,
+     0.13878,
+     0.18951,
+     0.32151,
+     0.48055,
+     0.57996
+    ]
+   }
+  },
+  "sub.account.closing_their_account": {
+   "label": "account: closing their account",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00223,
+     0.0166,
+     0.02396,
+     0.03092,
+     0.03886,
+     0.04783,
+     0.05786,
+     0.07147,
+     0.09017,
+     0.12749,
+     0.16775,
+     0.27941,
+     0.46812,
+     0.60584
+    ]
+   }
+  },
+  "sub.account.suspicious_activity_on_their_account": {
+   "label": "account: suspicious activity on their account",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00283,
+     0.01484,
+     0.0221,
+     0.02959,
+     0.0383,
+     0.04748,
+     0.06053,
+     0.07503,
+     0.09966,
+     0.1402,
+     0.18376,
+     0.26642,
+     0.39849,
+     0.56933
+    ]
+   }
+  },
+  "sub.orders.the_status_of_an_order_or_delivery": {
+   "label": "orders: the status of an order or delivery",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00154,
+     0.01679,
+     0.02329,
+     0.02995,
+     0.03658,
+     0.04535,
+     0.05528,
+     0.07033,
+     0.09328,
+     0.13841,
+     0.18327,
+     0.312,
+     0.45849,
+     0.56064
+    ]
+   }
+  },
+  "sub.orders.a_late_or_missing_delivery": {
+   "label": "orders: a late or missing delivery",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00384,
+     0.01762,
+     0.02419,
+     0.03053,
+     0.03761,
+     0.04544,
+     0.05391,
+     0.06706,
+     0.0871,
+     0.12183,
+     0.1752,
+     0.43817,
+     0.71136,
+     0.85282
+    ]
+   }
+  },
+  "sub.orders.a_wrong_or_damaged_item": {
+   "label": "orders: a wrong or damaged item",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0021,
+     0.01701,
+     0.0245,
+     0.03186,
+     0.03893,
+     0.04771,
+     0.05821,
+     0.07067,
+     0.08874,
+     0.12136,
+     0.15084,
+     0.2685,
+     0.52787,
+     0.66716
+    ]
+   }
+  },
+  "sub.orders.changing_or_cancelling_an_order": {
+   "label": "orders: changing or cancelling an order",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00167,
+     0.0178,
+     0.02387,
+     0.02963,
+     0.03509,
+     0.04166,
+     0.05048,
+     0.06374,
+     0.09004,
+     0.15292,
+     0.22835,
+     0.3946,
+     0.55837,
+     0.62689
+    ]
+   }
+  },
+  "sub.returns.returning_an_item": {
+   "label": "returns: returning an item",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00352,
+     0.01845,
+     0.02463,
+     0.03014,
+     0.03595,
+     0.0431,
+     0.05176,
+     0.06362,
+     0.08063,
+     0.11631,
+     0.19525,
+     0.53924,
+     0.69147,
+     0.7379
+    ]
+   }
+  },
+  "sub.returns.exchanging_an_item": {
+   "label": "returns: exchanging an item",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00429,
+     0.01475,
+     0.02057,
+     0.02796,
+     0.03705,
+     0.04789,
+     0.06105,
+     0.07764,
+     0.09862,
+     0.13284,
+     0.18075,
+     0.3122,
+     0.51053,
+     0.60032
+    ]
+   }
+  },
+  "sub.returns.a_refund_for_a_returned_item": {
+   "label": "returns: a refund for a returned item",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00369,
+     0.01763,
+     0.02404,
+     0.02913,
+     0.03525,
+     0.04173,
+     0.05065,
+     0.06476,
+     0.08619,
+     0.13648,
+     0.20259,
+     0.47076,
+     0.62808,
+     0.75641
+    ]
+   }
+  },
+  "sub.technical.an_error_or_a_bug": {
+   "label": "technical: an error or a bug",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00091,
+     0.01651,
+     0.02407,
+     0.03053,
+     0.0387,
+     0.04898,
+     0.061,
+     0.07564,
+     0.09437,
+     0.12582,
+     0.15646,
+     0.2302,
+     0.32792,
+     0.40384
+    ]
+   }
+  },
+  "sub.technical.a_setup_or_installation_problem": {
+   "label": "technical: a setup or installation problem",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00206,
+     0.01573,
+     0.02295,
+     0.03016,
+     0.03832,
+     0.04786,
+     0.05957,
+     0.07398,
+     0.09655,
+     0.13468,
+     0.17161,
+     0.28347,
+     0.43031,
+     0.51573
+    ]
+   }
+  },
+  "sub.technical.a_feature_that_is_not_working": {
+   "label": "technical: a feature that is not working",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00239,
+     0.01535,
+     0.02149,
+     0.02758,
+     0.03482,
+     0.04409,
+     0.05695,
+     0.07414,
+     0.10352,
+     0.15618,
+     0.19649,
+     0.29518,
+     0.39397,
+     0.42306
+    ]
+   }
+  },
+  "sub.technical.an_outage_or_a_service_that_is_down": {
+   "label": "technical: an outage or a service that is down",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00224,
+     0.01699,
+     0.02372,
+     0.03011,
+     0.03668,
+     0.04422,
+     0.0539,
+     0.06571,
+     0.08591,
+     0.13564,
+     0.21937,
+     0.38458,
+     0.52897,
+     0.72089
+    ]
+   }
+  },
+  "sub.technical.an_integration_or_api_question": {
+   "label": "technical: an integration or API question",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00393,
+     0.01754,
+     0.02385,
+     0.02943,
+     0.03577,
+     0.04241,
+     0.05079,
+     0.06094,
+     0.08059,
+     0.13912,
+     0.25742,
+     0.49088,
+     0.63102,
+     0.66517
+    ]
+   }
+  },
+  "sub.sales.a_quote_or_pricing": {
+   "label": "sales: a quote or pricing",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0028,
+     0.01682,
+     0.02267,
+     0.02832,
+     0.03513,
+     0.04272,
+     0.05392,
+     0.06923,
+     0.09312,
+     0.1429,
+     0.20133,
+     0.36777,
+     0.61524,
+     0.76202
+    ]
+   }
+  },
+  "sub.sales.product_availability_or_compatibility": {
+   "label": "sales: product availability or compatibility",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00184,
+     0.01603,
+     0.02249,
+     0.02958,
+     0.0372,
+     0.04646,
+     0.05845,
+     0.076,
+     0.09735,
+     0.13881,
+     0.18053,
+     0.28448,
+     0.40633,
+     0.4908
+    ]
+   }
+  },
+  "sub.sales.a_demo_or_a_trial": {
+   "label": "sales: a demo or a trial",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00136,
+     0.01815,
+     0.02544,
+     0.03263,
+     0.03894,
+     0.04691,
+     0.0561,
+     0.06927,
+     0.08796,
+     0.12149,
+     0.16013,
+     0.27428,
+     0.60617,
+     0.69122
+    ]
+   }
+  },
+  "sub.sales.a_discount_or_a_promotion": {
+   "label": "sales: a discount or a promotion",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00193,
+     0.01679,
+     0.02308,
+     0.0295,
+     0.03625,
+     0.0447,
+     0.05553,
+     0.07085,
+     0.09279,
+     0.13931,
+     0.18529,
+     0.31925,
+     0.48671,
+     0.57661
+    ]
+   }
+  },
+  "sub.cancellation.cancelling_a_subscription": {
+   "label": "cancellation: cancelling a subscription",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00349,
+     0.01614,
+     0.02295,
+     0.0296,
+     0.03609,
+     0.0442,
+     0.05445,
+     0.0699,
+     0.09526,
+     0.1444,
+     0.19633,
+     0.32633,
+     0.51913,
+     0.63802
+    ]
+   }
+  },
+  "sub.cancellation.a_renewal_or_an_auto_renewal": {
+   "label": "cancellation: a renewal or an auto-renewal",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00229,
+     0.01579,
+     0.0224,
+     0.02901,
+     0.03646,
+     0.04632,
+     0.05893,
+     0.07453,
+     0.0973,
+     0.13887,
+     0.18361,
+     0.29371,
+     0.41465,
+     0.69188
+    ]
+   }
+  },
+  "sub.cancellation.downgrading_or_pausing_a_plan": {
+   "label": "cancellation: downgrading or pausing a plan",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0017,
+     0.01569,
+     0.02329,
+     0.03068,
+     0.03848,
+     0.04789,
+     0.0586,
+     0.07478,
+     0.0941,
+     0.13198,
+     0.17124,
+     0.26059,
+     0.39547,
+     0.64128
+    ]
+   }
+  },
+  "sub.legal.deleting_their_data_or_a_privacy_request": {
+   "label": "legal: deleting their data or a privacy request",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00089,
+     0.01387,
+     0.02294,
+     0.03229,
+     0.04125,
+     0.05076,
+     0.06281,
+     0.07734,
+     0.09695,
+     0.13242,
+     0.16667,
+     0.25079,
+     0.37624,
+     0.50295
+    ]
+   }
+  },
+  "sub.legal.terms_a_contract_or_compliance": {
+   "label": "legal: terms, a contract or compliance",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00141,
+     0.01663,
+     0.02376,
+     0.03055,
+     0.03758,
+     0.04644,
+     0.05695,
+     0.07077,
+     0.09512,
+     0.13776,
+     0.18812,
+     0.29727,
+     0.4371,
+     0.72779
+    ]
+   }
+  },
+  "sub.legal.a_legal_claim_or_a_dispute": {
+   "label": "legal: a legal claim or a dispute",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00086,
+     0.01555,
+     0.02378,
+     0.03197,
+     0.04039,
+     0.04903,
+     0.06063,
+     0.07467,
+     0.09374,
+     0.12574,
+     0.15961,
+     0.25801,
+     0.42379,
+     0.64455
+    ]
+   }
+  },
+  "sub.hr.a_job_application": {
+   "label": "hr: a job application",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00353,
+     0.01712,
+     0.0237,
+     0.03081,
+     0.03769,
+     0.04602,
+     0.05505,
+     0.06796,
+     0.08749,
+     0.12369,
+     0.17399,
+     0.39328,
+     0.70978,
+     0.77495
+    ]
+   }
+  },
+  "sub.hr.an_employee_matter": {
+   "label": "hr: an employee matter",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00191,
+     0.018,
+     0.02524,
+     0.03221,
+     0.03867,
+     0.04726,
+     0.05696,
+     0.07028,
+     0.08933,
+     0.12081,
+     0.15684,
+     0.23568,
+     0.35661,
+     0.41334
+    ]
+   }
+  },
+  "sub.partnerships.a_partnership_or_reseller_proposal": {
+   "label": "partnerships: a partnership or reseller proposal",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00331,
+     0.01633,
+     0.02273,
+     0.02969,
+     0.03746,
+     0.04658,
+     0.05789,
+     0.07319,
+     0.09475,
+     0.13482,
+     0.17612,
+     0.26866,
+     0.40212,
+     0.65226
+    ]
+   }
+  },
+  "sub.partnerships.a_supplier_invoice_or_a_vendor_matter": {
+   "label": "partnerships: a supplier invoice or a vendor matter",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00112,
+     0.01543,
+     0.02364,
+     0.03249,
+     0.04141,
+     0.05085,
+     0.06194,
+     0.07499,
+     0.09195,
+     0.124,
+     0.1535,
+     0.26534,
+     0.40912,
+     0.53008
+    ]
+   }
+  },
+  "sub.feedback.a_complaint_about_the_service": {
+   "label": "feedback: a complaint about the service",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00204,
+     0.01467,
+     0.0213,
+     0.02827,
+     0.03595,
+     0.04532,
+     0.0582,
+     0.07709,
+     0.10526,
+     0.15142,
+     0.18645,
+     0.26813,
+     0.38431,
+     0.43342
+    ]
+   }
+  },
+  "sub.feedback.thanking_or_praising_the_company": {
+   "label": "feedback: thanking or praising the company",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00159,
+     0.01789,
+     0.02477,
+     0.03127,
+     0.03826,
+     0.0463,
+     0.05582,
+     0.0693,
+     0.08825,
+     0.12474,
+     0.16877,
+     0.26526,
+     0.38547,
+     0.6835
+    ]
+   }
+  },
+  "sub.feedback.suggesting_a_feature_or_an_improvement": {
+   "label": "feedback: suggesting a feature or an improvement",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00155,
+     0.01561,
+     0.02382,
+     0.03097,
+     0.03913,
+     0.04783,
+     0.05799,
+     0.07145,
+     0.09191,
+     0.13203,
+     0.17787,
+     0.34192,
+     0.55117,
+     0.85966
+    ]
+   }
+  },
+  "sub.press.a_media_or_press_request": {
+   "label": "press: a media or press request",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00403,
+     0.01819,
+     0.02463,
+     0.03067,
+     0.03707,
+     0.0448,
+     0.05414,
+     0.06609,
+     0.08672,
+     0.12475,
+     0.1703,
+     0.33196,
+     0.60794,
+     0.73096
+    ]
+   }
+  },
+  "action.reply": {
+   "label": "Action: reply",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00119,
+     0.01196,
+     0.02043,
+     0.03075,
+     0.04175,
+     0.05323,
+     0.06798,
+     0.08418,
+     0.10687,
+     0.13953,
+     0.17134,
+     0.23591,
+     0.38302,
+     0.50782
+    ]
+   }
+  },
+  "action.refund": {
+   "label": "Action: refund",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00045,
+     0.01374,
+     0.021,
+     0.02874,
+     0.03754,
+     0.04887,
+     0.06062,
+     0.07651,
+     0.10284,
+     0.1473,
+     0.19725,
+     0.33776,
+     0.60427,
+     0.78611
+    ]
+   }
+  },
+  "action.cancel": {
+   "label": "Action: cancel",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00105,
+     0.01392,
+     0.02113,
+     0.0283,
+     0.03662,
+     0.04702,
+     0.05893,
+     0.07534,
+     0.1007,
+     0.15483,
+     0.2151,
+     0.36854,
+     0.50617,
+     0.63915
+    ]
+   }
+  },
+  "action.escalate": {
+   "label": "Action: escalate",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.3322,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00078,
+     0.01371,
+     0.02107,
+     0.02897,
+     0.03702,
+     0.04695,
+     0.06101,
+     0.07997,
+     0.10636,
+     0.15477,
+     0.20197,
+     0.29663,
+     0.38623,
+     0.47936
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "action.deadline": {
+   "label": "Action: deadline",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00122,
+     0.01429,
+     0.02251,
+     0.03061,
+     0.03847,
+     0.0482,
+     0.05844,
+     0.07251,
+     0.09431,
+     0.14131,
+     0.19309,
+     0.37679,
+     0.85858,
+     0.91129
+    ]
+   }
+  },
+  "action.repeat": {
+   "label": "Action: repeat",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00066,
+     0.0142,
+     0.02134,
+     0.02885,
+     0.03759,
+     0.04803,
+     0.06018,
+     0.07792,
+     0.10137,
+     0.14662,
+     0.197,
+     0.34333,
+     0.60525,
+     0.78251
+    ]
+   }
+  },
+  "urgency": {
+   "label": "Urgency",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00535,
+     0.01894,
+     0.02442,
+     0.03017,
+     0.03618,
+     0.04303,
+     0.05273,
+     0.06634,
+     0.0874,
+     0.12517,
+     0.18163,
+     0.31007,
+     0.53851,
+     0.61562
+    ]
+   }
+  },
+  "tone.negative": {
+   "label": "Tone: negative",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00034,
+     0.0161,
+     0.0246,
+     0.03284,
+     0.04139,
+     0.05077,
+     0.06195,
+     0.07474,
+     0.09079,
+     0.11834,
+     0.13968,
+     0.19161,
+     0.28536,
+     0.38919
+    ]
+   }
+  },
+  "tone.churn": {
+   "label": "Tone: churn",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00065,
+     0.01461,
+     0.02219,
+     0.02948,
+     0.03811,
+     0.04787,
+     0.06085,
+     0.0768,
+     0.10458,
+     0.14743,
+     0.18627,
+     0.30758,
+     0.59594,
+     0.76007
+    ]
+   }
+  },
+  "tone.praise": {
+   "label": "Tone: praise",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00108,
+     0.01296,
+     0.02168,
+     0.02996,
+     0.03887,
+     0.04837,
+     0.06066,
+     0.07796,
+     0.10293,
+     0.14815,
+     0.20131,
+     0.32871,
+     0.5544,
+     0.61489
+    ]
+   }
+  },
+  "risk.complaint": {
+   "label": "Risk: complaint",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00067,
+     0.01298,
+     0.01992,
+     0.02743,
+     0.03682,
+     0.04912,
+     0.06676,
+     0.08635,
+     0.11135,
+     0.14959,
+     0.18205,
+     0.26445,
+     0.33533,
+     0.36115
+    ]
+   }
+  },
+  "risk.legal": {
+   "label": "Risk: legal",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.3978,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00202,
+     0.01381,
+     0.021,
+     0.02847,
+     0.03654,
+     0.04688,
+     0.05988,
+     0.07855,
+     0.10352,
+     0.15246,
+     0.20527,
+     0.32728,
+     0.59261,
+     0.76743
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "risk.regulator": {
+   "label": "Risk: regulator",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.3897,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00132,
+     0.01341,
+     0.02162,
+     0.02958,
+     0.03837,
+     0.04939,
+     0.06203,
+     0.07791,
+     0.1022,
+     0.14438,
+     0.19631,
+     0.32471,
+     0.54962,
+     0.73279
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "risk.public": {
+   "label": "Risk: public",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.2924,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00106,
+     0.01392,
+     0.02177,
+     0.02979,
+     0.03867,
+     0.0501,
+     0.06383,
+     0.08313,
+     0.10658,
+     0.14701,
+     0.18251,
+     0.25842,
+     0.38818,
+     0.59655
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "pii.card": {
+   "label": "Personal data: a credit or debit card number",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.2924,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00049,
+     0.01333,
+     0.02404,
+     0.03403,
+     0.04312,
+     0.05284,
+     0.06351,
+     0.07767,
+     0.09879,
+     0.13601,
+     0.17338,
+     0.26357,
+     0.40057,
+     0.62044
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "pii.bank": {
+   "label": "Personal data: bank account details",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.3502,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00117,
+     0.01343,
+     0.02305,
+     0.03094,
+     0.03995,
+     0.04942,
+     0.06198,
+     0.07875,
+     0.10147,
+     0.14222,
+     0.18828,
+     0.29898,
+     0.43651,
+     0.49436
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "pii.id": {
+   "label": "Personal data: a passport, national ID or social security number",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.3694,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00092,
+     0.01396,
+     0.02321,
+     0.03136,
+     0.03956,
+     0.04915,
+     0.06076,
+     0.07741,
+     0.09804,
+     0.14232,
+     0.18885,
+     0.32663,
+     0.46989,
+     0.8138
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "pii.health": {
+   "label": "Personal data: health or medical information",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.5951,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00586,
+     0.01724,
+     0.02287,
+     0.02835,
+     0.03414,
+     0.04045,
+     0.04856,
+     0.05905,
+     0.07569,
+     0.13836,
+     0.36102,
+     0.55694,
+     0.67748,
+     0.79071
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "pii.credentials": {
+   "label": "Personal data: a password or other login credentials",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": 0.4053,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00112,
+     0.0132,
+     0.02092,
+     0.0291,
+     0.03825,
+     0.0485,
+     0.06205,
+     0.07762,
+     0.10296,
+     0.14868,
+     0.19548,
+     0.33387,
+     0.60344,
+     0.83041
+    ]
+   },
+   "threshold_fit": "flag_rate_0.005"
+  },
+  "pii.contact": {
+   "label": "Personal data: a home address or a phone number",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00084,
+     0.01448,
+     0.02181,
+     0.02921,
+     0.03716,
+     0.04644,
+     0.05774,
+     0.07234,
+     0.09935,
+     0.15124,
+     0.21256,
+     0.3735,
+     0.63491,
+     0.7898
+    ]
+   }
+  },
+  "phishing": {
+   "label": "Phishing or scam attempt",
+   "aggregate": "views",
+   "platt": [
+    5.03164,
+    -6.08496
+   ],
+   "threshold": 0.3176,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0,
+     0.00011,
+     0.0003,
+     0.00065,
+     0.0012,
+     0.00215,
+     0.00384,
+     0.00715,
+     0.01495,
+     0.04319,
+     0.10833,
+     0.61511,
+     0.98621,
+     0.99908
+    ]
+   },
+   "threshold_fit": "f1_on_labels"
+  },
+  "scope.unrelated": {
+   "label": "Scope: unrelated",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0003,
+     0.01489,
+     0.02195,
+     0.02933,
+     0.03774,
+     0.04779,
+     0.0585,
+     0.07388,
+     0.09633,
+     0.13951,
+     0.19845,
+     0.42681,
+     0.7705,
+     0.89767
+    ]
+   }
+  },
+  "scope.automated": {
+   "label": "Scope: automated",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00158,
+     0.01349,
+     0.02126,
+     0.02926,
+     0.03796,
+     0.04883,
+     0.06154,
+     0.07679,
+     0.09938,
+     0.14333,
+     0.19423,
+     0.36412,
+     0.65333,
+     0.82537
+    ]
+   }
+  },
+  "lang.english": {
+   "label": "Language: English",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0,
+     0.01888,
+     0.03027,
+     0.03821,
+     0.04684,
+     0.05515,
+     0.06538,
+     0.07853,
+     0.09412,
+     0.11536,
+     0.12664,
+     0.13524,
+     0.13894,
+     0.14016
+    ]
+   }
+  },
+  "lang.german": {
+   "label": "Language: German",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00054,
+     0.01252,
+     0.02246,
+     0.03138,
+     0.04357,
+     0.05587,
+     0.06893,
+     0.08445,
+     0.10198,
+     0.12635,
+     0.149,
+     0.22665,
+     0.61533,
+     0.70328
+    ]
+   }
+  },
+  "lang.spanish": {
+   "label": "Language: Spanish",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0006,
+     0.01118,
+     0.02616,
+     0.04002,
+     0.04999,
+     0.05926,
+     0.06876,
+     0.07855,
+     0.09065,
+     0.11309,
+     0.13733,
+     0.28461,
+     0.36277,
+     0.42674
+    ]
+   }
+  },
+  "lang.french": {
+   "label": "Language: French",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00043,
+     0.01366,
+     0.02226,
+     0.03196,
+     0.04276,
+     0.05364,
+     0.06438,
+     0.07738,
+     0.09236,
+     0.12061,
+     0.15511,
+     0.45205,
+     0.73247,
+     0.79945
+    ]
+   }
+  },
+  "lang.portuguese": {
+   "label": "Language: Portuguese",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00073,
+     0.01242,
+     0.02447,
+     0.03503,
+     0.04553,
+     0.0552,
+     0.06646,
+     0.07818,
+     0.09464,
+     0.12364,
+     0.15801,
+     0.29579,
+     0.57008,
+     0.64429
+    ]
+   }
+  },
+  "lang.italian": {
+   "label": "Language: Italian",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00066,
+     0.01272,
+     0.02251,
+     0.03261,
+     0.04582,
+     0.0595,
+     0.07234,
+     0.08396,
+     0.09591,
+     0.11498,
+     0.13049,
+     0.36825,
+     0.57778,
+     0.66162
+    ]
+   }
+  },
+  "lang.other": {
+   "label": "Language: other",
+   "platt": [
+    1.0,
+    -3.0
+   ],
+   "threshold": null,
+   "uncalibrated": true,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0016,
+     0.01267,
+     0.02061,
+     0.02891,
+     0.03819,
+     0.04896,
+     0.06237,
+     0.07851,
+     0.10521,
+     0.15011,
+     0.19551,
+     0.31387,
+     0.50097,
+     0.95636
+    ]
+   }
+  }
+ },
+ "decision": {
+  "mode": "per_category",
+  "fallback": "per_category",
+  "critical": [
+   "phishing"
+  ],
+  "per_category": {},
+  "max": {
+   "threshold": 0.8
+  }
+ },
+ "answers": "logprob",
+ "engine": "fp_8a2c6e91fd"
+}

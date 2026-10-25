@@ -1,0 +1,252 @@
+{
+  "format": 1,
+  "namespace": "spinf",
+  "name": "spinf prompt packs",
+  "homepage": "https://github.com/spinfinc/spinf-prompts",
+  "license": "Apache-2.0",
+  "packs": [
+    {
+      "id": "spinf/moderation",
+      "name": "Content moderation",
+      "description": "22 categories of user-generated text (sexual content, child safety, violence, self-harm, hate, harassment, fraud, ...) with calibrated 0-1 scores and a safe / unsafe decision.",
+      "tags": [
+        "trust-and-safety",
+        "moderation",
+        "classification"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/moderation/README.md",
+      "samples": "packs/moderation/samples/",
+      "versions": [
+        {
+          "version": "0.1.3",
+          "file": "packs/moderation/0.1.3.json",
+          "model": "spinf/gemma-4-12b-fp8",
+          "status": "available",
+          "fixture": "packs/moderation/fixtures/0.1.3.json"
+        },
+        {
+          "version": "0.1.1",
+          "file": "packs/moderation/0.1.1.json",
+          "model": "spinf/gemma-4-12b-fp8",
+          "status": "available",
+          "fixture": "packs/moderation/fixtures/0.1.1.json",
+          "note": "the version the paper and the public benchmark pin; 0.1.3 is the default"
+        }
+      ]
+    },
+    {
+      "id": "spinf/moderation-qwen",
+      "name": "Content moderation (Qwen3.8 27B)",
+      "description": "The same 58 questions, 22 categories and decision modes as spinf/moderation, recalibrated for spinf/qwen3.8-27b-int4.",
+      "tags": [
+        "trust-and-safety",
+        "moderation",
+        "classification"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/moderation-qwen/README.md",
+      "samples": "packs/moderation/samples/",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "file": "packs/moderation-qwen/0.1.0.json",
+          "model": "spinf/qwen3.8-27b-int4",
+          "status": "available",
+          "fixture": "packs/moderation-qwen/fixtures/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "spinf/moderation-qwen-lite",
+      "name": "Content moderation, lite (Qwen3.8 27B)",
+      "description": "One overall unsafe score from three questions in the model's chat format: about a fifteenth of the full pack's tokens, no per-category scores.",
+      "tags": [
+        "trust-and-safety",
+        "moderation",
+        "classification",
+        "lite"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/moderation-qwen-lite/README.md",
+      "samples": "packs/moderation/samples/",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "file": "packs/moderation-qwen-lite/0.1.0.json",
+          "model": "spinf/qwen3.8-27b-int4",
+          "status": "available",
+          "fixture": "packs/moderation-qwen-lite/fixtures/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "spinf/moderation-decider",
+      "name": "Content moderation (decision model)",
+      "description": "The same 22 categories and three decision modes as spinf/moderation, asked in the decision model's own question format and recalibrated for spinf/pplx-decider-v1-27b-int4.",
+      "tags": [
+        "trust-and-safety",
+        "moderation",
+        "classification"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/moderation-decider/README.md",
+      "samples": "packs/moderation/samples/",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "file": "packs/moderation-decider/0.1.0.json",
+          "model": "spinf/pplx-decider-v1-27b-int4",
+          "status": "available",
+          "fixture": "packs/moderation-decider/fixtures/0.1.0.json"
+        }
+      ]
+    },
+    {
+      "id": "spinf/triage",
+      "name": "Inbound triage",
+      "description": "Emails, support chats and help-desk tickets: the team and the specific request (13 domains, about 40 intents), urgency as a priority percentile, tone, risk flags, sensitive personal data, phishing and business email compromise; decision: needs attention.",
+      "tags": [
+        "customer-operations",
+        "triage",
+        "routing",
+        "phishing",
+        "classification"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/triage/README.md",
+      "samples": "packs/triage/samples/",
+      "versions": [
+        {
+          "version": "0.1.1",
+          "file": "packs/triage/0.1.1.json",
+          "model": "spinf/gemma-4-12b-fp8",
+          "status": "available",
+          "fixture": "packs/triage/fixtures/0.1.1.json",
+          "note": "calibrated on the hosted engine (fp_8a2c6e91fd); to be re-scored on the published checkpoint before the release tag"
+        }
+      ]
+    },
+    {
+      "id": "spinf/entertainment",
+      "name": "Entertainment and media metadata",
+      "description": "Synopses and descriptions of films, series, books, games and podcasts: 24 genres and 63 sub-genres (multi-label), mood, themes, content advisories at two levels, the suggested audience (kids, family, teen, adult), setting (era, region, world), style and media type; decision: restricted to adults.",
+      "tags": [
+        "media",
+        "entertainment",
+        "metadata",
+        "classification",
+        "content-rating"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/entertainment/README.md",
+      "samples": "packs/entertainment/samples/",
+      "versions": [
+        {
+          "version": "0.1.1",
+          "file": "packs/entertainment/0.1.1.json",
+          "model": "spinf/gemma-4-12b-fp8",
+          "status": "available",
+          "fixture": "packs/entertainment/fixtures/0.1.1.json",
+          "note": "calibrated on the hosted engine (fp_8a2c6e91fd); to be re-scored on the published checkpoint before the release tag"
+        }
+      ]
+    },
+    {
+      "id": "spinf/products",
+      "name": "Product listings",
+      "description": "Product listings, pages, feed rows and titles: the category in two levels of the Shopify Standard Product Taxonomy (22 verticals, 227 subcategories), attributes (colour, pattern, material, gender, age group, condition, power source), language, kind of offer, information given, listing quality, claims and restricted products; decision: needs review.",
+      "tags": [
+        "ecommerce",
+        "products",
+        "taxonomy",
+        "classification",
+        "compliance"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/products/README.md",
+      "samples": "packs/products/samples/",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "file": "packs/products/0.1.0.json",
+          "model": "spinf/gemma-4-12b-fp8",
+          "status": "available",
+          "fixture": "packs/products/fixtures/0.1.0.json",
+          "note": "calibrated on the hosted engine (fp_8a2c6e91fd); to be re-scored on the published checkpoint before the release tag"
+        }
+      ]
+    },
+    {
+      "id": "spinf/reviews",
+      "name": "Reviews and customer feedback",
+      "description": "Product, app-store, restaurant and hotel reviews and survey answers: overall opinion, the star rating the text implies, what the review is about, 16 aspects (mentioned, and praised or criticised), language, requests (feature, bug, question), intent (refund, repurchase, switch, recommend, warn), mentions (competitor, previous version, duration, gift, update), tone, review quality (promotional, incentivised, off-topic) and risks (safety, legal, public, abuse, personal data); decision: needs follow-up.",
+      "tags": [
+        "reviews",
+        "feedback",
+        "sentiment",
+        "aspects",
+        "customer-experience"
+      ],
+      "media": [
+        "text"
+      ],
+      "readme": "packs/reviews/README.md",
+      "samples": "packs/reviews/samples/",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "file": "packs/reviews/0.1.0.json",
+          "model": "spinf/gemma-4-12b-fp8",
+          "status": "available",
+          "fixture": "packs/reviews/fixtures/0.1.0.json",
+          "note": "calibrated on the hosted engine (fp_8a2c6e91fd); to be re-scored on the published checkpoint before the release tag"
+        }
+      ]
+    },
+    {
+      "id": "spinf/brand",
+      "name": "Brand perception and web content",
+      "description": "A web page or a search query plus a brand of interest (the pack's parameter): whether the brand is mentioned, the page's view of it, and how it treats it (main subject or in passing, recommended, criticised, the top pick, an alternative, compared, the brand's own page, expensive, good value, high quality, poor quality, trusted, innovative, outdated, bad news, a deal, a how-to, a complaint, hiring); the search intents the page serves, the kinds of page it is, its topic, audience, assumed level, reading level, language and content signals (first-hand experience, sources, author, time-sensitive, thin, boilerplate, keyword stuffing, clickbait, promotional, sponsored, generic, call to action, local, prices, steps, Q&A, opinion); decision: brand alert.",
+      "tags": [
+        "brand",
+        "seo",
+        "content",
+        "search-intent",
+        "marketing"
+      ],
+      "media": [
+        "text"
+      ],
+      "parameters": [
+        "brand"
+      ],
+      "readme": "packs/brand/README.md",
+      "samples": "packs/brand/samples/",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "file": "packs/brand/0.1.0.json",
+          "model": "spinf/gemma-4-12b-fp8",
+          "status": "available",
+          "fixture": "packs/brand/fixtures/0.1.0.json",
+          "note": "calibrated on the hosted engine (fp_8a2c6e91fd); to be re-scored on the published checkpoint before the release tag"
+        }
+      ]
+    }
+  ]
+}

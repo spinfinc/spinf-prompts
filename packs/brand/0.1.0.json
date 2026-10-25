@@ -1,0 +1,6887 @@
+{
+ "pack": "spinf/brand",
+ "version": "0.1.0",
+ "model": "spinf/gemma-4-12b-fp8",
+ "media": [
+  "text"
+ ],
+ "parameters": {
+  "brand": {
+   "label": "Brand of interest",
+   "description": "the brand, company, product or site the brand questions are about; for a plain content analysis, pass the page's own site name",
+   "required": true
+  }
+ },
+ "contexts": {
+  "page": "Brand of interest: {brand}\n\nThe following is the text of a web page.\n\n{X}\n\n(End of the page. In the questions below, \"the brand of interest\" means {brand}.)",
+  "article": "Brand of interest: {brand}\n\nThe following is a news article or a blog post.\n\n{X}\n\n(End of the page. In the questions below, \"the brand of interest\" means {brand}.)",
+  "query": "Brand of interest: {brand}\n\nThe following is a search query typed into a web search engine.\n\nQuery: {X}\n\n(In the questions below, \"this page\" means the page the user is looking for and \"the brand of interest\" means {brand}.)"
+ },
+ "scoring": {
+  "empty_floor": false,
+  "case_insensitive": false,
+  "queries": [
+   {
+    "id": "web.topic",
+    "template": "\n\nThe main topic of this page is (arts and entertainment, automotive, business and finance, careers, education, family and parenting, fashion and beauty, food and drink, health, hobbies, home and garden, law and politics, pets, real estate, religion, science, shopping, sports, technology, travel, video games, adult):{?}",
+    "options": [
+     " arts and entertainment",
+     " automotive",
+     " business and finance",
+     " careers",
+     " education",
+     " family and parenting",
+     " fashion and beauty",
+     " food and drink",
+     " health",
+     " hobbies",
+     " home and garden",
+     " law and politics",
+     " pets",
+     " real estate",
+     " religion",
+     " science",
+     " shopping",
+     " sports",
+     " technology",
+     " travel",
+     " video games",
+     " adult"
+    ]
+   },
+   {
+    "id": "web.audience",
+    "template": "\n\nWho is this page written for? (the general public, professionals, developers, students, children){?}",
+    "options": [
+     " the general public",
+     " professionals",
+     " developers",
+     " students",
+     " children"
+    ]
+   },
+   {
+    "id": "web.level",
+    "template": "\n\nThe level of knowledge this page assumes is (beginner, intermediate, expert):{?}",
+    "options": [
+     " beginner",
+     " intermediate",
+     " expert"
+    ]
+   },
+   {
+    "id": "web.reading",
+    "template": "\n\nThe reading level of this text is (elementary, intermediate, advanced):{?}",
+    "options": [
+     " elementary",
+     " intermediate",
+     " advanced"
+    ]
+   },
+   {
+    "id": "web.lang",
+    "template": "\n\nThe language of the text above (English, German, Spanish, French, Italian, Portuguese, another language) is:{?}",
+    "options": [
+     " English",
+     " German",
+     " Spanish",
+     " French",
+     " Italian",
+     " Portuguese",
+     " another language"
+    ]
+   },
+   {
+    "id": "web.lang2",
+    "template": "\n\nWhich language is the text above written in?\nAnswer:{?}",
+    "options": [
+     " English",
+     " German",
+     " Spanish",
+     " French",
+     " Italian",
+     " Portuguese",
+     " another language"
+    ]
+   },
+   {
+    "id": "web.view",
+    "template": "\n\nIf this page mentions the brand of interest, its view of the brand is (positive, negative, neutral, mixed):{?}",
+    "options": [
+     " positive",
+     " negative",
+     " neutral",
+     " mixed"
+    ]
+   },
+   {
+    "id": "web.yn",
+    "template": "\n\nQuestion: {F}\nAnswer (yes or no):{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Is this page mainly meant to inform or explain?"
+     },
+     {
+      "F": "Is this page a specific site or brand's own page that a user would navigate to by name?"
+     },
+     {
+      "F": "Is this page meant to let the visitor buy, order, book, sign up or download something?"
+     },
+     {
+      "F": "Is this page meant to help the visitor compare options before buying?"
+     },
+     {
+      "F": "Is this page a news report?"
+     },
+     {
+      "F": "Is this page a personal or opinion blog post?"
+     },
+     {
+      "F": "Is this page an encyclopedia entry or a reference article describing a thing, a person or a concept?"
+     },
+     {
+      "F": "Is this page a research paper or a scientific abstract?"
+     },
+     {
+      "F": "Is this page a how-to guide or a tutorial?"
+     },
+     {
+      "F": "Is this page a cooking recipe?"
+     },
+     {
+      "F": "Is this page a review of a product, a service or a place?"
+     },
+     {
+      "F": "Is this page a comparison, a ranking or a 'best of' list?"
+     },
+     {
+      "F": "Is this page a forum thread or a discussion?"
+     },
+     {
+      "F": "Is this page a customer help, support or FAQ page?"
+     },
+     {
+      "F": "Is this page a product page or a shop page where something can be bought?"
+     },
+     {
+      "F": "Is this page a legal text, such as terms of service or a policy?"
+     },
+     {
+      "F": "Is this page a company page, an about page or a press release?"
+     },
+     {
+      "F": "Is this page a job posting?"
+     },
+     {
+      "F": "Is this page fiction, a story or poetry?"
+     },
+     {
+      "F": "Is this page a transcript of an interview, a speech or a video?"
+     },
+     {
+      "F": "Does the author show first-hand experience with the subject (they used it, went there or did it themselves)?"
+     },
+     {
+      "F": "Does the page cite sources, studies, data or references?"
+     },
+     {
+      "F": "Does the page name its author?"
+     },
+     {
+      "F": "Is the content time-sensitive (recent events, a current offer, a date or a season) rather than evergreen?"
+     },
+     {
+      "F": "Is the page thin on substance: little useful information, filler or repetition?"
+     },
+     {
+      "F": "Is much of the text navigation, menus, cookie notices or other site furniture rather than content?"
+     },
+     {
+      "F": "Does the text repeat keywords unnaturally, as if written for search engines rather than readers?"
+     },
+     {
+      "F": "Does the title or opening tease, exaggerate or withhold the point to get clicks?"
+     },
+     {
+      "F": "Is the page mainly promotional, trying to sell something?"
+     },
+     {
+      "F": "Does the page disclose sponsorship, affiliate links or paid placement?"
+     },
+     {
+      "F": "Does the text read as generic, formulaic or machine-generated?"
+     },
+     {
+      "F": "Does the page ask the reader to do something: buy, sign up, subscribe, call or download?"
+     },
+     {
+      "F": "Is the page about a specific place, city or region, or a local business?"
+     },
+     {
+      "F": "Does the page state prices, costs or fees?"
+     },
+     {
+      "F": "Does the page give step-by-step instructions?"
+     },
+     {
+      "F": "Does the page contain questions and answers (an FAQ, a Q&A or an interview)?"
+     },
+     {
+      "F": "Does the page express the author's own opinion or judgement?"
+     },
+     {
+      "F": "Does this page mention the brand of interest?"
+     },
+     {
+      "F": "Is the brand of interest named or referred to on this page?"
+     },
+     {
+      "F": "Is the brand of interest the main subject of this page?"
+     },
+     {
+      "F": "Is the brand of interest mentioned only in passing?"
+     },
+     {
+      "F": "Does the page recommend the brand of interest or its products?"
+     },
+     {
+      "F": "Does the page criticise the brand of interest or its products?"
+     },
+     {
+      "F": "Is the brand of interest presented as the best choice or the top pick?"
+     },
+     {
+      "F": "Is the brand of interest presented as an alternative to, or a competitor of, the page's main subject?"
+     },
+     {
+      "F": "Does the page compare the brand of interest with other brands or products?"
+     },
+     {
+      "F": "Is this page published by the brand of interest itself (its own website, shop, blog or press release)?"
+     },
+     {
+      "F": "Does the page describe the brand of interest or its products as expensive or overpriced?"
+     },
+     {
+      "F": "Does the page describe the brand of interest or its products as affordable or good value?"
+     },
+     {
+      "F": "Does the page describe the brand of interest or its products as high quality, well made or reliable?"
+     },
+     {
+      "F": "Does the page describe the brand of interest or its products as poor quality, faulty or unreliable?"
+     },
+     {
+      "F": "Does the page describe the brand of interest as trustworthy, reputable or ethical?"
+     },
+     {
+      "F": "Does the page describe the brand of interest as innovative or a leader in its field?"
+     },
+     {
+      "F": "Does the page describe the brand of interest as outdated, declining or behind its competitors?"
+     },
+     {
+      "F": "Does the page report a controversy, scandal, lawsuit, recall, data breach, layoffs or other bad news about the brand of interest?"
+     },
+     {
+      "F": "Does the page offer a discount, coupon, deal or promotion for the brand of interest?"
+     },
+     {
+      "F": "Does the page explain how to use, set up, fix or get the most out of a product or service of the brand of interest?"
+     },
+     {
+      "F": "Does the page contain a customer complaint about the brand of interest?"
+     },
+     {
+      "F": "Is the page about working for the brand of interest (a job, a career, an employer review)?"
+     }
+    ]
+   }
+  ]
+ },
+ "reads": [
+  {
+   "id": "topic.arts_and_entertainment",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "topic.arts_and_entertainment",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.automotive",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "topic.automotive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.business_and_finance",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "topic.business_and_finance",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.careers",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "topic.careers",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.education",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "topic.education",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.family_and_parenting",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    5
+   ],
+   "category": "topic.family_and_parenting",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.fashion_and_beauty",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    6
+   ],
+   "category": "topic.fashion_and_beauty",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.food_and_drink",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    7
+   ],
+   "category": "topic.food_and_drink",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.health",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    8
+   ],
+   "category": "topic.health",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.hobbies",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    9
+   ],
+   "category": "topic.hobbies",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.home_and_garden",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    10
+   ],
+   "category": "topic.home_and_garden",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.law_and_politics",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    11
+   ],
+   "category": "topic.law_and_politics",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.pets",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    12
+   ],
+   "category": "topic.pets",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.real_estate",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    13
+   ],
+   "category": "topic.real_estate",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.religion",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    14
+   ],
+   "category": "topic.religion",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.science",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    15
+   ],
+   "category": "topic.science",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.shopping",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    16
+   ],
+   "category": "topic.shopping",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.sports",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    17
+   ],
+   "category": "topic.sports",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.technology",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    18
+   ],
+   "category": "topic.technology",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.travel",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    19
+   ],
+   "category": "topic.travel",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.video_games",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    20
+   ],
+   "category": "topic.video_games",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "topic.adult",
+   "query": "web.topic",
+   "kind": "set",
+   "unsafe": [
+    21
+   ],
+   "category": "topic.adult",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "audience.public",
+   "query": "web.audience",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "audience.public",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "audience.professionals",
+   "query": "web.audience",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "audience.professionals",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "audience.developers",
+   "query": "web.audience",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "audience.developers",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "audience.students",
+   "query": "web.audience",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "audience.students",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "audience.children",
+   "query": "web.audience",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "audience.children",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "level.beginner",
+   "query": "web.level",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "level.beginner",
+   "mu": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "level.intermediate",
+   "query": "web.level",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "level.intermediate",
+   "mu": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "level.expert",
+   "query": "web.level",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "level.expert",
+   "mu": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "reading.elementary",
+   "query": "web.reading",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "reading.elementary",
+   "mu": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "reading.intermediate",
+   "query": "web.reading",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "reading.intermediate",
+   "mu": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "reading.advanced",
+   "query": "web.reading",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "reading.advanced",
+   "mu": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.en",
+   "query": "web.lang",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "lang.en",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.en:b",
+   "query": "web.lang2",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "lang.en",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.de",
+   "query": "web.lang",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "lang.de",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.de:b",
+   "query": "web.lang2",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "lang.de",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.es",
+   "query": "web.lang",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "lang.es",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.es:b",
+   "query": "web.lang2",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "lang.es",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.fr",
+   "query": "web.lang",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "lang.fr",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.fr:b",
+   "query": "web.lang2",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "lang.fr",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.it",
+   "query": "web.lang",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "lang.it",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.it:b",
+   "query": "web.lang2",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "lang.it",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.pt",
+   "query": "web.lang",
+   "kind": "set",
+   "unsafe": [
+    5
+   ],
+   "category": "lang.pt",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.pt:b",
+   "query": "web.lang2",
+   "kind": "set",
+   "unsafe": [
+    5
+   ],
+   "category": "lang.pt",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.other",
+   "query": "web.lang",
+   "kind": "set",
+   "unsafe": [
+    6
+   ],
+   "category": "lang.other",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.other:b",
+   "query": "web.lang2",
+   "kind": "set",
+   "unsafe": [
+    6
+   ],
+   "category": "lang.other",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.view.positive",
+   "query": "web.view",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "brand.view.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.view.negative",
+   "query": "web.view",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "brand.view.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.view.neutral",
+   "query": "web.view",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "brand.view.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.view.mixed",
+   "query": "web.view",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "brand.view.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.informational",
+   "query": "web.yn",
+   "F": "Is this page mainly meant to inform or explain?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.informational",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.navigational",
+   "query": "web.yn",
+   "F": "Is this page a specific site or brand's own page that a user would navigate to by name?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.navigational",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.transactional",
+   "query": "web.yn",
+   "F": "Is this page meant to let the visitor buy, order, book, sign up or download something?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.transactional",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.commercial",
+   "query": "web.yn",
+   "F": "Is this page meant to help the visitor compare options before buying?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.commercial",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.news",
+   "query": "web.yn",
+   "F": "Is this page a news report?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.news",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.blog",
+   "query": "web.yn",
+   "F": "Is this page a personal or opinion blog post?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.blog",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.reference",
+   "query": "web.yn",
+   "F": "Is this page an encyclopedia entry or a reference article describing a thing, a person or a concept?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.reference",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.research",
+   "query": "web.yn",
+   "F": "Is this page a research paper or a scientific abstract?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.research",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.howto",
+   "query": "web.yn",
+   "F": "Is this page a how-to guide or a tutorial?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.howto",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.recipe",
+   "query": "web.yn",
+   "F": "Is this page a cooking recipe?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.recipe",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.review",
+   "query": "web.yn",
+   "F": "Is this page a review of a product, a service or a place?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.review",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.comparison",
+   "query": "web.yn",
+   "F": "Is this page a comparison, a ranking or a 'best of' list?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.comparison",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.forum",
+   "query": "web.yn",
+   "F": "Is this page a forum thread or a discussion?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.forum",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.help",
+   "query": "web.yn",
+   "F": "Is this page a customer help, support or FAQ page?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.help",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.sales",
+   "query": "web.yn",
+   "F": "Is this page a product page or a shop page where something can be bought?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.sales",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.legal",
+   "query": "web.yn",
+   "F": "Is this page a legal text, such as terms of service or a policy?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.legal",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.company",
+   "query": "web.yn",
+   "F": "Is this page a company page, an about page or a press release?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.company",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.job",
+   "query": "web.yn",
+   "F": "Is this page a job posting?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.job",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.creative",
+   "query": "web.yn",
+   "F": "Is this page fiction, a story or poetry?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.creative",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "type.transcript",
+   "query": "web.yn",
+   "F": "Is this page a transcript of an interview, a speech or a video?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "type.transcript",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.experience",
+   "query": "web.yn",
+   "F": "Does the author show first-hand experience with the subject (they used it, went there or did it themselves)?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.experience",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.sources",
+   "query": "web.yn",
+   "F": "Does the page cite sources, studies, data or references?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.sources",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.author",
+   "query": "web.yn",
+   "F": "Does the page name its author?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.author",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.timely",
+   "query": "web.yn",
+   "F": "Is the content time-sensitive (recent events, a current offer, a date or a season) rather than evergreen?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.timely",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.thin",
+   "query": "web.yn",
+   "F": "Is the page thin on substance: little useful information, filler or repetition?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.thin",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.boilerplate",
+   "query": "web.yn",
+   "F": "Is much of the text navigation, menus, cookie notices or other site furniture rather than content?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.boilerplate",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.stuffing",
+   "query": "web.yn",
+   "F": "Does the text repeat keywords unnaturally, as if written for search engines rather than readers?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.stuffing",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.clickbait",
+   "query": "web.yn",
+   "F": "Does the title or opening tease, exaggerate or withhold the point to get clicks?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.clickbait",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.promotional",
+   "query": "web.yn",
+   "F": "Is the page mainly promotional, trying to sell something?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.promotional",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.sponsored",
+   "query": "web.yn",
+   "F": "Does the page disclose sponsorship, affiliate links or paid placement?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.sponsored",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.generic",
+   "query": "web.yn",
+   "F": "Does the text read as generic, formulaic or machine-generated?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.generic",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.cta",
+   "query": "web.yn",
+   "F": "Does the page ask the reader to do something: buy, sign up, subscribe, call or download?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.cta",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.local",
+   "query": "web.yn",
+   "F": "Is the page about a specific place, city or region, or a local business?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.local",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.prices",
+   "query": "web.yn",
+   "F": "Does the page state prices, costs or fees?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.prices",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.steps",
+   "query": "web.yn",
+   "F": "Does the page give step-by-step instructions?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.steps",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.qa",
+   "query": "web.yn",
+   "F": "Does the page contain questions and answers (an FAQ, a Q&A or an interview)?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.qa",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.opinion",
+   "query": "web.yn",
+   "F": "Does the page express the author's own opinion or judgement?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.opinion",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.mentioned",
+   "query": "web.yn",
+   "F": "Does this page mention the brand of interest?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.mentioned",
+   "mean": 0.33187,
+   "sd": 0.48696
+  },
+  {
+   "id": "brand.mentioned:1",
+   "query": "web.yn",
+   "F": "Is the brand of interest named or referred to on this page?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.mentioned",
+   "mean": 0.5228,
+   "sd": 0.51831
+  },
+  {
+   "id": "brand.subject",
+   "query": "web.yn",
+   "F": "Is the brand of interest the main subject of this page?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.subject",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.passing",
+   "query": "web.yn",
+   "F": "Is the brand of interest mentioned only in passing?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.passing",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.recommended",
+   "query": "web.yn",
+   "F": "Does the page recommend the brand of interest or its products?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.recommended",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.criticised",
+   "query": "web.yn",
+   "F": "Does the page criticise the brand of interest or its products?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.criticised",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.top_pick",
+   "query": "web.yn",
+   "F": "Is the brand of interest presented as the best choice or the top pick?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.top_pick",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.alternative",
+   "query": "web.yn",
+   "F": "Is the brand of interest presented as an alternative to, or a competitor of, the page's main subject?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.alternative",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.compared",
+   "query": "web.yn",
+   "F": "Does the page compare the brand of interest with other brands or products?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.compared",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.official",
+   "query": "web.yn",
+   "F": "Is this page published by the brand of interest itself (its own website, shop, blog or press release)?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.official",
+   "mean": -0.74449,
+   "sd": 0.46244
+  },
+  {
+   "id": "brand.expensive",
+   "query": "web.yn",
+   "F": "Does the page describe the brand of interest or its products as expensive or overpriced?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.expensive",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.value",
+   "query": "web.yn",
+   "F": "Does the page describe the brand of interest or its products as affordable or good value?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.value",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.quality",
+   "query": "web.yn",
+   "F": "Does the page describe the brand of interest or its products as high quality, well made or reliable?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.quality",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.poor",
+   "query": "web.yn",
+   "F": "Does the page describe the brand of interest or its products as poor quality, faulty or unreliable?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.poor",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.trusted",
+   "query": "web.yn",
+   "F": "Does the page describe the brand of interest as trustworthy, reputable or ethical?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.trusted",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.innovative",
+   "query": "web.yn",
+   "F": "Does the page describe the brand of interest as innovative or a leader in its field?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.innovative",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.outdated",
+   "query": "web.yn",
+   "F": "Does the page describe the brand of interest as outdated, declining or behind its competitors?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.outdated",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.bad_news",
+   "query": "web.yn",
+   "F": "Does the page report a controversy, scandal, lawsuit, recall, data breach, layoffs or other bad news about the brand of interest?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.bad_news",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.deal",
+   "query": "web.yn",
+   "F": "Does the page offer a discount, coupon, deal or promotion for the brand of interest?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.deal",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.howto",
+   "query": "web.yn",
+   "F": "Does the page explain how to use, set up, fix or get the most out of a product or service of the brand of interest?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.howto",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.complaint",
+   "query": "web.yn",
+   "F": "Does the page contain a customer complaint about the brand of interest?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.complaint",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "brand.hiring",
+   "query": "web.yn",
+   "F": "Is the page about working for the brand of interest (a job, a career, an employer review)?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "brand.hiring",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  }
+ ],
+ "categories": {
+  "topic.arts_and_entertainment": {
+   "label": "Topic: arts and entertainment",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00097,
+     0.00828,
+     0.01408,
+     0.02046,
+     0.02842,
+     0.03874,
+     0.05309,
+     0.08065,
+     0.13347,
+     0.28238,
+     0.50082,
+     0.82369,
+     0.93531,
+     0.95075
+    ]
+   }
+  },
+  "topic.automotive": {
+   "label": "Topic: automotive",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     2e-05,
+     0.00058,
+     0.00116,
+     0.00199,
+     0.00288,
+     0.00435,
+     0.00663,
+     0.01048,
+     0.02009,
+     0.16527,
+     0.47159,
+     0.87705,
+     0.93875,
+     0.95353
+    ]
+   }
+  },
+  "topic.business_and_finance": {
+   "label": "Topic: business and finance",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00113,
+     0.01229,
+     0.02217,
+     0.03403,
+     0.04902,
+     0.07074,
+     0.09932,
+     0.1459,
+     0.2471,
+     0.56286,
+     0.81095,
+     0.96397,
+     0.9888,
+     0.99238
+    ]
+   }
+  },
+  "topic.careers": {
+   "label": "Topic: careers",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     0.00028,
+     0.00061,
+     0.00104,
+     0.00158,
+     0.00239,
+     0.00352,
+     0.00511,
+     0.00846,
+     0.01741,
+     0.03339,
+     0.35446,
+     0.76416,
+     0.89445
+    ]
+   }
+  },
+  "topic.education": {
+   "label": "Topic: education",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     5e-05,
+     0.00102,
+     0.00175,
+     0.00253,
+     0.00344,
+     0.00469,
+     0.00631,
+     0.00841,
+     0.01233,
+     0.02333,
+     0.05029,
+     0.35433,
+     0.79509,
+     0.8957
+    ]
+   }
+  },
+  "topic.family_and_parenting": {
+   "label": "Topic: family and parenting",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     8e-05,
+     0.00116,
+     0.00213,
+     0.00322,
+     0.00461,
+     0.00679,
+     0.00948,
+     0.01353,
+     0.02126,
+     0.03532,
+     0.06248,
+     0.35778,
+     0.84592,
+     0.97342
+    ]
+   }
+  },
+  "topic.fashion_and_beauty": {
+   "label": "Topic: fashion and beauty",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     9e-05,
+     0.00194,
+     0.00376,
+     0.00583,
+     0.00848,
+     0.01224,
+     0.0167,
+     0.02438,
+     0.03828,
+     0.07868,
+     0.17612,
+     0.60183,
+     0.89523,
+     0.96262
+    ]
+   }
+  },
+  "topic.food_and_drink": {
+   "label": "Topic: food and drink",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     5e-05,
+     0.00114,
+     0.00204,
+     0.00309,
+     0.00434,
+     0.00613,
+     0.00822,
+     0.01181,
+     0.01976,
+     0.05452,
+     0.22036,
+     0.69427,
+     0.92569,
+     0.96478
+    ]
+   }
+  },
+  "topic.health": {
+   "label": "Topic: health",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00012,
+     0.00194,
+     0.00328,
+     0.00489,
+     0.00696,
+     0.00957,
+     0.01369,
+     0.01987,
+     0.03412,
+     0.08791,
+     0.26099,
+     0.78852,
+     0.9446,
+     0.98471
+    ]
+   }
+  },
+  "topic.hobbies": {
+   "label": "Topic: hobbies",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     0.00031,
+     0.00071,
+     0.00128,
+     0.00198,
+     0.00289,
+     0.00428,
+     0.00647,
+     0.01029,
+     0.01786,
+     0.02832,
+     0.06668,
+     0.23198,
+     0.35009
+    ]
+   }
+  },
+  "topic.home_and_garden": {
+   "label": "Topic: home and garden",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     7e-05,
+     0.00085,
+     0.00137,
+     0.00204,
+     0.00291,
+     0.00398,
+     0.00536,
+     0.00731,
+     0.01091,
+     0.02068,
+     0.04202,
+     0.23627,
+     0.61819,
+     0.82494
+    ]
+   }
+  },
+  "topic.law_and_politics": {
+   "label": "Topic: law and politics",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0,
+     3e-05,
+     6e-05,
+     0.0001,
+     0.00014,
+     0.0002,
+     0.00028,
+     0.00042,
+     0.00067,
+     0.00141,
+     0.00382,
+     0.16969,
+     0.48784,
+     0.77111
+    ]
+   }
+  },
+  "topic.pets": {
+   "label": "Topic: pets",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     0.00017,
+     0.00038,
+     0.00065,
+     0.00098,
+     0.00142,
+     0.00202,
+     0.00295,
+     0.00453,
+     0.00807,
+     0.01281,
+     0.04074,
+     0.74735,
+     0.77653
+    ]
+   }
+  },
+  "topic.real_estate": {
+   "label": "Topic: real estate",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     3e-05,
+     0.00022,
+     0.00034,
+     0.00048,
+     0.00065,
+     0.00085,
+     0.00112,
+     0.00151,
+     0.00215,
+     0.00332,
+     0.00531,
+     0.08095,
+     0.68894,
+     0.764
+    ]
+   }
+  },
+  "topic.religion": {
+   "label": "Topic: religion",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     2e-05,
+     0.00023,
+     0.00041,
+     0.00062,
+     0.00086,
+     0.00117,
+     0.00162,
+     0.00237,
+     0.00354,
+     0.00671,
+     0.01427,
+     0.33263,
+     0.81437,
+     0.90187
+    ]
+   }
+  },
+  "topic.science": {
+   "label": "Topic: science",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     0.00046,
+     0.00089,
+     0.00139,
+     0.00199,
+     0.00282,
+     0.00393,
+     0.00544,
+     0.00786,
+     0.01435,
+     0.02538,
+     0.09918,
+     0.59541,
+     0.75148
+    ]
+   }
+  },
+  "topic.shopping": {
+   "label": "Topic: shopping",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00012,
+     0.00792,
+     0.01545,
+     0.02481,
+     0.03605,
+     0.05111,
+     0.07005,
+     0.1009,
+     0.14729,
+     0.25115,
+     0.38216,
+     0.69952,
+     0.88503,
+     0.97539
+    ]
+   }
+  },
+  "topic.sports": {
+   "label": "Topic: sports",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00019,
+     0.00323,
+     0.00576,
+     0.00865,
+     0.01205,
+     0.01584,
+     0.02106,
+     0.02858,
+     0.04224,
+     0.07416,
+     0.19039,
+     0.77538,
+     0.94435,
+     0.96422
+    ]
+   }
+  },
+  "topic.technology": {
+   "label": "Topic: technology",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00036,
+     0.00665,
+     0.01399,
+     0.02362,
+     0.03818,
+     0.06151,
+     0.09682,
+     0.15786,
+     0.27469,
+     0.55945,
+     0.72562,
+     0.88479,
+     0.93587,
+     0.96346
+    ]
+   }
+  },
+  "topic.travel": {
+   "label": "Topic: travel",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     3e-05,
+     0.00147,
+     0.00335,
+     0.00543,
+     0.00851,
+     0.0132,
+     0.0213,
+     0.03334,
+     0.05363,
+     0.14122,
+     0.50859,
+     0.89601,
+     0.971,
+     0.97958
+    ]
+   }
+  },
+  "topic.video_games": {
+   "label": "Topic: video games",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     2e-05,
+     0.00045,
+     0.00078,
+     0.00122,
+     0.00171,
+     0.00235,
+     0.00328,
+     0.00502,
+     0.00827,
+     0.02216,
+     0.11937,
+     0.7301,
+     0.90182,
+     0.96629
+    ]
+   }
+  },
+  "topic.adult": {
+   "label": "Topic: adult",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     0.00023,
+     0.00042,
+     0.00068,
+     0.00099,
+     0.00144,
+     0.00208,
+     0.003,
+     0.00455,
+     0.00866,
+     0.01402,
+     0.02867,
+     0.11789,
+     0.16911
+    ]
+   }
+  },
+  "audience.public": {
+   "label": "Audience: the general public",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06543,
+     0.2313,
+     0.28583,
+     0.32356,
+     0.35402,
+     0.38328,
+     0.41557,
+     0.44733,
+     0.48147,
+     0.53334,
+     0.57339,
+     0.6492,
+     0.72995,
+     0.76362
+    ]
+   }
+  },
+  "audience.professionals": {
+   "label": "Audience: professionals",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01567,
+     0.09436,
+     0.13244,
+     0.16775,
+     0.20005,
+     0.23231,
+     0.26867,
+     0.31588,
+     0.37772,
+     0.47134,
+     0.54883,
+     0.68743,
+     0.81475,
+     0.86617
+    ]
+   }
+  },
+  "audience.developers": {
+   "label": "Audience: developers",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00051,
+     0.00267,
+     0.00406,
+     0.00549,
+     0.00716,
+     0.00898,
+     0.01158,
+     0.01579,
+     0.02213,
+     0.03654,
+     0.05699,
+     0.12219,
+     0.30643,
+     0.57975
+    ]
+   }
+  },
+  "audience.students": {
+   "label": "Audience: students",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00983,
+     0.07827,
+     0.10093,
+     0.12081,
+     0.13861,
+     0.16002,
+     0.18193,
+     0.20639,
+     0.23965,
+     0.29934,
+     0.34928,
+     0.51034,
+     0.77765,
+     0.88002
+    ]
+   }
+  },
+  "audience.children": {
+   "label": "Audience: children",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00453,
+     0.05175,
+     0.07317,
+     0.09283,
+     0.1131,
+     0.1357,
+     0.15944,
+     0.18967,
+     0.23225,
+     0.31449,
+     0.37651,
+     0.49007,
+     0.6282,
+     0.67871
+    ]
+   }
+  },
+  "level.beginner": {
+   "label": "Assumed level: beginner",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.13328,
+     0.30997,
+     0.33937,
+     0.36098,
+     0.38094,
+     0.40025,
+     0.42343,
+     0.44958,
+     0.48026,
+     0.52623,
+     0.57069,
+     0.65445,
+     0.81341,
+     0.94184
+    ]
+   }
+  },
+  "level.intermediate": {
+   "label": "Assumed level: intermediate",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05655,
+     0.38354,
+     0.41698,
+     0.44164,
+     0.46037,
+     0.47748,
+     0.49388,
+     0.51171,
+     0.53239,
+     0.56162,
+     0.58274,
+     0.62736,
+     0.68024,
+     0.70101
+    ]
+   }
+  },
+  "level.expert": {
+   "label": "Assumed level: expert",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00161,
+     0.06512,
+     0.0781,
+     0.08875,
+     0.09865,
+     0.10967,
+     0.12131,
+     0.13353,
+     0.1483,
+     0.17095,
+     0.19106,
+     0.24843,
+     0.32458,
+     0.4538
+    ]
+   }
+  },
+  "reading.elementary": {
+   "label": "Reading level: elementary",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03777,
+     0.12453,
+     0.14943,
+     0.16824,
+     0.18332,
+     0.19847,
+     0.21468,
+     0.23167,
+     0.25481,
+     0.28571,
+     0.31471,
+     0.36384,
+     0.44527,
+     0.62969
+    ]
+   }
+  },
+  "reading.intermediate": {
+   "label": "Reading level: intermediate",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.34413,
+     0.56397,
+     0.59537,
+     0.61804,
+     0.63698,
+     0.65374,
+     0.67195,
+     0.68962,
+     0.70971,
+     0.73815,
+     0.76328,
+     0.80044,
+     0.83862,
+     0.84439
+    ]
+   }
+  },
+  "reading.advanced": {
+   "label": "Reading level: advanced",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02618,
+     0.09701,
+     0.11116,
+     0.12122,
+     0.13078,
+     0.14093,
+     0.15048,
+     0.1622,
+     0.17604,
+     0.197,
+     0.21648,
+     0.25934,
+     0.31032,
+     0.33193
+    ]
+   }
+  },
+  "lang.en": {
+   "label": "Language: English",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09565,
+     0.89438,
+     0.93957,
+     0.955,
+     0.96402,
+     0.97026,
+     0.97515,
+     0.97958,
+     0.98384,
+     0.9879,
+     0.99038,
+     0.99351,
+     0.99573,
+     0.99676
+    ]
+   }
+  },
+  "lang.de": {
+   "label": "Language: German",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0003,
+     0.00184,
+     0.00258,
+     0.00331,
+     0.00424,
+     0.00525,
+     0.00658,
+     0.00848,
+     0.01147,
+     0.01914,
+     0.03287,
+     0.17296,
+     0.4446,
+     0.74576
+    ]
+   }
+  },
+  "lang.es": {
+   "label": "Language: Spanish",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00064,
+     0.00345,
+     0.00485,
+     0.00618,
+     0.00737,
+     0.009,
+     0.01097,
+     0.01343,
+     0.01727,
+     0.0244,
+     0.03591,
+     0.1147,
+     0.58923,
+     0.79871
+    ]
+   }
+  },
+  "lang.fr": {
+   "label": "Language: French",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00062,
+     0.00237,
+     0.00319,
+     0.00396,
+     0.00489,
+     0.00581,
+     0.00712,
+     0.00867,
+     0.0116,
+     0.0168,
+     0.02613,
+     0.14109,
+     0.72073,
+     0.75336
+    ]
+   }
+  },
+  "lang.it": {
+   "label": "Language: Italian",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     8e-05,
+     0.00035,
+     0.0005,
+     0.00065,
+     0.00081,
+     0.00101,
+     0.00125,
+     0.0016,
+     0.00215,
+     0.00346,
+     0.00564,
+     0.04735,
+     0.63279,
+     0.78204
+    ]
+   }
+  },
+  "lang.pt": {
+   "label": "Language: Portuguese",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     8e-05,
+     0.00072,
+     0.00107,
+     0.00141,
+     0.00182,
+     0.00229,
+     0.00294,
+     0.00382,
+     0.00511,
+     0.00778,
+     0.01146,
+     0.02766,
+     0.46341,
+     0.8743
+    ]
+   }
+  },
+  "lang.other": {
+   "label": "Language: another language",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     5e-05,
+     7e-05,
+     8e-05,
+     0.0001,
+     0.00012,
+     0.00014,
+     0.00016,
+     0.0002,
+     0.00027,
+     0.00034,
+     0.00063,
+     0.00146,
+     0.00225
+    ]
+   }
+  },
+  "brand.view.positive": {
+   "label": "View of the brand: positive",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.12013,
+     0.24547,
+     0.27006,
+     0.29052,
+     0.30614,
+     0.32354,
+     0.34162,
+     0.3617,
+     0.38785,
+     0.42694,
+     0.46227,
+     0.53893,
+     0.62208,
+     0.68448
+    ]
+   }
+  },
+  "brand.view.negative": {
+   "label": "View of the brand: negative",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03074,
+     0.07889,
+     0.09302,
+     0.10446,
+     0.11366,
+     0.12268,
+     0.13289,
+     0.14465,
+     0.15853,
+     0.1811,
+     0.20036,
+     0.24762,
+     0.35732,
+     0.65974
+    ]
+   }
+  },
+  "brand.view.neutral": {
+   "label": "View of the brand: neutral",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0727,
+     0.22092,
+     0.24607,
+     0.26376,
+     0.27949,
+     0.29512,
+     0.31146,
+     0.33083,
+     0.35108,
+     0.37942,
+     0.40083,
+     0.44811,
+     0.50758,
+     0.60934
+    ]
+   }
+  },
+  "brand.view.mixed": {
+   "label": "View of the brand: mixed",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04002,
+     0.16944,
+     0.19016,
+     0.20756,
+     0.22264,
+     0.23742,
+     0.25181,
+     0.27105,
+     0.29215,
+     0.32376,
+     0.35265,
+     0.4131,
+     0.49497,
+     0.53584
+    ]
+   }
+  },
+  "intent.informational": {
+   "label": "Search intent: informational",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.14769,
+     0.41295,
+     0.45708,
+     0.4889,
+     0.51471,
+     0.53865,
+     0.56471,
+     0.58679,
+     0.61443,
+     0.65215,
+     0.69494,
+     0.75088,
+     0.80793,
+     0.89814
+    ]
+   }
+  },
+  "intent.navigational": {
+   "label": "Search intent: navigational",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.14218,
+     0.27766,
+     0.3086,
+     0.3324,
+     0.3536,
+     0.37069,
+     0.38994,
+     0.41285,
+     0.43827,
+     0.47757,
+     0.51085,
+     0.5741,
+     0.65391,
+     0.70358
+    ]
+   }
+  },
+  "intent.transactional": {
+   "label": "Search intent: transactional",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03739,
+     0.1563,
+     0.1918,
+     0.21912,
+     0.24807,
+     0.27736,
+     0.31045,
+     0.34899,
+     0.39708,
+     0.46164,
+     0.51758,
+     0.65293,
+     0.7744,
+     0.85568
+    ]
+   }
+  },
+  "intent.commercial": {
+   "label": "Search intent: commercial",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06317,
+     0.21291,
+     0.26066,
+     0.29678,
+     0.33249,
+     0.36685,
+     0.39955,
+     0.43947,
+     0.48555,
+     0.553,
+     0.60195,
+     0.69379,
+     0.80218,
+     0.82734
+    ]
+   }
+  },
+  "type.news": {
+   "label": "Page type: news",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06792,
+     0.17675,
+     0.21127,
+     0.24008,
+     0.26692,
+     0.29645,
+     0.32806,
+     0.37683,
+     0.44595,
+     0.55427,
+     0.62891,
+     0.72246,
+     0.79255,
+     0.85209
+    ]
+   }
+  },
+  "type.blog": {
+   "label": "Page type: blog",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04991,
+     0.14562,
+     0.1696,
+     0.19014,
+     0.20904,
+     0.228,
+     0.25028,
+     0.27656,
+     0.31297,
+     0.37574,
+     0.43998,
+     0.54808,
+     0.64122,
+     0.68515
+    ]
+   }
+  },
+  "type.reference": {
+   "label": "Page type: reference",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.11205,
+     0.21123,
+     0.24408,
+     0.26746,
+     0.28988,
+     0.31129,
+     0.33465,
+     0.36036,
+     0.39404,
+     0.44324,
+     0.49433,
+     0.58222,
+     0.68252,
+     0.724
+    ]
+   }
+  },
+  "type.research": {
+   "label": "Page type: research",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03745,
+     0.09384,
+     0.11333,
+     0.12873,
+     0.1437,
+     0.1569,
+     0.17354,
+     0.19246,
+     0.2174,
+     0.2565,
+     0.30044,
+     0.45971,
+     0.61214,
+     0.64624
+    ]
+   }
+  },
+  "type.howto": {
+   "label": "Page type: howto",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02945,
+     0.13712,
+     0.17341,
+     0.2016,
+     0.23009,
+     0.2617,
+     0.29448,
+     0.33906,
+     0.39875,
+     0.50435,
+     0.57988,
+     0.7091,
+     0.8107,
+     0.88271
+    ]
+   }
+  },
+  "type.recipe": {
+   "label": "Page type: recipe",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01075,
+     0.05516,
+     0.07087,
+     0.08382,
+     0.09548,
+     0.10734,
+     0.12071,
+     0.13533,
+     0.15329,
+     0.1857,
+     0.22086,
+     0.52094,
+     0.78653,
+     0.83249
+    ]
+   }
+  },
+  "type.review": {
+   "label": "Page type: review",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.12055,
+     0.22893,
+     0.25585,
+     0.27707,
+     0.2978,
+     0.3176,
+     0.33494,
+     0.35769,
+     0.38852,
+     0.43642,
+     0.48281,
+     0.59981,
+     0.72825,
+     0.8478
+    ]
+   }
+  },
+  "type.comparison": {
+   "label": "Page type: comparison",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03982,
+     0.11653,
+     0.13749,
+     0.15474,
+     0.17024,
+     0.18582,
+     0.20272,
+     0.22294,
+     0.25075,
+     0.2926,
+     0.33584,
+     0.44511,
+     0.53924,
+     0.60897
+    ]
+   }
+  },
+  "type.forum": {
+   "label": "Page type: forum",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02444,
+     0.10418,
+     0.12137,
+     0.13689,
+     0.15112,
+     0.16448,
+     0.18243,
+     0.20088,
+     0.22665,
+     0.27242,
+     0.31796,
+     0.43265,
+     0.51216,
+     0.58436
+    ]
+   }
+  },
+  "type.help": {
+   "label": "Page type: help",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04197,
+     0.14464,
+     0.18384,
+     0.21979,
+     0.25015,
+     0.2803,
+     0.31148,
+     0.34659,
+     0.39548,
+     0.46861,
+     0.54074,
+     0.69356,
+     0.76517,
+     0.87094
+    ]
+   }
+  },
+  "type.sales": {
+   "label": "Page type: sales",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02884,
+     0.10122,
+     0.12726,
+     0.15031,
+     0.1736,
+     0.20196,
+     0.23508,
+     0.27227,
+     0.32953,
+     0.42101,
+     0.50327,
+     0.64344,
+     0.75715,
+     0.8102
+    ]
+   }
+  },
+  "type.legal": {
+   "label": "Page type: legal",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02756,
+     0.12318,
+     0.14875,
+     0.16759,
+     0.18658,
+     0.20505,
+     0.22425,
+     0.24958,
+     0.28057,
+     0.33183,
+     0.38152,
+     0.49596,
+     0.63384,
+     0.69567
+    ]
+   }
+  },
+  "type.company": {
+   "label": "Page type: company",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09118,
+     0.25152,
+     0.27887,
+     0.30777,
+     0.32914,
+     0.34903,
+     0.36644,
+     0.38951,
+     0.41681,
+     0.45127,
+     0.4866,
+     0.55703,
+     0.6118,
+     0.67253
+    ]
+   }
+  },
+  "type.job": {
+   "label": "Page type: job",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01475,
+     0.08589,
+     0.11274,
+     0.13322,
+     0.15144,
+     0.1682,
+     0.18648,
+     0.20719,
+     0.23431,
+     0.28044,
+     0.32863,
+     0.5153,
+     0.69255,
+     0.73683
+    ]
+   }
+  },
+  "type.creative": {
+   "label": "Page type: creative",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08301,
+     0.19718,
+     0.21936,
+     0.23378,
+     0.24832,
+     0.2626,
+     0.2778,
+     0.29439,
+     0.31483,
+     0.34533,
+     0.37434,
+     0.48057,
+     0.66529,
+     0.70871
+    ]
+   }
+  },
+  "type.transcript": {
+   "label": "Page type: transcript",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03855,
+     0.09937,
+     0.11629,
+     0.12976,
+     0.14188,
+     0.15406,
+     0.1667,
+     0.18293,
+     0.20432,
+     0.23762,
+     0.27789,
+     0.44063,
+     0.6066,
+     0.85625
+    ]
+   }
+  },
+  "quality.experience": {
+   "label": "Content: experience",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.15028,
+     0.3064,
+     0.34677,
+     0.38064,
+     0.41043,
+     0.43885,
+     0.47048,
+     0.50562,
+     0.55018,
+     0.61902,
+     0.68143,
+     0.78542,
+     0.8649,
+     0.9128
+    ]
+   }
+  },
+  "quality.sources": {
+   "label": "Content: sources",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.13474,
+     0.32202,
+     0.35574,
+     0.3838,
+     0.40766,
+     0.43003,
+     0.45556,
+     0.48738,
+     0.52389,
+     0.58188,
+     0.63023,
+     0.74467,
+     0.81666,
+     0.82887
+    ]
+   }
+  },
+  "quality.author": {
+   "label": "Content: author",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.20442,
+     0.38692,
+     0.41941,
+     0.44209,
+     0.46257,
+     0.48393,
+     0.50805,
+     0.53215,
+     0.5677,
+     0.61534,
+     0.65574,
+     0.73503,
+     0.81657,
+     0.85445
+    ]
+   }
+  },
+  "quality.timely": {
+   "label": "Content: timely",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05028,
+     0.2458,
+     0.28821,
+     0.32084,
+     0.34973,
+     0.37413,
+     0.39939,
+     0.42958,
+     0.46623,
+     0.51929,
+     0.56973,
+     0.64453,
+     0.75316,
+     0.78977
+    ]
+   }
+  },
+  "quality.thin": {
+   "label": "Content: thin",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.13452,
+     0.39446,
+     0.42541,
+     0.44465,
+     0.46231,
+     0.47946,
+     0.49828,
+     0.51857,
+     0.54205,
+     0.57297,
+     0.605,
+     0.66262,
+     0.7164,
+     0.74235
+    ]
+   }
+  },
+  "quality.boilerplate": {
+   "label": "Content: boilerplate",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.18527,
+     0.32335,
+     0.34973,
+     0.36897,
+     0.38342,
+     0.39909,
+     0.4152,
+     0.43244,
+     0.4535,
+     0.48854,
+     0.5194,
+     0.58964,
+     0.66764,
+     0.69753
+    ]
+   }
+  },
+  "quality.stuffing": {
+   "label": "Content: stuffing",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.07626,
+     0.3156,
+     0.35291,
+     0.37721,
+     0.39681,
+     0.41713,
+     0.4378,
+     0.4587,
+     0.48325,
+     0.51911,
+     0.54826,
+     0.61723,
+     0.66651,
+     0.72485
+    ]
+   }
+  },
+  "quality.clickbait": {
+   "label": "Content: clickbait",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03779,
+     0.24229,
+     0.28263,
+     0.3125,
+     0.336,
+     0.36117,
+     0.38527,
+     0.41426,
+     0.44895,
+     0.49714,
+     0.54013,
+     0.6212,
+     0.71308,
+     0.75189
+    ]
+   }
+  },
+  "quality.promotional": {
+   "label": "Content: promotional",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06033,
+     0.27273,
+     0.33774,
+     0.39175,
+     0.44392,
+     0.49762,
+     0.5551,
+     0.61274,
+     0.67048,
+     0.74207,
+     0.78916,
+     0.86015,
+     0.91777,
+     0.927
+    ]
+   }
+  },
+  "quality.sponsored": {
+   "label": "Content: sponsored",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09771,
+     0.22919,
+     0.25962,
+     0.27955,
+     0.2961,
+     0.31346,
+     0.33212,
+     0.35002,
+     0.37132,
+     0.40205,
+     0.43256,
+     0.51109,
+     0.57855,
+     0.72669
+    ]
+   }
+  },
+  "quality.generic": {
+   "label": "Content: generic",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09053,
+     0.29317,
+     0.33265,
+     0.3587,
+     0.37953,
+     0.40191,
+     0.42275,
+     0.44622,
+     0.47622,
+     0.52381,
+     0.56303,
+     0.64036,
+     0.71837,
+     0.78188
+    ]
+   }
+  },
+  "quality.cta": {
+   "label": "Content: cta",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.10804,
+     0.29191,
+     0.33663,
+     0.37073,
+     0.40164,
+     0.43303,
+     0.46243,
+     0.49318,
+     0.53023,
+     0.58394,
+     0.64252,
+     0.7337,
+     0.80699,
+     0.8466
+    ]
+   }
+  },
+  "quality.local": {
+   "label": "Content: local",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03262,
+     0.13758,
+     0.16923,
+     0.19744,
+     0.22318,
+     0.25069,
+     0.28073,
+     0.32228,
+     0.38056,
+     0.46953,
+     0.53775,
+     0.64109,
+     0.72969,
+     0.76417
+    ]
+   }
+  },
+  "quality.prices": {
+   "label": "Content: prices",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04982,
+     0.17183,
+     0.20741,
+     0.23338,
+     0.2597,
+     0.28424,
+     0.31236,
+     0.34871,
+     0.39867,
+     0.49543,
+     0.59289,
+     0.73417,
+     0.81791,
+     0.86425
+    ]
+   }
+  },
+  "quality.steps": {
+   "label": "Content: steps",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04873,
+     0.17576,
+     0.21331,
+     0.23887,
+     0.26406,
+     0.29461,
+     0.32368,
+     0.3552,
+     0.40475,
+     0.48431,
+     0.58323,
+     0.73366,
+     0.83294,
+     0.85332
+    ]
+   }
+  },
+  "quality.qa": {
+   "label": "Content: qa",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05568,
+     0.17753,
+     0.20918,
+     0.23605,
+     0.25853,
+     0.27986,
+     0.30575,
+     0.33475,
+     0.37352,
+     0.44923,
+     0.55375,
+     0.8089,
+     0.90981,
+     0.9235
+    ]
+   }
+  },
+  "quality.opinion": {
+   "label": "Content: opinion",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.26242,
+     0.38794,
+     0.41725,
+     0.44046,
+     0.45941,
+     0.47789,
+     0.4987,
+     0.51991,
+     0.54866,
+     0.59736,
+     0.63998,
+     0.72023,
+     0.79473,
+     0.85932
+    ]
+   }
+  },
+  "brand.mentioned": {
+   "label": "Brand: mentioned",
+   "decides": false,
+   "platt": [
+    2.31536,
+    -0.60007
+   ],
+   "threshold": 0.4332,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00098,
+     0.03727,
+     0.07709,
+     0.12534,
+     0.20123,
+     0.29593,
+     0.44253,
+     0.62106,
+     0.79,
+     0.91549,
+     0.96599,
+     0.99336,
+     0.99867,
+     0.99989
+    ]
+   },
+   "threshold_fit": "f1_on_labels"
+  },
+  "brand.subject": {
+   "label": "Brand: subject",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.26108,
+     0.4312,
+     0.47063,
+     0.49676,
+     0.52348,
+     0.54965,
+     0.57393,
+     0.60494,
+     0.64208,
+     0.68712,
+     0.72293,
+     0.78909,
+     0.85966,
+     0.88262
+    ]
+   }
+  },
+  "brand.passing": {
+   "label": "Brand: passing",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.18566,
+     0.33607,
+     0.36612,
+     0.38912,
+     0.40841,
+     0.42477,
+     0.44219,
+     0.46213,
+     0.48154,
+     0.51308,
+     0.5365,
+     0.5782,
+     0.62617,
+     0.63789
+    ]
+   }
+  },
+  "brand.recommended": {
+   "label": "Brand: recommended",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08833,
+     0.2595,
+     0.29388,
+     0.32441,
+     0.34905,
+     0.37259,
+     0.39871,
+     0.43127,
+     0.4717,
+     0.53512,
+     0.58623,
+     0.67304,
+     0.77481,
+     0.82725
+    ]
+   }
+  },
+  "brand.criticised": {
+   "label": "Brand: criticised",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": 0.6,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06348,
+     0.17239,
+     0.19818,
+     0.22011,
+     0.23797,
+     0.25541,
+     0.27305,
+     0.29421,
+     0.3232,
+     0.36767,
+     0.41649,
+     0.53502,
+     0.71098,
+     0.84194
+    ]
+   },
+   "threshold_fit": "probability_0.6"
+  },
+  "brand.top_pick": {
+   "label": "Brand: top pick",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.10147,
+     0.26773,
+     0.30612,
+     0.33227,
+     0.3572,
+     0.38239,
+     0.4083,
+     0.43443,
+     0.46766,
+     0.51237,
+     0.5481,
+     0.6256,
+     0.68994,
+     0.72205
+    ]
+   }
+  },
+  "brand.alternative": {
+   "label": "Brand: alternative",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.10933,
+     0.26902,
+     0.2961,
+     0.31691,
+     0.33501,
+     0.35242,
+     0.37092,
+     0.39134,
+     0.41802,
+     0.45343,
+     0.47944,
+     0.54223,
+     0.62827,
+     0.63997
+    ]
+   }
+  },
+  "brand.compared": {
+   "label": "Brand: compared",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09756,
+     0.26144,
+     0.29546,
+     0.31989,
+     0.33927,
+     0.35772,
+     0.37854,
+     0.40067,
+     0.42761,
+     0.46184,
+     0.50183,
+     0.58625,
+     0.77375,
+     0.8184
+    ]
+   }
+  },
+  "brand.official": {
+   "label": "Brand: official",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.23589,
+    -4.8959
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     0.00156,
+     0.0029,
+     0.00435,
+     0.00596,
+     0.00792,
+     0.01033,
+     0.01417,
+     0.01968,
+     0.03122,
+     0.04763,
+     0.11017,
+     0.26075,
+     0.28522
+    ]
+   }
+  },
+  "brand.expensive": {
+   "label": "Brand: expensive",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04521,
+     0.20098,
+     0.22779,
+     0.24961,
+     0.26928,
+     0.28636,
+     0.30477,
+     0.32497,
+     0.35002,
+     0.38536,
+     0.4194,
+     0.493,
+     0.68028,
+     0.75534
+    ]
+   }
+  },
+  "brand.value": {
+   "label": "Brand: value",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.1035,
+     0.26099,
+     0.29232,
+     0.31631,
+     0.33808,
+     0.35776,
+     0.37816,
+     0.40356,
+     0.43528,
+     0.48144,
+     0.51425,
+     0.60112,
+     0.69509,
+     0.79778
+    ]
+   }
+  },
+  "brand.quality": {
+   "label": "Brand: quality",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.13942,
+     0.32771,
+     0.36506,
+     0.39212,
+     0.41479,
+     0.43707,
+     0.45762,
+     0.48332,
+     0.51491,
+     0.55965,
+     0.59139,
+     0.67783,
+     0.7906,
+     0.88856
+    ]
+   }
+  },
+  "brand.poor": {
+   "label": "Brand: poor",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04699,
+     0.18655,
+     0.2106,
+     0.22851,
+     0.24361,
+     0.26003,
+     0.27755,
+     0.29601,
+     0.32207,
+     0.35775,
+     0.394,
+     0.48394,
+     0.58409,
+     0.78739
+    ]
+   }
+  },
+  "brand.trusted": {
+   "label": "Brand: trusted",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.15536,
+     0.34076,
+     0.3749,
+     0.4032,
+     0.42696,
+     0.44934,
+     0.47113,
+     0.49532,
+     0.5258,
+     0.57137,
+     0.60847,
+     0.67617,
+     0.74672,
+     0.81695
+    ]
+   }
+  },
+  "brand.innovative": {
+   "label": "Brand: innovative",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.11039,
+     0.28282,
+     0.31674,
+     0.34133,
+     0.36312,
+     0.3811,
+     0.40354,
+     0.42936,
+     0.46633,
+     0.51173,
+     0.54884,
+     0.61949,
+     0.71251,
+     0.80038
+    ]
+   }
+  },
+  "brand.outdated": {
+   "label": "Brand: outdated",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09781,
+     0.21612,
+     0.23985,
+     0.25905,
+     0.27643,
+     0.29353,
+     0.31197,
+     0.33173,
+     0.35602,
+     0.39461,
+     0.43011,
+     0.51078,
+     0.60791,
+     0.78099
+    ]
+   }
+  },
+  "brand.bad_news": {
+   "label": "Brand: bad news",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": 0.6,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08122,
+     0.20075,
+     0.23208,
+     0.25208,
+     0.27051,
+     0.28831,
+     0.3082,
+     0.3302,
+     0.35796,
+     0.40621,
+     0.4491,
+     0.56581,
+     0.74625,
+     0.80595
+    ]
+   },
+   "threshold_fit": "probability_0.6"
+  },
+  "brand.deal": {
+   "label": "Brand: deal",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.11382,
+     0.26381,
+     0.2935,
+     0.317,
+     0.33773,
+     0.35927,
+     0.38228,
+     0.40462,
+     0.43544,
+     0.47904,
+     0.51892,
+     0.61438,
+     0.78893,
+     0.8304
+    ]
+   }
+  },
+  "brand.howto": {
+   "label": "Brand: howto",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.10246,
+     0.28204,
+     0.32194,
+     0.35367,
+     0.38155,
+     0.40659,
+     0.43183,
+     0.4635,
+     0.49644,
+     0.54347,
+     0.58657,
+     0.66982,
+     0.75945,
+     0.80334
+    ]
+   }
+  },
+  "brand.complaint": {
+   "label": "Brand: complaint",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": 0.6,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.13303,
+     0.24367,
+     0.27461,
+     0.29571,
+     0.31354,
+     0.33383,
+     0.3521,
+     0.37298,
+     0.40064,
+     0.44163,
+     0.48277,
+     0.57141,
+     0.72212,
+     0.84746
+    ]
+   },
+   "threshold_fit": "probability_0.6"
+  },
+  "brand.hiring": {
+   "label": "Brand: hiring",
+   "scale": "probability",
+   "requires": [
+    "brand.mentioned"
+   ],
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01828,
+     0.09236,
+     0.12334,
+     0.14307,
+     0.16233,
+     0.18428,
+     0.20734,
+     0.23531,
+     0.26769,
+     0.32678,
+     0.39246,
+     0.55376,
+     0.64765,
+     0.7938
+    ]
+   }
+  }
+ },
+ "decision": {
+  "mode": "per_category",
+  "fallback": "per_category",
+  "per_category": {},
+  "max": {
+   "threshold": 0.6768
+  }
+ },
+ "answers": "logprob",
+ "engine": "fp_8a2c6e91fd"
+}

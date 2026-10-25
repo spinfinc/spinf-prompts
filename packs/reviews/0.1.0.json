@@ -1,0 +1,8722 @@
+{
+ "pack": "spinf/reviews",
+ "version": "0.1.0",
+ "model": "spinf/gemma-4-12b-fp8",
+ "media": [
+  "text"
+ ],
+ "contexts": {
+  "review": "The following is a customer review of a product or a service.\n\n{X}",
+  "app": "The following is a user review of a mobile app, posted in an app store.\n\n{X}",
+  "place": "The following is a customer review of a restaurant, a hotel, a shop or another business.\n\n{X}",
+  "survey": "The following is a customer's free-text answer in a feedback survey.\n\n{X}"
+ },
+ "scoring": {
+  "empty_floor": false,
+  "case_insensitive": false,
+  "queries": [
+   {
+    "id": "rev.overall",
+    "template": "\n\nOverall, this review is (positive, negative, mixed, neutral):{?}",
+    "options": [
+     " positive",
+     " negative",
+     " mixed",
+     " neutral"
+    ]
+   },
+   {
+    "id": "rev.stars",
+    "template": "\n\nThe star rating, from 1 (worst) to 5 (best), that this reviewer gave is:{?}",
+    "options": [
+     " 1",
+     " 2",
+     " 3",
+     " 4",
+     " 5"
+    ]
+   },
+   {
+    "id": "rev.subject",
+    "template": "\n\nWhat is this review mainly about? (the product itself, the seller, the delivery, the customer support, something else){?}",
+    "options": [
+     " the product itself",
+     " the seller",
+     " the delivery",
+     " the customer support",
+     " something else"
+    ]
+   },
+   {
+    "id": "rev.mention",
+    "template": "\n\nQuestion: Does this review say anything about {F}?\nAnswer (yes or no):{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "the price or value for money"
+     },
+     {
+      "F": "the quality of the product, the food or the work"
+     },
+     {
+      "F": "durability, how long it lasts"
+     },
+     {
+      "F": "the look, design or style"
+     },
+     {
+      "F": "the size or fit"
+     },
+     {
+      "F": "ease of use, setup or instructions"
+     },
+     {
+      "F": "how well it works or performs"
+     },
+     {
+      "F": "reliability: faults, crashes, errors or breakdowns"
+     },
+     {
+      "F": "the features, functions or options available"
+     },
+     {
+      "F": "comfort"
+     },
+     {
+      "F": "the delivery or shipping"
+     },
+     {
+      "F": "the packaging"
+     },
+     {
+      "F": "the staff or customer service"
+     },
+     {
+      "F": "whether the item matches its listing, description or photos"
+     },
+     {
+      "F": "cleanliness or hygiene"
+     },
+     {
+      "F": "the atmosphere, ambience or location"
+     }
+    ]
+   },
+   {
+    "id": "rev.mention2",
+    "template": "\n\nDoes the review talk about {F}? (yes or no){?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "the price or value for money"
+     },
+     {
+      "F": "the quality of the product, the food or the work"
+     },
+     {
+      "F": "durability, how long it lasts"
+     },
+     {
+      "F": "the look, design or style"
+     },
+     {
+      "F": "the size or fit"
+     },
+     {
+      "F": "ease of use, setup or instructions"
+     },
+     {
+      "F": "how well it works or performs"
+     },
+     {
+      "F": "reliability: faults, crashes, errors or breakdowns"
+     },
+     {
+      "F": "the features, functions or options available"
+     },
+     {
+      "F": "comfort"
+     },
+     {
+      "F": "the delivery or shipping"
+     },
+     {
+      "F": "the packaging"
+     },
+     {
+      "F": "the staff or customer service"
+     },
+     {
+      "F": "whether the item matches its listing, description or photos"
+     },
+     {
+      "F": "cleanliness or hygiene"
+     },
+     {
+      "F": "the atmosphere, ambience or location"
+     }
+    ]
+   },
+   {
+    "id": "rev.reading",
+    "template": "\n\nIf this review mentions {F}, it is (praised, criticised, both, mentioned neutrally):{?}",
+    "options": [
+     " praised",
+     " criticised",
+     " both",
+     " mentioned neutrally"
+    ],
+    "combinations": [
+     {
+      "F": "the price or value for money"
+     },
+     {
+      "F": "the quality, materials or workmanship"
+     },
+     {
+      "F": "durability, how long it lasts"
+     },
+     {
+      "F": "the look, design or style"
+     },
+     {
+      "F": "the size or fit"
+     },
+     {
+      "F": "ease of use, setup or instructions"
+     },
+     {
+      "F": "how well it works or performs"
+     },
+     {
+      "F": "reliability: faults, crashes, errors or breakdowns"
+     },
+     {
+      "F": "the features, functions or options available"
+     },
+     {
+      "F": "comfort"
+     },
+     {
+      "F": "the delivery or shipping"
+     },
+     {
+      "F": "the packaging"
+     },
+     {
+      "F": "the staff or customer service"
+     },
+     {
+      "F": "whether the item matches its listing, description or photos"
+     },
+     {
+      "F": "cleanliness or hygiene"
+     },
+     {
+      "F": "the atmosphere, ambience or location"
+     }
+    ]
+   },
+   {
+    "id": "rev.lang",
+    "template": "\n\nThe language of the review above (English, German, Spanish, French, Italian, Portuguese, another language) is:{?}",
+    "options": [
+     " English",
+     " German",
+     " Spanish",
+     " French",
+     " Italian",
+     " Portuguese",
+     " another language"
+    ]
+   },
+   {
+    "id": "rev.lang2",
+    "template": "\n\nWhich language is this review written in?\nAnswer:{?}",
+    "options": [
+     " English",
+     " German",
+     " Spanish",
+     " French",
+     " Italian",
+     " Portuguese",
+     " another language"
+    ]
+   },
+   {
+    "id": "rev.yn",
+    "template": "\n\nQuestion: {F}\nAnswer (yes or no):{?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Does the reviewer ask for a feature, an option or an improvement?"
+     },
+     {
+      "F": "Does the reviewer report a bug, a crash, an error or a defect?"
+     },
+     {
+      "F": "Does the reviewer ask a question that expects an answer?"
+     },
+     {
+      "F": "Does this review contain any question?"
+     },
+     {
+      "F": "Does the reviewer say they want, or have asked for, a refund, a return, a replacement or a repair?"
+     },
+     {
+      "F": "Does the reviewer say they would buy it again or keep using it?"
+     },
+     {
+      "F": "Does the reviewer say they will stop using it or switch to something else?"
+     },
+     {
+      "F": "Does the reviewer recommend it to others?"
+     },
+     {
+      "F": "Does the reviewer warn others not to buy or use it?"
+     },
+     {
+      "F": "Does the review name or compare with another brand, product, app or business?"
+     },
+     {
+      "F": "Does the review compare with a previous version, an older model or an earlier purchase?"
+     },
+     {
+      "F": "Does the review say how long the reviewer has owned or used it?"
+     },
+     {
+      "F": "Was it bought as a gift or for someone else?"
+     },
+     {
+      "F": "Is this an update to an earlier review by the same person?"
+     },
+     {
+      "F": "Is the reviewer angry?"
+     },
+     {
+      "F": "Is the reviewer disappointed?"
+     },
+     {
+      "F": "Is the reviewer enthusiastic or delighted?"
+     },
+     {
+      "F": "Is the review sarcastic or ironic?"
+     },
+     {
+      "F": "Does the review read like an advertisement or a promotion?"
+     },
+     {
+      "F": "Does the reviewer say they got the product free or at a discount in exchange for the review?"
+     },
+     {
+      "F": "Is the review about something other than the product or service it is attached to?"
+     },
+     {
+      "F": "Does the reviewer report an injury, a health reaction, a fire, or another safety hazard?"
+     },
+     {
+      "F": "Does the reviewer threaten legal action, a chargeback or a complaint to an authority?"
+     },
+     {
+      "F": "Does the reviewer threaten to go to the press, to social media or to a review site?"
+     },
+     {
+      "F": "Does the review insult, harass or threaten a person?"
+     },
+     {
+      "F": "Does the review contain personal data (a full name, a phone number, an email address, an order number)?"
+     }
+    ]
+   },
+   {
+    "id": "rev.yn2",
+    "template": "\n\n{F} (yes or no){?}",
+    "options": [
+     " yes",
+     " no"
+    ],
+    "combinations": [
+     {
+      "F": "Does the reviewer ask for a feature, an option or an improvement?"
+     },
+     {
+      "F": "Does the reviewer report a bug, a crash, an error or a defect?"
+     },
+     {
+      "F": "Does the reviewer ask a question that expects an answer?"
+     },
+     {
+      "F": "Does this review contain any question?"
+     },
+     {
+      "F": "Does the reviewer say they want, or have asked for, a refund, a return, a replacement or a repair?"
+     },
+     {
+      "F": "Does the reviewer say they would buy it again or keep using it?"
+     },
+     {
+      "F": "Does the reviewer say they will stop using it or switch to something else?"
+     },
+     {
+      "F": "Does the reviewer recommend it to others?"
+     },
+     {
+      "F": "Does the reviewer warn others not to buy or use it?"
+     },
+     {
+      "F": "Does the review name or compare with another brand, product, app or business?"
+     },
+     {
+      "F": "Does the review compare with a previous version, an older model or an earlier purchase?"
+     },
+     {
+      "F": "Does the review say how long the reviewer has owned or used it?"
+     },
+     {
+      "F": "Was it bought as a gift or for someone else?"
+     },
+     {
+      "F": "Is this an update to an earlier review by the same person?"
+     },
+     {
+      "F": "Is the reviewer angry?"
+     },
+     {
+      "F": "Is the reviewer disappointed?"
+     },
+     {
+      "F": "Is the reviewer enthusiastic or delighted?"
+     },
+     {
+      "F": "Is the review sarcastic or ironic?"
+     },
+     {
+      "F": "Does the review read like an advertisement or a promotion?"
+     },
+     {
+      "F": "Does the reviewer say they got the product free or at a discount in exchange for the review?"
+     },
+     {
+      "F": "Is the review about something other than the product or service it is attached to?"
+     },
+     {
+      "F": "Does the reviewer report an injury, a health reaction, a fire, or another safety hazard?"
+     },
+     {
+      "F": "Does the reviewer threaten legal action, a chargeback or a complaint to an authority?"
+     },
+     {
+      "F": "Does the reviewer threaten to go to the press, to social media or to a review site?"
+     },
+     {
+      "F": "Does the review insult, harass or threaten a person?"
+     },
+     {
+      "F": "Does the review contain personal data (a full name, a phone number, an email address, an order number)?"
+     }
+    ]
+   }
+  ]
+ },
+ "reads": [
+  {
+   "id": "overall.positive",
+   "query": "rev.overall",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "overall.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "overall.negative",
+   "query": "rev.overall",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "overall.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "overall.mixed",
+   "query": "rev.overall",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "overall.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "overall.neutral",
+   "query": "rev.overall",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "overall.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "stars.1",
+   "query": "rev.stars",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "stars.1",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "stars.2",
+   "query": "rev.stars",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "stars.2",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "stars.3",
+   "query": "rev.stars",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "stars.3",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "stars.4",
+   "query": "rev.stars",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "stars.4",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "stars.5",
+   "query": "rev.stars",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "stars.5",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "subject.product",
+   "query": "rev.subject",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "subject.product",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "subject.seller",
+   "query": "rev.subject",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "subject.seller",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "subject.delivery",
+   "query": "rev.subject",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "subject.delivery",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "subject.support",
+   "query": "rev.subject",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "subject.support",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "subject.other",
+   "query": "rev.subject",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "subject.other",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.price.mentioned",
+   "query": "rev.mention",
+   "F": "the price or value for money",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.price.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.price.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the price or value for money",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.price.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.price.positive",
+   "query": "rev.reading",
+   "F": "the price or value for money",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.price.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.price.negative",
+   "query": "rev.reading",
+   "F": "the price or value for money",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.price.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.price.mixed",
+   "query": "rev.reading",
+   "F": "the price or value for money",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.price.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.price.neutral",
+   "query": "rev.reading",
+   "F": "the price or value for money",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.price.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.quality.mentioned",
+   "query": "rev.mention",
+   "F": "the quality of the product, the food or the work",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.quality.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.quality.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the quality of the product, the food or the work",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.quality.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.quality.positive",
+   "query": "rev.reading",
+   "F": "the quality, materials or workmanship",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.quality.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.quality.negative",
+   "query": "rev.reading",
+   "F": "the quality, materials or workmanship",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.quality.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.quality.mixed",
+   "query": "rev.reading",
+   "F": "the quality, materials or workmanship",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.quality.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.quality.neutral",
+   "query": "rev.reading",
+   "F": "the quality, materials or workmanship",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.quality.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.durability.mentioned",
+   "query": "rev.mention",
+   "F": "durability, how long it lasts",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.durability.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.durability.mentioned:b",
+   "query": "rev.mention2",
+   "F": "durability, how long it lasts",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.durability.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.durability.positive",
+   "query": "rev.reading",
+   "F": "durability, how long it lasts",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.durability.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.durability.negative",
+   "query": "rev.reading",
+   "F": "durability, how long it lasts",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.durability.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.durability.mixed",
+   "query": "rev.reading",
+   "F": "durability, how long it lasts",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.durability.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.durability.neutral",
+   "query": "rev.reading",
+   "F": "durability, how long it lasts",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.durability.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.design.mentioned",
+   "query": "rev.mention",
+   "F": "the look, design or style",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.design.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.design.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the look, design or style",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.design.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.design.positive",
+   "query": "rev.reading",
+   "F": "the look, design or style",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.design.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.design.negative",
+   "query": "rev.reading",
+   "F": "the look, design or style",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.design.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.design.mixed",
+   "query": "rev.reading",
+   "F": "the look, design or style",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.design.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.design.neutral",
+   "query": "rev.reading",
+   "F": "the look, design or style",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.design.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.fit.mentioned",
+   "query": "rev.mention",
+   "F": "the size or fit",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.fit.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.fit.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the size or fit",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.fit.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.fit.positive",
+   "query": "rev.reading",
+   "F": "the size or fit",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.fit.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.fit.negative",
+   "query": "rev.reading",
+   "F": "the size or fit",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.fit.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.fit.mixed",
+   "query": "rev.reading",
+   "F": "the size or fit",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.fit.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.fit.neutral",
+   "query": "rev.reading",
+   "F": "the size or fit",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.fit.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.usability.mentioned",
+   "query": "rev.mention",
+   "F": "ease of use, setup or instructions",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.usability.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.usability.mentioned:b",
+   "query": "rev.mention2",
+   "F": "ease of use, setup or instructions",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.usability.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.usability.positive",
+   "query": "rev.reading",
+   "F": "ease of use, setup or instructions",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.usability.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.usability.negative",
+   "query": "rev.reading",
+   "F": "ease of use, setup or instructions",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.usability.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.usability.mixed",
+   "query": "rev.reading",
+   "F": "ease of use, setup or instructions",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.usability.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.usability.neutral",
+   "query": "rev.reading",
+   "F": "ease of use, setup or instructions",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.usability.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.performance.mentioned",
+   "query": "rev.mention",
+   "F": "how well it works or performs",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.performance.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.performance.mentioned:b",
+   "query": "rev.mention2",
+   "F": "how well it works or performs",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.performance.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.performance.positive",
+   "query": "rev.reading",
+   "F": "how well it works or performs",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.performance.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.performance.negative",
+   "query": "rev.reading",
+   "F": "how well it works or performs",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.performance.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.performance.mixed",
+   "query": "rev.reading",
+   "F": "how well it works or performs",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.performance.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.performance.neutral",
+   "query": "rev.reading",
+   "F": "how well it works or performs",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.performance.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.reliability.mentioned",
+   "query": "rev.mention",
+   "F": "reliability: faults, crashes, errors or breakdowns",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.reliability.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.reliability.mentioned:b",
+   "query": "rev.mention2",
+   "F": "reliability: faults, crashes, errors or breakdowns",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.reliability.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.reliability.positive",
+   "query": "rev.reading",
+   "F": "reliability: faults, crashes, errors or breakdowns",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.reliability.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.reliability.negative",
+   "query": "rev.reading",
+   "F": "reliability: faults, crashes, errors or breakdowns",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.reliability.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.reliability.mixed",
+   "query": "rev.reading",
+   "F": "reliability: faults, crashes, errors or breakdowns",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.reliability.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.reliability.neutral",
+   "query": "rev.reading",
+   "F": "reliability: faults, crashes, errors or breakdowns",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.reliability.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.features.mentioned",
+   "query": "rev.mention",
+   "F": "the features, functions or options available",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.features.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.features.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the features, functions or options available",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.features.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.features.positive",
+   "query": "rev.reading",
+   "F": "the features, functions or options available",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.features.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.features.negative",
+   "query": "rev.reading",
+   "F": "the features, functions or options available",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.features.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.features.mixed",
+   "query": "rev.reading",
+   "F": "the features, functions or options available",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.features.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.features.neutral",
+   "query": "rev.reading",
+   "F": "the features, functions or options available",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.features.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.comfort.mentioned",
+   "query": "rev.mention",
+   "F": "comfort",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.comfort.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.comfort.mentioned:b",
+   "query": "rev.mention2",
+   "F": "comfort",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.comfort.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.comfort.positive",
+   "query": "rev.reading",
+   "F": "comfort",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.comfort.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.comfort.negative",
+   "query": "rev.reading",
+   "F": "comfort",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.comfort.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.comfort.mixed",
+   "query": "rev.reading",
+   "F": "comfort",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.comfort.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.comfort.neutral",
+   "query": "rev.reading",
+   "F": "comfort",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.comfort.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.delivery.mentioned",
+   "query": "rev.mention",
+   "F": "the delivery or shipping",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.delivery.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.delivery.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the delivery or shipping",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.delivery.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.delivery.positive",
+   "query": "rev.reading",
+   "F": "the delivery or shipping",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.delivery.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.delivery.negative",
+   "query": "rev.reading",
+   "F": "the delivery or shipping",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.delivery.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.delivery.mixed",
+   "query": "rev.reading",
+   "F": "the delivery or shipping",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.delivery.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.delivery.neutral",
+   "query": "rev.reading",
+   "F": "the delivery or shipping",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.delivery.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.packaging.mentioned",
+   "query": "rev.mention",
+   "F": "the packaging",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.packaging.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.packaging.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the packaging",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.packaging.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.packaging.positive",
+   "query": "rev.reading",
+   "F": "the packaging",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.packaging.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.packaging.negative",
+   "query": "rev.reading",
+   "F": "the packaging",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.packaging.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.packaging.mixed",
+   "query": "rev.reading",
+   "F": "the packaging",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.packaging.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.packaging.neutral",
+   "query": "rev.reading",
+   "F": "the packaging",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.packaging.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.service.mentioned",
+   "query": "rev.mention",
+   "F": "the staff or customer service",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.service.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.service.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the staff or customer service",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.service.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.service.positive",
+   "query": "rev.reading",
+   "F": "the staff or customer service",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.service.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.service.negative",
+   "query": "rev.reading",
+   "F": "the staff or customer service",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.service.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.service.mixed",
+   "query": "rev.reading",
+   "F": "the staff or customer service",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.service.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.service.neutral",
+   "query": "rev.reading",
+   "F": "the staff or customer service",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.service.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.accuracy.mentioned",
+   "query": "rev.mention",
+   "F": "whether the item matches its listing, description or photos",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.accuracy.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.accuracy.mentioned:b",
+   "query": "rev.mention2",
+   "F": "whether the item matches its listing, description or photos",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.accuracy.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.accuracy.positive",
+   "query": "rev.reading",
+   "F": "whether the item matches its listing, description or photos",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.accuracy.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.accuracy.negative",
+   "query": "rev.reading",
+   "F": "whether the item matches its listing, description or photos",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.accuracy.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.accuracy.mixed",
+   "query": "rev.reading",
+   "F": "whether the item matches its listing, description or photos",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.accuracy.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.accuracy.neutral",
+   "query": "rev.reading",
+   "F": "whether the item matches its listing, description or photos",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.accuracy.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.cleanliness.mentioned",
+   "query": "rev.mention",
+   "F": "cleanliness or hygiene",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.cleanliness.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.cleanliness.mentioned:b",
+   "query": "rev.mention2",
+   "F": "cleanliness or hygiene",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.cleanliness.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.cleanliness.positive",
+   "query": "rev.reading",
+   "F": "cleanliness or hygiene",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.cleanliness.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.cleanliness.negative",
+   "query": "rev.reading",
+   "F": "cleanliness or hygiene",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.cleanliness.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.cleanliness.mixed",
+   "query": "rev.reading",
+   "F": "cleanliness or hygiene",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.cleanliness.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.cleanliness.neutral",
+   "query": "rev.reading",
+   "F": "cleanliness or hygiene",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.cleanliness.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.atmosphere.mentioned",
+   "query": "rev.mention",
+   "F": "the atmosphere, ambience or location",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.atmosphere.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.atmosphere.mentioned:b",
+   "query": "rev.mention2",
+   "F": "the atmosphere, ambience or location",
+   "kind": "pair",
+   "sign": 1,
+   "category": "aspect.atmosphere.mentioned",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.atmosphere.positive",
+   "query": "rev.reading",
+   "F": "the atmosphere, ambience or location",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "aspect.atmosphere.positive",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.atmosphere.negative",
+   "query": "rev.reading",
+   "F": "the atmosphere, ambience or location",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "aspect.atmosphere.negative",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.atmosphere.mixed",
+   "query": "rev.reading",
+   "F": "the atmosphere, ambience or location",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "aspect.atmosphere.mixed",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "aspect.atmosphere.neutral",
+   "query": "rev.reading",
+   "F": "the atmosphere, ambience or location",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "aspect.atmosphere.neutral",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.en",
+   "query": "rev.lang",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "lang.en",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.en:b",
+   "query": "rev.lang2",
+   "kind": "set",
+   "unsafe": [
+    0
+   ],
+   "category": "lang.en",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.de",
+   "query": "rev.lang",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "lang.de",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.de:b",
+   "query": "rev.lang2",
+   "kind": "set",
+   "unsafe": [
+    1
+   ],
+   "category": "lang.de",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.es",
+   "query": "rev.lang",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "lang.es",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.es:b",
+   "query": "rev.lang2",
+   "kind": "set",
+   "unsafe": [
+    2
+   ],
+   "category": "lang.es",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.fr",
+   "query": "rev.lang",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "lang.fr",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.fr:b",
+   "query": "rev.lang2",
+   "kind": "set",
+   "unsafe": [
+    3
+   ],
+   "category": "lang.fr",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.it",
+   "query": "rev.lang",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "lang.it",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.it:b",
+   "query": "rev.lang2",
+   "kind": "set",
+   "unsafe": [
+    4
+   ],
+   "category": "lang.it",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.pt",
+   "query": "rev.lang",
+   "kind": "set",
+   "unsafe": [
+    5
+   ],
+   "category": "lang.pt",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.pt:b",
+   "query": "rev.lang2",
+   "kind": "set",
+   "unsafe": [
+    5
+   ],
+   "category": "lang.pt",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.other",
+   "query": "rev.lang",
+   "kind": "set",
+   "unsafe": [
+    6
+   ],
+   "category": "lang.other",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "lang.other:b",
+   "query": "rev.lang2",
+   "kind": "set",
+   "unsafe": [
+    6
+   ],
+   "category": "lang.other",
+   "mu": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.feature",
+   "query": "rev.yn",
+   "F": "Does the reviewer ask for a feature, an option or an improvement?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.feature",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.feature:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer ask for a feature, an option or an improvement?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.feature",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.bug",
+   "query": "rev.yn",
+   "F": "Does the reviewer report a bug, a crash, an error or a defect?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.bug",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.bug:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer report a bug, a crash, an error or a defect?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.bug",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.question",
+   "query": "rev.yn",
+   "F": "Does the reviewer ask a question that expects an answer?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.question",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.question:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer ask a question that expects an answer?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.question",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.question:1",
+   "query": "rev.yn",
+   "F": "Does this review contain any question?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.question",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "request.question:1b",
+   "query": "rev.yn2",
+   "F": "Does this review contain any question?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "request.question",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.refund",
+   "query": "rev.yn",
+   "F": "Does the reviewer say they want, or have asked for, a refund, a return, a replacement or a repair?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.refund",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.refund:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer say they want, or have asked for, a refund, a return, a replacement or a repair?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.refund",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.repurchase",
+   "query": "rev.yn",
+   "F": "Does the reviewer say they would buy it again or keep using it?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.repurchase",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.repurchase:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer say they would buy it again or keep using it?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.repurchase",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.switch",
+   "query": "rev.yn",
+   "F": "Does the reviewer say they will stop using it or switch to something else?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.switch",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.switch:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer say they will stop using it or switch to something else?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.switch",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.recommend",
+   "query": "rev.yn",
+   "F": "Does the reviewer recommend it to others?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.recommend",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.recommend:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer recommend it to others?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.recommend",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.warn",
+   "query": "rev.yn",
+   "F": "Does the reviewer warn others not to buy or use it?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.warn",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "intent.warn:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer warn others not to buy or use it?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "intent.warn",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.competitor",
+   "query": "rev.yn",
+   "F": "Does the review name or compare with another brand, product, app or business?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.competitor",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.competitor:0b",
+   "query": "rev.yn2",
+   "F": "Does the review name or compare with another brand, product, app or business?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.competitor",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.previous",
+   "query": "rev.yn",
+   "F": "Does the review compare with a previous version, an older model or an earlier purchase?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.previous",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.previous:0b",
+   "query": "rev.yn2",
+   "F": "Does the review compare with a previous version, an older model or an earlier purchase?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.previous",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.duration",
+   "query": "rev.yn",
+   "F": "Does the review say how long the reviewer has owned or used it?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.duration",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.duration:0b",
+   "query": "rev.yn2",
+   "F": "Does the review say how long the reviewer has owned or used it?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.duration",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.gift",
+   "query": "rev.yn",
+   "F": "Was it bought as a gift or for someone else?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.gift",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.gift:0b",
+   "query": "rev.yn2",
+   "F": "Was it bought as a gift or for someone else?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.gift",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.update",
+   "query": "rev.yn",
+   "F": "Is this an update to an earlier review by the same person?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.update",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "mention.update:0b",
+   "query": "rev.yn2",
+   "F": "Is this an update to an earlier review by the same person?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "mention.update",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.angry",
+   "query": "rev.yn",
+   "F": "Is the reviewer angry?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.angry",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.angry:0b",
+   "query": "rev.yn2",
+   "F": "Is the reviewer angry?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.angry",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.disappointed",
+   "query": "rev.yn",
+   "F": "Is the reviewer disappointed?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.disappointed",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.disappointed:0b",
+   "query": "rev.yn2",
+   "F": "Is the reviewer disappointed?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.disappointed",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.enthusiastic",
+   "query": "rev.yn",
+   "F": "Is the reviewer enthusiastic or delighted?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.enthusiastic",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.enthusiastic:0b",
+   "query": "rev.yn2",
+   "F": "Is the reviewer enthusiastic or delighted?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.enthusiastic",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.sarcastic",
+   "query": "rev.yn",
+   "F": "Is the review sarcastic or ironic?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.sarcastic",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "tone.sarcastic:0b",
+   "query": "rev.yn2",
+   "F": "Is the review sarcastic or ironic?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "tone.sarcastic",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.promotional",
+   "query": "rev.yn",
+   "F": "Does the review read like an advertisement or a promotion?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.promotional",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.promotional:0b",
+   "query": "rev.yn2",
+   "F": "Does the review read like an advertisement or a promotion?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.promotional",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.incentivized",
+   "query": "rev.yn",
+   "F": "Does the reviewer say they got the product free or at a discount in exchange for the review?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.incentivized",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.incentivized:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer say they got the product free or at a discount in exchange for the review?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.incentivized",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.offtopic",
+   "query": "rev.yn",
+   "F": "Is the review about something other than the product or service it is attached to?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.offtopic",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "quality.offtopic:0b",
+   "query": "rev.yn2",
+   "F": "Is the review about something other than the product or service it is attached to?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "quality.offtopic",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.safety",
+   "query": "rev.yn",
+   "F": "Does the reviewer report an injury, a health reaction, a fire, or another safety hazard?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.safety",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.safety:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer report an injury, a health reaction, a fire, or another safety hazard?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.safety",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.legal",
+   "query": "rev.yn",
+   "F": "Does the reviewer threaten legal action, a chargeback or a complaint to an authority?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.legal",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.legal:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer threaten legal action, a chargeback or a complaint to an authority?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.legal",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.public",
+   "query": "rev.yn",
+   "F": "Does the reviewer threaten to go to the press, to social media or to a review site?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.public",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.public:0b",
+   "query": "rev.yn2",
+   "F": "Does the reviewer threaten to go to the press, to social media or to a review site?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.public",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.abuse",
+   "query": "rev.yn",
+   "F": "Does the review insult, harass or threaten a person?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.abuse",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.abuse:0b",
+   "query": "rev.yn2",
+   "F": "Does the review insult, harass or threaten a person?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.abuse",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.pii",
+   "query": "rev.yn",
+   "F": "Does the review contain personal data (a full name, a phone number, an email address, an order number)?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.pii",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  },
+  {
+   "id": "risk.pii:0b",
+   "query": "rev.yn2",
+   "F": "Does the review contain personal data (a full name, a phone number, an email address, an order number)?",
+   "kind": "pair",
+   "sign": 1,
+   "category": "risk.pii",
+   "mu": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "sd": 1.0
+  }
+ ],
+ "categories": {
+  "overall.positive": {
+   "label": "Overall: positive",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01927,
+     0.11413,
+     0.17793,
+     0.27616,
+     0.46079,
+     0.65295,
+     0.72198,
+     0.76642,
+     0.8062,
+     0.8473,
+     0.87124,
+     0.90322,
+     0.932,
+     0.96784
+    ]
+   }
+  },
+  "overall.negative": {
+   "label": "Overall: negative",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0094,
+     0.03439,
+     0.04612,
+     0.05782,
+     0.07246,
+     0.09744,
+     0.18856,
+     0.34691,
+     0.49222,
+     0.63587,
+     0.70795,
+     0.80699,
+     0.8592,
+     0.899
+    ]
+   }
+  },
+  "overall.mixed": {
+   "label": "Overall: mixed",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01722,
+     0.07651,
+     0.09575,
+     0.11206,
+     0.13029,
+     0.15195,
+     0.17805,
+     0.20751,
+     0.24074,
+     0.28426,
+     0.31922,
+     0.40632,
+     0.52953,
+     0.69123
+    ]
+   }
+  },
+  "overall.neutral": {
+   "label": "Overall: neutral",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00554,
+     0.0286,
+     0.03636,
+     0.04402,
+     0.0516,
+     0.05858,
+     0.067,
+     0.07572,
+     0.0872,
+     0.10603,
+     0.12242,
+     0.15945,
+     0.22637,
+     0.36286
+    ]
+   }
+  },
+  "stars.1": {
+   "label": "Stars: 1",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00076,
+     0.00452,
+     0.00596,
+     0.0076,
+     0.00974,
+     0.01326,
+     0.02603,
+     0.12419,
+     0.37158,
+     0.6995,
+     0.84261,
+     0.93792,
+     0.96912,
+     0.977
+    ]
+   }
+  },
+  "stars.2": {
+   "label": "Stars: 2",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00024,
+     0.00104,
+     0.00168,
+     0.00262,
+     0.00431,
+     0.00898,
+     0.03771,
+     0.11747,
+     0.21327,
+     0.32951,
+     0.41198,
+     0.54235,
+     0.77234,
+     0.93141
+    ]
+   }
+  },
+  "stars.3": {
+   "label": "Stars: 3",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00073,
+     0.00518,
+     0.00936,
+     0.01458,
+     0.02238,
+     0.03469,
+     0.06295,
+     0.11176,
+     0.19402,
+     0.33623,
+     0.43387,
+     0.59246,
+     0.76303,
+     0.93263
+    ]
+   }
+  },
+  "stars.4": {
+   "label": "Stars: 4",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00063,
+     0.00812,
+     0.02509,
+     0.04444,
+     0.0656,
+     0.09379,
+     0.12527,
+     0.17019,
+     0.24292,
+     0.375,
+     0.48358,
+     0.65283,
+     0.83439,
+     0.94523
+    ]
+   }
+  },
+  "stars.5": {
+   "label": "Stars: 5",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0006,
+     0.0057,
+     0.01548,
+     0.04803,
+     0.20639,
+     0.56292,
+     0.77087,
+     0.84765,
+     0.89403,
+     0.93409,
+     0.95014,
+     0.9698,
+     0.98029,
+     0.98728
+    ]
+   }
+  },
+  "subject.product": {
+   "label": "About: the product itself",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09535,
+     0.69905,
+     0.78514,
+     0.82356,
+     0.85564,
+     0.87758,
+     0.8937,
+     0.90851,
+     0.92221,
+     0.938,
+     0.94771,
+     0.96494,
+     0.97773,
+     0.98086
+    ]
+   }
+  },
+  "subject.seller": {
+   "label": "About: the seller",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00074,
+     0.01513,
+     0.02283,
+     0.03013,
+     0.03691,
+     0.04405,
+     0.05308,
+     0.06571,
+     0.08263,
+     0.11663,
+     0.16071,
+     0.37801,
+     0.69455,
+     0.77842
+    ]
+   }
+  },
+  "subject.delivery": {
+   "label": "About: the delivery",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00011,
+     0.00152,
+     0.00255,
+     0.00372,
+     0.00505,
+     0.00671,
+     0.00876,
+     0.01135,
+     0.01534,
+     0.02351,
+     0.03407,
+     0.07466,
+     0.27774,
+     0.52988
+    ]
+   }
+  },
+  "subject.support": {
+   "label": "About: the customer support",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     0.00035,
+     0.00069,
+     0.00109,
+     0.00158,
+     0.0022,
+     0.00285,
+     0.00385,
+     0.00521,
+     0.0078,
+     0.01075,
+     0.02192,
+     0.08819,
+     0.42195
+    ]
+   }
+  },
+  "subject.other": {
+   "label": "About: something else",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00549,
+     0.02051,
+     0.027,
+     0.03409,
+     0.04261,
+     0.05304,
+     0.06705,
+     0.08929,
+     0.12291,
+     0.18454,
+     0.25308,
+     0.381,
+     0.58739,
+     0.78542
+    ]
+   }
+  },
+  "aspect.price.mentioned": {
+   "label": "Price: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08393,
+     0.21202,
+     0.23298,
+     0.25024,
+     0.2659,
+     0.28076,
+     0.29492,
+     0.31261,
+     0.33367,
+     0.3781,
+     0.42141,
+     0.56777,
+     0.71733,
+     0.75095
+    ]
+   }
+  },
+  "aspect.price.positive": {
+   "label": "Price: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.16888,
+     0.31694,
+     0.36018,
+     0.39411,
+     0.42721,
+     0.45288,
+     0.47502,
+     0.49506,
+     0.51697,
+     0.54184,
+     0.56467,
+     0.60092,
+     0.65303,
+     0.71991
+    ]
+   }
+  },
+  "aspect.price.negative": {
+   "label": "Price: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01927,
+     0.17561,
+     0.19813,
+     0.21716,
+     0.23837,
+     0.26204,
+     0.29136,
+     0.32842,
+     0.37578,
+     0.43585,
+     0.47306,
+     0.54996,
+     0.61332,
+     0.64511
+    ]
+   }
+  },
+  "aspect.price.mixed": {
+   "label": "Price: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06894,
+     0.12364,
+     0.13479,
+     0.14368,
+     0.15074,
+     0.15731,
+     0.16496,
+     0.17281,
+     0.18256,
+     0.19595,
+     0.20868,
+     0.24104,
+     0.30203,
+     0.40438
+    ]
+   }
+  },
+  "aspect.price.neutral": {
+   "label": "Price: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02652,
+     0.07448,
+     0.08698,
+     0.09666,
+     0.10428,
+     0.11202,
+     0.12006,
+     0.1296,
+     0.13983,
+     0.15763,
+     0.17504,
+     0.23374,
+     0.4156,
+     0.48012
+    ]
+   }
+  },
+  "aspect.quality.mentioned": {
+   "label": "Quality: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.1458,
+     0.41447,
+     0.44989,
+     0.47716,
+     0.50272,
+     0.52544,
+     0.54657,
+     0.57211,
+     0.60284,
+     0.6445,
+     0.67959,
+     0.75451,
+     0.83334,
+     0.91963
+    ]
+   }
+  },
+  "aspect.quality.positive": {
+   "label": "Quality: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.16367,
+     0.31848,
+     0.37583,
+     0.42327,
+     0.48089,
+     0.51899,
+     0.54979,
+     0.57578,
+     0.60477,
+     0.63615,
+     0.65968,
+     0.70698,
+     0.76881,
+     0.8343
+    ]
+   }
+  },
+  "aspect.quality.negative": {
+   "label": "Quality: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01225,
+     0.15532,
+     0.17886,
+     0.20015,
+     0.22485,
+     0.25112,
+     0.29321,
+     0.35208,
+     0.4156,
+     0.49127,
+     0.54095,
+     0.6206,
+     0.67352,
+     0.7152
+    ]
+   }
+  },
+  "aspect.quality.mixed": {
+   "label": "Quality: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05,
+     0.10479,
+     0.11778,
+     0.12697,
+     0.1351,
+     0.14227,
+     0.15012,
+     0.15785,
+     0.16773,
+     0.18056,
+     0.19238,
+     0.21828,
+     0.26136,
+     0.46093
+    ]
+   }
+  },
+  "aspect.quality.neutral": {
+   "label": "Quality: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00912,
+     0.03952,
+     0.04791,
+     0.05467,
+     0.0609,
+     0.0668,
+     0.07322,
+     0.0802,
+     0.08996,
+     0.10571,
+     0.12035,
+     0.15674,
+     0.20326,
+     0.24103
+    ]
+   }
+  },
+  "aspect.durability.mentioned": {
+   "label": "Durability: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08638,
+     0.15776,
+     0.18063,
+     0.19811,
+     0.21244,
+     0.22809,
+     0.24433,
+     0.26336,
+     0.29413,
+     0.35001,
+     0.42073,
+     0.66314,
+     0.83222,
+     0.9054
+    ]
+   }
+  },
+  "aspect.durability.positive": {
+   "label": "Durability: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03943,
+     0.25693,
+     0.30176,
+     0.33482,
+     0.36445,
+     0.39029,
+     0.4165,
+     0.44871,
+     0.48137,
+     0.53029,
+     0.57337,
+     0.64209,
+     0.73181,
+     0.75845
+    ]
+   }
+  },
+  "aspect.durability.negative": {
+   "label": "Durability: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00645,
+     0.0702,
+     0.09918,
+     0.12244,
+     0.14354,
+     0.16611,
+     0.19031,
+     0.22446,
+     0.27314,
+     0.35039,
+     0.41467,
+     0.57007,
+     0.74953,
+     0.84429
+    ]
+   }
+  },
+  "aspect.durability.mixed": {
+   "label": "Durability: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03528,
+     0.10453,
+     0.12355,
+     0.13972,
+     0.15758,
+     0.17268,
+     0.19181,
+     0.21249,
+     0.23664,
+     0.27672,
+     0.3069,
+     0.39374,
+     0.64453,
+     0.84458
+    ]
+   }
+  },
+  "aspect.durability.neutral": {
+   "label": "Durability: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00988,
+     0.10116,
+     0.13847,
+     0.16796,
+     0.19522,
+     0.22099,
+     0.24809,
+     0.27793,
+     0.31909,
+     0.3749,
+     0.42658,
+     0.54892,
+     0.65138,
+     0.77662
+    ]
+   }
+  },
+  "aspect.design.mentioned": {
+   "label": "Design: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09235,
+     0.19086,
+     0.23356,
+     0.26859,
+     0.30989,
+     0.35257,
+     0.39926,
+     0.44992,
+     0.50538,
+     0.57374,
+     0.63825,
+     0.73349,
+     0.82663,
+     0.88794
+    ]
+   }
+  },
+  "aspect.design.positive": {
+   "label": "Design: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02506,
+     0.38529,
+     0.4352,
+     0.47715,
+     0.5151,
+     0.54786,
+     0.5789,
+     0.60703,
+     0.63361,
+     0.66429,
+     0.68708,
+     0.7263,
+     0.76617,
+     0.78947
+    ]
+   }
+  },
+  "aspect.design.negative": {
+   "label": "Design: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00544,
+     0.15063,
+     0.17296,
+     0.19431,
+     0.21625,
+     0.24157,
+     0.27087,
+     0.30672,
+     0.35365,
+     0.41736,
+     0.4617,
+     0.55138,
+     0.59937,
+     0.70079
+    ]
+   }
+  },
+  "aspect.design.mixed": {
+   "label": "Design: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0385,
+     0.08708,
+     0.09684,
+     0.10467,
+     0.11102,
+     0.11712,
+     0.12298,
+     0.12983,
+     0.13777,
+     0.15107,
+     0.16341,
+     0.19381,
+     0.48697,
+     0.95675
+    ]
+   }
+  },
+  "aspect.design.neutral": {
+   "label": "Design: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00704,
+     0.04162,
+     0.04954,
+     0.05591,
+     0.06249,
+     0.0698,
+     0.07949,
+     0.0929,
+     0.10992,
+     0.13892,
+     0.16595,
+     0.22755,
+     0.33316,
+     0.40831
+    ]
+   }
+  },
+  "aspect.fit.mentioned": {
+   "label": "Fit: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06303,
+     0.18428,
+     0.22058,
+     0.2553,
+     0.29349,
+     0.33985,
+     0.38368,
+     0.43042,
+     0.48793,
+     0.55681,
+     0.60882,
+     0.70705,
+     0.82466,
+     0.90549
+    ]
+   }
+  },
+  "aspect.fit.positive": {
+   "label": "Fit: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03195,
+     0.26979,
+     0.31343,
+     0.34984,
+     0.38532,
+     0.42261,
+     0.4549,
+     0.48666,
+     0.51937,
+     0.56088,
+     0.59466,
+     0.65307,
+     0.72615,
+     0.77344
+    ]
+   }
+  },
+  "aspect.fit.negative": {
+   "label": "Fit: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00366,
+     0.16194,
+     0.20031,
+     0.22838,
+     0.2546,
+     0.28099,
+     0.31675,
+     0.35885,
+     0.40845,
+     0.48412,
+     0.53527,
+     0.6339,
+     0.71808,
+     0.76064
+    ]
+   }
+  },
+  "aspect.fit.mixed": {
+   "label": "Fit: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03991,
+     0.09258,
+     0.10423,
+     0.11416,
+     0.12287,
+     0.13147,
+     0.13971,
+     0.14909,
+     0.16185,
+     0.18324,
+     0.20323,
+     0.26609,
+     0.43364,
+     0.71159
+    ]
+   }
+  },
+  "aspect.fit.neutral": {
+   "label": "Fit: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01886,
+     0.065,
+     0.08133,
+     0.09379,
+     0.1074,
+     0.12179,
+     0.13889,
+     0.15817,
+     0.1923,
+     0.24813,
+     0.3032,
+     0.45159,
+     0.61537,
+     0.7611
+    ]
+   }
+  },
+  "aspect.usability.mentioned": {
+   "label": "Usability: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06837,
+     0.14556,
+     0.1665,
+     0.18431,
+     0.19895,
+     0.21436,
+     0.23032,
+     0.24779,
+     0.27381,
+     0.32231,
+     0.38078,
+     0.51911,
+     0.70192,
+     0.75132
+    ]
+   }
+  },
+  "aspect.usability.positive": {
+   "label": "Usability: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0247,
+     0.32463,
+     0.36848,
+     0.40771,
+     0.43831,
+     0.46472,
+     0.49013,
+     0.51225,
+     0.53961,
+     0.57532,
+     0.60471,
+     0.65395,
+     0.70414,
+     0.74798
+    ]
+   }
+  },
+  "aspect.usability.negative": {
+   "label": "Usability: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00366,
+     0.12126,
+     0.14703,
+     0.16669,
+     0.1851,
+     0.2072,
+     0.23205,
+     0.2649,
+     0.30343,
+     0.35882,
+     0.39892,
+     0.48727,
+     0.60461,
+     0.72513
+    ]
+   }
+  },
+  "aspect.usability.mixed": {
+   "label": "Usability: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05112,
+     0.11489,
+     0.12842,
+     0.13872,
+     0.14768,
+     0.15627,
+     0.16525,
+     0.17548,
+     0.18811,
+     0.20592,
+     0.21975,
+     0.25123,
+     0.29432,
+     0.85781
+    ]
+   }
+  },
+  "aspect.usability.neutral": {
+   "label": "Usability: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04093,
+     0.09587,
+     0.11268,
+     0.12719,
+     0.13908,
+     0.15193,
+     0.16339,
+     0.17784,
+     0.19708,
+     0.22549,
+     0.25282,
+     0.34671,
+     0.5349,
+     0.67012
+    ]
+   }
+  },
+  "aspect.performance.mentioned": {
+   "label": "Performance: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.07667,
+     0.21107,
+     0.24674,
+     0.27481,
+     0.30234,
+     0.32804,
+     0.35898,
+     0.3937,
+     0.43831,
+     0.51252,
+     0.58033,
+     0.69858,
+     0.81696,
+     0.85811
+    ]
+   }
+  },
+  "aspect.performance.positive": {
+   "label": "Performance: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03347,
+     0.43909,
+     0.49442,
+     0.53643,
+     0.57334,
+     0.60151,
+     0.6243,
+     0.64601,
+     0.66974,
+     0.69875,
+     0.72249,
+     0.76145,
+     0.79038,
+     0.86169
+    ]
+   }
+  },
+  "aspect.performance.negative": {
+   "label": "Performance: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00244,
+     0.06422,
+     0.08434,
+     0.10385,
+     0.12232,
+     0.14305,
+     0.16914,
+     0.19984,
+     0.25136,
+     0.31493,
+     0.3652,
+     0.43914,
+     0.52803,
+     0.56993
+    ]
+   }
+  },
+  "aspect.performance.mixed": {
+   "label": "Performance: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04571,
+     0.09626,
+     0.10977,
+     0.12108,
+     0.13138,
+     0.14091,
+     0.15196,
+     0.16737,
+     0.18708,
+     0.22391,
+     0.25845,
+     0.39165,
+     0.83801,
+     0.94299
+    ]
+   }
+  },
+  "aspect.performance.neutral": {
+   "label": "Performance: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00908,
+     0.05424,
+     0.06384,
+     0.07242,
+     0.08121,
+     0.08866,
+     0.09736,
+     0.10876,
+     0.12346,
+     0.14428,
+     0.16398,
+     0.2283,
+     0.28848,
+     0.32326
+    ]
+   }
+  },
+  "aspect.reliability.mentioned": {
+   "label": "Reliability: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04939,
+     0.11183,
+     0.12607,
+     0.13796,
+     0.1489,
+     0.16061,
+     0.17285,
+     0.18884,
+     0.21555,
+     0.27321,
+     0.34872,
+     0.62127,
+     0.85213,
+     0.91759
+    ]
+   }
+  },
+  "aspect.reliability.positive": {
+   "label": "Reliability: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08151,
+     0.22304,
+     0.2536,
+     0.27424,
+     0.29203,
+     0.3065,
+     0.31892,
+     0.33141,
+     0.34537,
+     0.36636,
+     0.38311,
+     0.42394,
+     0.47239,
+     0.64342
+    ]
+   }
+  },
+  "aspect.reliability.negative": {
+   "label": "Reliability: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01343,
+     0.30042,
+     0.32463,
+     0.34371,
+     0.35918,
+     0.37399,
+     0.39135,
+     0.41158,
+     0.43831,
+     0.47748,
+     0.5139,
+     0.57806,
+     0.62554,
+     0.71123
+    ]
+   }
+  },
+  "aspect.reliability.mixed": {
+   "label": "Reliability: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09108,
+     0.19285,
+     0.2075,
+     0.21843,
+     0.22719,
+     0.2358,
+     0.2436,
+     0.253,
+     0.26385,
+     0.27898,
+     0.29174,
+     0.32606,
+     0.36794,
+     0.40513
+    ]
+   }
+  },
+  "aspect.reliability.neutral": {
+   "label": "Reliability: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01874,
+     0.05178,
+     0.05922,
+     0.06466,
+     0.07005,
+     0.07581,
+     0.08161,
+     0.08836,
+     0.09831,
+     0.11539,
+     0.13313,
+     0.19014,
+     0.46306,
+     0.68601
+    ]
+   }
+  },
+  "aspect.features.mentioned": {
+   "label": "Features: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06465,
+     0.21794,
+     0.26319,
+     0.29599,
+     0.32488,
+     0.34987,
+     0.37565,
+     0.39935,
+     0.42712,
+     0.47069,
+     0.51066,
+     0.58887,
+     0.71826,
+     0.79824
+    ]
+   }
+  },
+  "aspect.features.positive": {
+   "label": "Features: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08803,
+     0.426,
+     0.47028,
+     0.51117,
+     0.54779,
+     0.57578,
+     0.59972,
+     0.62633,
+     0.64991,
+     0.6762,
+     0.69458,
+     0.7387,
+     0.77676,
+     0.81837
+    ]
+   }
+  },
+  "aspect.features.negative": {
+   "label": "Features: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0178,
+     0.12256,
+     0.14245,
+     0.16037,
+     0.17864,
+     0.20073,
+     0.22742,
+     0.25975,
+     0.29831,
+     0.34475,
+     0.38204,
+     0.44994,
+     0.52237,
+     0.66752
+    ]
+   }
+  },
+  "aspect.features.mixed": {
+   "label": "Features: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0425,
+     0.09591,
+     0.10758,
+     0.11647,
+     0.12401,
+     0.1318,
+     0.14041,
+     0.1485,
+     0.15932,
+     0.17676,
+     0.19186,
+     0.22188,
+     0.2923,
+     0.40506
+    ]
+   }
+  },
+  "aspect.features.neutral": {
+   "label": "Features: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01806,
+     0.05191,
+     0.06024,
+     0.06733,
+     0.07362,
+     0.07982,
+     0.08604,
+     0.09364,
+     0.10279,
+     0.11812,
+     0.13174,
+     0.16481,
+     0.25528,
+     0.51073
+    ]
+   }
+  },
+  "aspect.comfort.mentioned": {
+   "label": "Comfort: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06071,
+     0.19997,
+     0.24826,
+     0.29851,
+     0.3412,
+     0.38398,
+     0.43226,
+     0.48416,
+     0.54692,
+     0.6582,
+     0.764,
+     0.8632,
+     0.92515,
+     0.96237
+    ]
+   }
+  },
+  "aspect.comfort.positive": {
+   "label": "Comfort: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00927,
+     0.30498,
+     0.35103,
+     0.3873,
+     0.41787,
+     0.45126,
+     0.48246,
+     0.52109,
+     0.56953,
+     0.62468,
+     0.66333,
+     0.72606,
+     0.78376,
+     0.79221
+    ]
+   }
+  },
+  "aspect.comfort.negative": {
+   "label": "Comfort: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00076,
+     0.04906,
+     0.07694,
+     0.09745,
+     0.11619,
+     0.13629,
+     0.15893,
+     0.18386,
+     0.22546,
+     0.27731,
+     0.32684,
+     0.4146,
+     0.5189,
+     0.54472
+    ]
+   }
+  },
+  "aspect.comfort.mixed": {
+   "label": "Comfort: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06639,
+     0.15758,
+     0.18282,
+     0.2044,
+     0.22465,
+     0.24447,
+     0.26454,
+     0.28628,
+     0.3147,
+     0.35915,
+     0.41474,
+     0.57464,
+     0.86961,
+     0.94546
+    ]
+   }
+  },
+  "aspect.comfort.neutral": {
+   "label": "Comfort: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02422,
+     0.06526,
+     0.07937,
+     0.09089,
+     0.1038,
+     0.11719,
+     0.13283,
+     0.15212,
+     0.18054,
+     0.22929,
+     0.27626,
+     0.39759,
+     0.58649,
+     0.62805
+    ]
+   }
+  },
+  "aspect.delivery.mentioned": {
+   "label": "Delivery: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05965,
+     0.13058,
+     0.14982,
+     0.16449,
+     0.17672,
+     0.18848,
+     0.20208,
+     0.21709,
+     0.23653,
+     0.27102,
+     0.30898,
+     0.46828,
+     0.67944,
+     0.8325
+    ]
+   }
+  },
+  "aspect.delivery.positive": {
+   "label": "Delivery: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.11299,
+     0.32804,
+     0.36924,
+     0.40034,
+     0.42907,
+     0.45274,
+     0.47341,
+     0.49113,
+     0.51202,
+     0.53801,
+     0.55914,
+     0.60227,
+     0.64922,
+     0.71988
+    ]
+   }
+  },
+  "aspect.delivery.negative": {
+   "label": "Delivery: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0038,
+     0.12573,
+     0.15638,
+     0.17701,
+     0.19646,
+     0.21587,
+     0.23792,
+     0.26211,
+     0.29666,
+     0.34585,
+     0.38817,
+     0.45962,
+     0.52931,
+     0.63882
+    ]
+   }
+  },
+  "aspect.delivery.mixed": {
+   "label": "Delivery: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.07205,
+     0.13392,
+     0.14682,
+     0.15552,
+     0.16413,
+     0.17184,
+     0.17897,
+     0.18701,
+     0.1976,
+     0.21303,
+     0.22587,
+     0.2544,
+     0.28411,
+     0.35036
+    ]
+   }
+  },
+  "aspect.delivery.neutral": {
+   "label": "Delivery: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.04301,
+     0.09446,
+     0.1112,
+     0.12331,
+     0.13598,
+     0.14802,
+     0.16156,
+     0.17774,
+     0.20023,
+     0.23981,
+     0.27984,
+     0.35149,
+     0.44501,
+     0.49739
+    ]
+   }
+  },
+  "aspect.packaging.mentioned": {
+   "label": "Packaging: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0673,
+     0.17437,
+     0.2012,
+     0.22174,
+     0.23853,
+     0.25605,
+     0.27581,
+     0.29978,
+     0.33177,
+     0.37809,
+     0.43703,
+     0.59931,
+     0.81642,
+     0.85911
+    ]
+   }
+  },
+  "aspect.packaging.positive": {
+   "label": "Packaging: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00989,
+     0.26098,
+     0.31483,
+     0.34383,
+     0.3706,
+     0.39505,
+     0.41784,
+     0.44126,
+     0.47003,
+     0.50504,
+     0.53592,
+     0.59022,
+     0.6922,
+     0.75374
+    ]
+   }
+  },
+  "aspect.packaging.negative": {
+   "label": "Packaging: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00123,
+     0.0337,
+     0.06504,
+     0.09149,
+     0.11375,
+     0.13671,
+     0.16178,
+     0.19162,
+     0.22939,
+     0.28208,
+     0.33153,
+     0.42532,
+     0.57306,
+     0.62674
+    ]
+   }
+  },
+  "aspect.packaging.mixed": {
+   "label": "Packaging: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03728,
+     0.12796,
+     0.1449,
+     0.15819,
+     0.17061,
+     0.18341,
+     0.19583,
+     0.21074,
+     0.23217,
+     0.26554,
+     0.3025,
+     0.43918,
+     0.78688,
+     0.96193
+    ]
+   }
+  },
+  "aspect.packaging.neutral": {
+   "label": "Packaging: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0256,
+     0.12839,
+     0.16219,
+     0.19068,
+     0.21677,
+     0.24533,
+     0.27567,
+     0.30964,
+     0.35383,
+     0.4398,
+     0.51975,
+     0.65183,
+     0.76206,
+     0.79462
+    ]
+   }
+  },
+  "aspect.service.mentioned": {
+   "label": "Service: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0776,
+     0.16091,
+     0.17931,
+     0.19333,
+     0.20575,
+     0.21842,
+     0.23178,
+     0.2475,
+     0.27028,
+     0.3102,
+     0.34796,
+     0.44447,
+     0.6703,
+     0.77777
+    ]
+   }
+  },
+  "aspect.service.positive": {
+   "label": "Service: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.11551,
+     0.46049,
+     0.50893,
+     0.54513,
+     0.57317,
+     0.59972,
+     0.61997,
+     0.64093,
+     0.65891,
+     0.68088,
+     0.69764,
+     0.7225,
+     0.74653,
+     0.76987
+    ]
+   }
+  },
+  "aspect.service.negative": {
+   "label": "Service: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00788,
+     0.07542,
+     0.08975,
+     0.10341,
+     0.11631,
+     0.1323,
+     0.15131,
+     0.17491,
+     0.2095,
+     0.25824,
+     0.29656,
+     0.36713,
+     0.46827,
+     0.69811
+    ]
+   }
+  },
+  "aspect.service.mixed": {
+   "label": "Service: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08646,
+     0.12148,
+     0.1327,
+     0.14044,
+     0.14816,
+     0.15642,
+     0.16478,
+     0.17332,
+     0.18469,
+     0.2027,
+     0.21972,
+     0.2562,
+     0.30513,
+     0.36932
+    ]
+   }
+  },
+  "aspect.service.neutral": {
+   "label": "Service: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03143,
+     0.06964,
+     0.07916,
+     0.08681,
+     0.09401,
+     0.10042,
+     0.10831,
+     0.11576,
+     0.1269,
+     0.14507,
+     0.16479,
+     0.21332,
+     0.27295,
+     0.48917
+    ]
+   }
+  },
+  "aspect.accuracy.mentioned": {
+   "label": "Accuracy: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.16322,
+     0.37717,
+     0.43146,
+     0.47735,
+     0.51804,
+     0.55156,
+     0.58266,
+     0.61181,
+     0.64287,
+     0.68236,
+     0.71712,
+     0.76799,
+     0.83379,
+     0.89241
+    ]
+   }
+  },
+  "aspect.accuracy.positive": {
+   "label": "Accuracy: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03399,
+     0.49984,
+     0.56734,
+     0.61906,
+     0.65379,
+     0.68131,
+     0.70797,
+     0.73308,
+     0.75892,
+     0.78823,
+     0.81226,
+     0.85213,
+     0.87912,
+     0.89284
+    ]
+   }
+  },
+  "aspect.accuracy.negative": {
+   "label": "Accuracy: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00727,
+     0.03613,
+     0.05236,
+     0.06647,
+     0.08,
+     0.09602,
+     0.11698,
+     0.14342,
+     0.18457,
+     0.23876,
+     0.28277,
+     0.3534,
+     0.41993,
+     0.51547
+    ]
+   }
+  },
+  "aspect.accuracy.mixed": {
+   "label": "Accuracy: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02993,
+     0.07364,
+     0.08627,
+     0.09664,
+     0.10612,
+     0.11585,
+     0.12519,
+     0.13725,
+     0.15131,
+     0.17503,
+     0.19665,
+     0.27452,
+     0.57819,
+     0.88514
+    ]
+   }
+  },
+  "aspect.accuracy.neutral": {
+   "label": "Accuracy: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01594,
+     0.0625,
+     0.0719,
+     0.07942,
+     0.08674,
+     0.09316,
+     0.10003,
+     0.10827,
+     0.11796,
+     0.13278,
+     0.14572,
+     0.17457,
+     0.22651,
+     0.31568
+    ]
+   }
+  },
+  "aspect.cleanliness.mentioned": {
+   "label": "Cleanliness: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08282,
+     0.17104,
+     0.19085,
+     0.20391,
+     0.2163,
+     0.22894,
+     0.24181,
+     0.25832,
+     0.28191,
+     0.32048,
+     0.36092,
+     0.48904,
+     0.70064,
+     0.76076
+    ]
+   }
+  },
+  "aspect.cleanliness.positive": {
+   "label": "Cleanliness: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.22778,
+     0.36261,
+     0.39902,
+     0.43193,
+     0.45586,
+     0.47782,
+     0.49673,
+     0.51623,
+     0.53639,
+     0.56345,
+     0.58295,
+     0.61596,
+     0.64814,
+     0.65996
+    ]
+   }
+  },
+  "aspect.cleanliness.negative": {
+   "label": "Cleanliness: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00846,
+     0.15913,
+     0.181,
+     0.19827,
+     0.21824,
+     0.23917,
+     0.26341,
+     0.29019,
+     0.32497,
+     0.37584,
+     0.41285,
+     0.48027,
+     0.54913,
+     0.56801
+    ]
+   }
+  },
+  "aspect.cleanliness.mixed": {
+   "label": "Cleanliness: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08464,
+     0.12928,
+     0.13923,
+     0.14757,
+     0.15466,
+     0.16173,
+     0.16884,
+     0.17755,
+     0.18764,
+     0.20118,
+     0.21353,
+     0.2429,
+     0.31521,
+     0.40704
+    ]
+   }
+  },
+  "aspect.cleanliness.neutral": {
+   "label": "Cleanliness: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02593,
+     0.07554,
+     0.08716,
+     0.09519,
+     0.10245,
+     0.1099,
+     0.11741,
+     0.12642,
+     0.13818,
+     0.15383,
+     0.16671,
+     0.20407,
+     0.33108,
+     0.42036
+    ]
+   }
+  },
+  "aspect.atmosphere.mentioned": {
+   "label": "Atmosphere: mentioned",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05965,
+     0.12875,
+     0.14308,
+     0.15556,
+     0.16771,
+     0.18258,
+     0.2019,
+     0.22841,
+     0.27008,
+     0.33761,
+     0.38661,
+     0.53103,
+     0.70354,
+     0.95126
+    ]
+   }
+  },
+  "aspect.atmosphere.positive": {
+   "label": "Atmosphere: praised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.14376,
+     0.4186,
+     0.45178,
+     0.47648,
+     0.49539,
+     0.51254,
+     0.52918,
+     0.54539,
+     0.56327,
+     0.58754,
+     0.60753,
+     0.64834,
+     0.70162,
+     0.80035
+    ]
+   }
+  },
+  "aspect.atmosphere.negative": {
+   "label": "Atmosphere: criticised",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0143,
+     0.16098,
+     0.18446,
+     0.20716,
+     0.22442,
+     0.24367,
+     0.26513,
+     0.29084,
+     0.32559,
+     0.3739,
+     0.41536,
+     0.49025,
+     0.55829,
+     0.57689
+    ]
+   }
+  },
+  "aspect.atmosphere.mixed": {
+   "label": "Atmosphere: both",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06216,
+     0.10836,
+     0.12139,
+     0.13156,
+     0.14126,
+     0.15117,
+     0.16092,
+     0.17246,
+     0.18718,
+     0.21096,
+     0.23293,
+     0.27573,
+     0.37874,
+     0.78931
+    ]
+   }
+  },
+  "aspect.atmosphere.neutral": {
+   "label": "Atmosphere: mentioned neutrally",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01653,
+     0.04472,
+     0.05356,
+     0.06014,
+     0.06684,
+     0.07441,
+     0.08184,
+     0.08979,
+     0.10122,
+     0.1196,
+     0.13615,
+     0.17944,
+     0.27389,
+     0.32861
+    ]
+   }
+  },
+  "lang.en": {
+   "label": "Language: English",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.05531,
+     0.83646,
+     0.86435,
+     0.88092,
+     0.89284,
+     0.9036,
+     0.91214,
+     0.9207,
+     0.92983,
+     0.94213,
+     0.9513,
+     0.96327,
+     0.97561,
+     0.98095
+    ]
+   }
+  },
+  "lang.de": {
+   "label": "Language: German",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00319,
+     0.01308,
+     0.01643,
+     0.01906,
+     0.0214,
+     0.0239,
+     0.02644,
+     0.02963,
+     0.03341,
+     0.04023,
+     0.047,
+     0.0681,
+     0.09677,
+     0.14756
+    ]
+   }
+  },
+  "lang.es": {
+   "label": "Language: Spanish",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0063,
+     0.02191,
+     0.02644,
+     0.03041,
+     0.03417,
+     0.03763,
+     0.04175,
+     0.04679,
+     0.05388,
+     0.06479,
+     0.07816,
+     0.11152,
+     0.55107,
+     0.92543
+    ]
+   }
+  },
+  "lang.fr": {
+   "label": "Language: French",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00155,
+     0.00728,
+     0.00904,
+     0.01068,
+     0.01223,
+     0.01366,
+     0.01529,
+     0.01702,
+     0.01963,
+     0.02389,
+     0.02873,
+     0.04445,
+     0.09823,
+     0.43495
+    ]
+   }
+  },
+  "lang.it": {
+   "label": "Language: Italian",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00054,
+     0.00266,
+     0.00336,
+     0.00397,
+     0.00458,
+     0.00516,
+     0.00581,
+     0.00661,
+     0.00767,
+     0.0096,
+     0.01142,
+     0.01865,
+     0.04344,
+     0.10494
+    ]
+   }
+  },
+  "lang.pt": {
+   "label": "Language: Portuguese",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.00019,
+     0.00303,
+     0.00402,
+     0.00481,
+     0.00549,
+     0.00629,
+     0.00723,
+     0.00837,
+     0.00986,
+     0.01243,
+     0.01554,
+     0.02335,
+     0.04538,
+     0.07877
+    ]
+   }
+  },
+  "lang.other": {
+   "label": "Language: another language",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     1e-05,
+     8e-05,
+     0.0001,
+     0.00013,
+     0.00016,
+     0.00018,
+     0.00021,
+     0.00025,
+     0.00029,
+     0.00036,
+     0.00042,
+     0.00061,
+     0.00094,
+     0.00161
+    ]
+   }
+  },
+  "request.feature": {
+   "label": "Asks for: feature",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.14262,
+     0.23434,
+     0.26,
+     0.28112,
+     0.29983,
+     0.31823,
+     0.33912,
+     0.36156,
+     0.3884,
+     0.43342,
+     0.47609,
+     0.60794,
+     0.84866,
+     0.88704
+    ]
+   }
+  },
+  "request.bug": {
+   "label": "Asks for: bug",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.07743,
+     0.16503,
+     0.18576,
+     0.20242,
+     0.21969,
+     0.23472,
+     0.25354,
+     0.27408,
+     0.3041,
+     0.37747,
+     0.48396,
+     0.70267,
+     0.88853,
+     0.95418
+    ]
+   }
+  },
+  "request.question": {
+   "label": "Asks for: question",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": 0.5,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.17096,
+     0.27737,
+     0.29928,
+     0.31346,
+     0.32661,
+     0.3392,
+     0.35165,
+     0.36595,
+     0.38263,
+     0.40823,
+     0.43345,
+     0.50961,
+     0.60973,
+     0.74055
+    ]
+   },
+   "threshold_fit": "probability_0.5"
+  },
+  "intent.refund": {
+   "label": "Intent: refund",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": 0.5,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.07649,
+     0.15537,
+     0.17523,
+     0.19157,
+     0.20829,
+     0.22446,
+     0.24098,
+     0.26203,
+     0.29409,
+     0.34905,
+     0.40713,
+     0.53791,
+     0.71159,
+     0.79121
+    ]
+   },
+   "threshold_fit": "probability_0.5"
+  },
+  "intent.repurchase": {
+   "label": "Intent: repurchase",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0305,
+     0.18897,
+     0.29071,
+     0.42872,
+     0.64809,
+     0.82202,
+     0.86768,
+     0.89332,
+     0.91357,
+     0.93683,
+     0.95003,
+     0.96902,
+     0.98307,
+     0.98677
+    ]
+   }
+  },
+  "intent.switch": {
+   "label": "Intent: switch",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02429,
+     0.076,
+     0.09856,
+     0.12236,
+     0.14982,
+     0.18931,
+     0.23897,
+     0.28987,
+     0.36282,
+     0.46347,
+     0.57731,
+     0.78951,
+     0.9207,
+     0.93677
+    ]
+   }
+  },
+  "intent.recommend": {
+   "label": "Intent: recommend",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01632,
+     0.09254,
+     0.15614,
+     0.31385,
+     0.66231,
+     0.89292,
+     0.93185,
+     0.94973,
+     0.96271,
+     0.97376,
+     0.98026,
+     0.98842,
+     0.9926,
+     0.99549
+    ]
+   }
+  },
+  "intent.warn": {
+   "label": "Intent: warn",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.02292,
+     0.09802,
+     0.127,
+     0.16202,
+     0.19971,
+     0.251,
+     0.32621,
+     0.44482,
+     0.56543,
+     0.69866,
+     0.78124,
+     0.88305,
+     0.93137,
+     0.93584
+    ]
+   }
+  },
+  "mention.competitor": {
+   "label": "Mentions: competitor",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.17137,
+     0.29926,
+     0.32877,
+     0.35231,
+     0.37381,
+     0.39923,
+     0.42254,
+     0.45459,
+     0.49692,
+     0.56437,
+     0.6205,
+     0.7351,
+     0.87567,
+     0.89282
+    ]
+   }
+  },
+  "mention.previous": {
+   "label": "Mentions: previous",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.13161,
+     0.2244,
+     0.24714,
+     0.2664,
+     0.28427,
+     0.30276,
+     0.32454,
+     0.35364,
+     0.39142,
+     0.45115,
+     0.52293,
+     0.68295,
+     0.87614,
+     0.94926
+    ]
+   }
+  },
+  "mention.duration": {
+   "label": "Mentions: duration",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.2202,
+     0.34256,
+     0.36524,
+     0.38515,
+     0.40265,
+     0.41834,
+     0.43454,
+     0.45646,
+     0.488,
+     0.53413,
+     0.57889,
+     0.65516,
+     0.73954,
+     0.76855
+    ]
+   }
+  },
+  "mention.gift": {
+   "label": "Mentions: gift",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.09654,
+     0.18588,
+     0.21309,
+     0.23218,
+     0.25085,
+     0.27293,
+     0.29826,
+     0.32911,
+     0.37012,
+     0.43383,
+     0.48298,
+     0.57481,
+     0.6991,
+     0.85584
+    ]
+   }
+  },
+  "mention.update": {
+   "label": "Mentions: update",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.22162,
+     0.35871,
+     0.39623,
+     0.41836,
+     0.43742,
+     0.4575,
+     0.47652,
+     0.4934,
+     0.51543,
+     0.54423,
+     0.56624,
+     0.6028,
+     0.65902,
+     0.69245
+    ]
+   }
+  },
+  "tone.angry": {
+   "label": "Tone: angry",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.12113,
+     0.25625,
+     0.29385,
+     0.33127,
+     0.36426,
+     0.4078,
+     0.46716,
+     0.55217,
+     0.6398,
+     0.72993,
+     0.77329,
+     0.83377,
+     0.88509,
+     0.89049
+    ]
+   }
+  },
+  "tone.disappointed": {
+   "label": "Tone: disappointed",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.07473,
+     0.22456,
+     0.2684,
+     0.31411,
+     0.36678,
+     0.45542,
+     0.62673,
+     0.74317,
+     0.80798,
+     0.85807,
+     0.88455,
+     0.91666,
+     0.93613,
+     0.95307
+    ]
+   }
+  },
+  "tone.enthusiastic": {
+   "label": "Tone: enthusiastic",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06307,
+     0.39683,
+     0.4989,
+     0.58277,
+     0.68816,
+     0.78881,
+     0.83967,
+     0.87268,
+     0.90291,
+     0.92952,
+     0.94629,
+     0.96624,
+     0.9773,
+     0.98196
+    ]
+   }
+  },
+  "tone.sarcastic": {
+   "label": "Tone: sarcastic",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.15488,
+     0.30703,
+     0.33989,
+     0.36442,
+     0.38956,
+     0.41481,
+     0.44274,
+     0.48432,
+     0.53587,
+     0.60743,
+     0.66489,
+     0.75259,
+     0.827,
+     0.83785
+    ]
+   }
+  },
+  "quality.promotional": {
+   "label": "Review quality: promotional",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.08987,
+     0.1687,
+     0.19045,
+     0.20964,
+     0.22559,
+     0.24364,
+     0.26609,
+     0.28927,
+     0.32601,
+     0.37468,
+     0.42634,
+     0.53782,
+     0.69541,
+     0.84654
+    ]
+   }
+  },
+  "quality.incentivized": {
+   "label": "Review quality: incentivized",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.0541,
+     0.13756,
+     0.16192,
+     0.18063,
+     0.1977,
+     0.21825,
+     0.23677,
+     0.25877,
+     0.28954,
+     0.33524,
+     0.37345,
+     0.44713,
+     0.55431,
+     0.70309
+    ]
+   }
+  },
+  "quality.offtopic": {
+   "label": "Review quality: offtopic",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.13305,
+     0.20576,
+     0.22543,
+     0.24028,
+     0.25459,
+     0.27049,
+     0.28666,
+     0.30477,
+     0.33085,
+     0.37082,
+     0.41342,
+     0.51112,
+     0.64802,
+     0.69909
+    ]
+   }
+  },
+  "risk.safety": {
+   "label": "Risk: safety",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": 0.5,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.06136,
+     0.14137,
+     0.15968,
+     0.17574,
+     0.18995,
+     0.20624,
+     0.2201,
+     0.24026,
+     0.26492,
+     0.3048,
+     0.34789,
+     0.45749,
+     0.78475,
+     0.94793
+    ]
+   },
+   "threshold_fit": "probability_0.5"
+  },
+  "risk.legal": {
+   "label": "Risk: legal",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": 0.5,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.03139,
+     0.05875,
+     0.06853,
+     0.0776,
+     0.0866,
+     0.09733,
+     0.1101,
+     0.12654,
+     0.14693,
+     0.18227,
+     0.21632,
+     0.28629,
+     0.4304,
+     0.52646
+    ]
+   },
+   "threshold_fit": "probability_0.5"
+  },
+  "risk.public": {
+   "label": "Risk: public",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.10274,
+     0.2272,
+     0.25468,
+     0.27539,
+     0.29595,
+     0.31584,
+     0.33901,
+     0.36662,
+     0.41013,
+     0.46471,
+     0.5126,
+     0.577,
+     0.66958,
+     0.69679
+    ]
+   }
+  },
+  "risk.abuse": {
+   "label": "Risk: abuse",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.01855,
+     0.03808,
+     0.04409,
+     0.04917,
+     0.05473,
+     0.06182,
+     0.06963,
+     0.08067,
+     0.09723,
+     0.13673,
+     0.18934,
+     0.34377,
+     0.51389,
+     0.59668
+    ]
+   }
+  },
+  "risk.pii": {
+   "label": "Risk: pii",
+   "scale": "probability",
+   "platt": [
+    1.0,
+    0.0
+   ],
+   "threshold": null,
+   "normal_quantiles": {
+    "levels": [
+     0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     0.9,
+     0.95,
+     0.99,
+     0.999,
+     1
+    ],
+    "values": [
+     0.11389,
+     0.18753,
+     0.20704,
+     0.22369,
+     0.23759,
+     0.25322,
+     0.26915,
+     0.28607,
+     0.30979,
+     0.35061,
+     0.38836,
+     0.45933,
+     0.54971,
+     0.63932
+    ]
+   }
+  }
+ },
+ "decision": {
+  "mode": "per_category",
+  "fallback": "per_category",
+  "per_category": {},
+  "max": {
+   "threshold": 0.6471
+  }
+ },
+ "answers": "logprob",
+ "engine": "fp_8a2c6e91fd"
+}

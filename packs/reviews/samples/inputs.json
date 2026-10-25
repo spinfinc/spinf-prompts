@@ -1,0 +1,92 @@
+[
+ {
+  "id": "headphones-glowing",
+  "context": "review",
+  "text": "Six months in and these are still the best headphones I have owned. The noise cancelling makes my train commute silent, the battery lasts the whole week on one charge, and they fold small enough for my jacket pocket. The ear cups are soft enough for three-hour flights. Worth every penny of the 180 I paid. Already recommended them to two colleagues."
+ },
+ {
+  "id": "blender-refund",
+  "context": "review",
+  "text": "Worked for exactly two weeks. Then the motor started grinding and now it won't turn on at all. For 90 euros I expected it to survive more than fourteen smoothies. I have emailed the seller twice with no reply. I want my money back or a replacement, and I want it this week."
+ },
+ {
+  "id": "budget-app-bug",
+  "context": "app",
+  "text": "Since the last update the app crashes every time I open the transactions tab, so I can't see anything I entered this month. Before that it was fine and I'd have given 5 stars. Please fix it. Also, it would be great to export to CSV instead of only PDF, I need the numbers in a spreadsheet."
+ },
+ {
+  "id": "jacket-sizing",
+  "context": "review",
+  "text": "Beautiful jacket, the wool is thick and the stitching is neat, but it runs at least a full size small. I ordered a medium as always and could not close it over a jumper. Exchanged it for a large, which fits well. Order a size up and you will be happy with it."
+ },
+ {
+  "id": "heater-safety",
+  "context": "review",
+  "text": "On the third evening of use the heater started smelling of burning plastic and I found a brown scorch mark on the back panel where the cable goes in. I unplugged it immediately. If it had been running overnight it could have started a fire. Do not leave this thing on while you sleep."
+ },
+ {
+  "id": "sofa-legal",
+  "context": "review",
+  "text": "Ordered the sofa in March with a promised delivery of four weeks. It is now July. Customer service has given me five different dates and stopped answering my emails. I have asked my bank for a chargeback and I am filing a complaint with the consumer protection office this week. Avoid this company."
+ },
+ {
+  "id": "bistro-review",
+  "context": "place",
+  "text": "The food was excellent, the duck especially, and the wine list is clever for such a small place. The service was another matter: forty minutes for a starter, and we had to ask twice for water. Prices are on the high side for the neighbourhood. We would go back for the food, on a quiet night."
+ },
+ {
+  "id": "hotel-mixed",
+  "context": "place",
+  "text": "Spotless room, comfortable bed and a location you could not improve on, two minutes from the station. The staff were helpful with luggage and a late check-out. But the walls are thin: we heard the neighbours' television until one in the morning both nights. Bring earplugs, or ask for a room at the end of the corridor."
+ },
+ {
+  "id": "survey-checkout",
+  "context": "survey",
+  "text": "The products are fine and the quality is what I expected. What put me off is the checkout: it took me three tries to apply the discount code, and the shipping cost only appeared on the last page. If you showed the total shipping cost up front and let me save my address I would order more often."
+ },
+ {
+  "id": "vacuum-competitor",
+  "context": "review",
+  "text": "I switched from the Dyson V8 after the battery died and did not want to pay their prices again. This one is noticeably quieter and the bin is easier to empty, but the battery is weaker, about 25 minutes on normal power against 35 on the Dyson, and the attachments feel cheaper. For half the price it is a fair trade."
+ },
+ {
+  "id": "incentivized-serum",
+  "context": "review",
+  "text": "I received this serum for free in exchange for my honest review. It is amazing! My skin feels so soft and glowy and the bottle is very elegant. It absorbs quickly and smells lovely. I will definitely be buying more and recommend it to everyone looking for a great serum!!!"
+ },
+ {
+  "id": "generic-five-stars",
+  "context": "review",
+  "text": "Great product, exactly as described. Fast shipping. Would buy again."
+ },
+ {
+  "id": "german-delivery",
+  "context": "review",
+  "text": "Die Lampe selbst ist in Ordnung, aber die Lieferung war eine Katastrophe. Zwei Wochen Verspätung, das Paket kam eingedrückt an und der Lampenschirm hatte einen Riss. Der Verkäufer hat immerhin schnell einen Ersatz geschickt. Drei Sterne, wegen der Lampe, nicht wegen der Lieferung."
+ },
+ {
+  "id": "question-only",
+  "context": "review",
+  "text": "Does this case fit the 2019 model with the larger camera bump, or only the 2021 one? And is the charging cable included or sold separately? The listing is not clear."
+ },
+ {
+  "id": "support-order-number",
+  "context": "review",
+  "text": "Order 4471-8832-19, placed on 2 May. The kettle arrived with a dented lid. I called support and spoke to Marcus Delgado, who promised a replacement within five days; nothing has arrived after three weeks. You can reach me on 0176 555 0142 to sort this out. Not impressed."
+ },
+ {
+  "id": "sarcastic-alarm",
+  "context": "review",
+  "text": "Fantastic alarm clock, if what you want is to be woken at 3:17 every morning by a random beep nobody can explain. Bonus feature: the snooze button also turns the alarm off entirely, so you get to be late for work as well as tired. Truly innovative."
+ },
+ {
+  "id": "gift-tablet",
+  "context": "review",
+  "text": "Bought this for my grandmother, who is 84 and had never used a tablet. She was video-calling the grandchildren within an hour. The large icons and the loud speaker are exactly what she needed, and the stand is sturdy. She says the screen is a little hard to read in sunlight, but she uses it indoors anyway."
+ },
+ {
+  "id": "abusive-counter",
+  "context": "place",
+  "text": "The moron behind the counter could not count change and then had the nerve to argue with me about it. Rude, slow and useless. The coffee was fine but I am not giving money to people like that. If I see him there again I will make sure he regrets it."
+ }
+]
