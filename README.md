@@ -20,9 +20,10 @@ so every evaluator gives the same answer.
 | [`spinf/reviews`](packs/reviews/) | reviews and customer feedback: overall opinion and implied stars, subject, 16 aspects mentioned and praised or criticised, language, requests, intent, mentions, tone, review quality, risks; needs-follow-up decision | `spinf/gemma-4-12b-fp8` | 0.1.0 |
 | [`spinf/brand`](packs/brand/) | brand perception and web content: a page (or a search query) plus a brand parameter; mentioned, the page's view of the brand and 20 perception items (recommended, criticised, top pick, bad news, complaint...), search intents, page types, topic, audience, level, reading level, language, content signals; brand-alert decision | `spinf/gemma-4-12b-fp8` | 0.1.0 |
 
-News analysis is published by a partner in its own namespace, as the worked example of a community pack source:
-[thinkingtext/spinf-news-pack](https://github.com/thinkingtext/spinf-news-pack) (the oil news index, the general market read and
-twelve companies as report-only packs; `--packs github:thinkingtext/spinf-news-pack@0.1.0`).
+This is one pack source among others: a server loads any repository with the same layout, and
+[spinf-serve's PACKS.md](https://github.com/spinfinc/spinf-serve/blob/main/PACKS.md) lists every pack we know of, official
+and community, starting with [thinkingtext/spinf-news-pack](https://github.com/thinkingtext/spinf-news-pack) (oil, equity
+and market news; `--packs github:thinkingtext/spinf-news-pack@0.1.0`).
 
 ## Use
 
@@ -49,7 +50,9 @@ API at `api.spinf.com` serves the same files under the same ids. Guides: `docs/p
 
 Any GitHub repository with a `prompt-packs.json` at its root can be loaded by spinf-serve (`--packs github:you/your-packs@tag`):
 use your own namespace (by convention your GitHub owner; `spinf/` is reserved for this repository), pin a tag per release, and run
-`spinf-serve packs validate .` in CI. This repository is the reference example.
+`spinf-serve packs validate .` in CI. This repository is the reference example. Once published, have it listed in
+[spinf-serve's PACKS.md](https://github.com/spinfinc/spinf-serve/blob/main/PACKS.md) with a
+["List my pack" issue](https://github.com/spinfinc/spinf-serve/issues/new?template=pack.yml).
 
 ## Versioning and licence
 

@@ -10,6 +10,7 @@ spinf-serve's `packs` module.
 - **Fixtures**: every version ships `packs/<name>/fixtures/<version>.json`, the samples scored on the server with the
   expected output in every mode; spinf-serve's tests recompute it. A new version needs a new fixture.
 - **Your own packs** belong in your own repository and namespace (`docs/pack-format.md`, README "Publish your own packs");
-  `spinf/` is reserved for this one. Open an issue to have a community pack repository listed.
+  `spinf/` is reserved for this one. To have your packs listed in spinf-serve's PACKS.md, open a "List my pack" issue
+  there: https://github.com/spinfinc/spinf-serve/issues/new?template=pack.yml.
 - Data a pack was calibrated or checked on is credited in `ACKNOWLEDGEMENTS.md` with its terms, and is not bundled
   unless its licence allows it. Apache 2.0 applies to every contribution.
