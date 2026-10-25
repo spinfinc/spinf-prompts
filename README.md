@@ -20,7 +20,9 @@ so every evaluator gives the same answer.
 | [`spinf/reviews`](packs/reviews/) | reviews and customer feedback: overall opinion and implied stars, subject, 16 aspects mentioned and praised or criticised, language, requests, intent, mentions, tone, review quality, risks; needs-follow-up decision | `spinf/gemma-4-12b-fp8` | 0.1.0 |
 | [`spinf/brand`](packs/brand/) | brand perception and web content: a page (or a search query) plus a brand parameter; mentioned, the page's view of the brand and 20 perception items (recommended, criticised, top pick, bad news, complaint...), search intents, page types, topic, audience, level, reading level, language, content signals; brand-alert decision | `spinf/gemma-4-12b-fp8` | 0.1.0 |
 
-Planned: news analysis.
+News analysis is published by a partner in its own namespace, as the worked example of a community pack source:
+[thinkingtext/spinf-news-pack](https://github.com/thinkingtext/spinf-news-pack) (the oil news index, the general market read and
+twelve companies as report-only packs; `--packs github:thinkingtext/spinf-news-pack@0.1.0`).
 
 ## Use
 
